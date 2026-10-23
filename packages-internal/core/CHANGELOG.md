@@ -78,6 +78,35 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+
+
+
+
+# 3.978.5 (2026-10-21)
+### Chores
+* **codegen:** sync for JSON string serializer buffer fix and retryMode docs link ([#8373](https://github.com/aws/aws-sdk-js-v3/issues/8373)) ([5f53137](https://github.com/aws/aws-sdk-js-v3/commit/5f53137d303161693250579a6a6dd3c501655276))
+
+
+
+# 3.978.4 (2026-10-16)
+### Chores
+* **core:** consume JSON codec from @smithy/core ([#8335](https://github.com/aws/aws-sdk-js-v3/issues/8335)) ([412d136](https://github.com/aws/aws-sdk-js-v3/commit/412d1362e9d60979d3e11e7396e2598872b55773))
+* **codegen:** sync for JSON codec and schema server plugin ([#8353](https://github.com/aws/aws-sdk-js-v3/issues/8353)) ([3e350b5](https://github.com/aws/aws-sdk-js-v3/commit/3e350b59848e2bffcfe4d34a628e7adc136a6a55))
+
+
+
+# 3.978.3 (2026-10-12)
+### Bug Fixes
+* **core/httpAuthSchemes:** skip clock-skew sampling for event-stream outputs ([#8346](https://github.com/aws/aws-sdk-js-v3/issues/8346)) ([345466f](https://github.com/aws/aws-sdk-js-v3/commit/345466f4d6c0c2ab2610b6badae7d9da0d15064e))
+
+
+
+# 3.978.2 (2026-10-08)
+### Chores
+* **codegen:** sync for endpoint cache fix and pre-schema error fallback ([#8341](https://github.com/aws/aws-sdk-js-v3/issues/8341)) ([5773a75](https://github.com/aws/aws-sdk-js-v3/commit/5773a7515472dbdf2760c61e4a462b71800c50e7))
+
+
+
 # 3.978.1 (2026-09-22)
 ### Chores
 * **codegen:** sync for MetricsRecorder support and core error/retry fixes ([#8312](https://github.com/aws/aws-sdk-js-v3/issues/8312)) ([9a10476](https://github.com/aws/aws-sdk-js-v3/commit/9a104768684e8f22d4373fcc5d910711e62676d6))

@@ -23,6 +23,7 @@ export const ActionType = {
   END_ASSOCIATED_TASKS: "END_ASSOCIATED_TASKS",
   EXTRACT_INFORMATION: "EXTRACT_INFORMATION",
   GENERATE_EVENTBRIDGE_EVENT: "GENERATE_EVENTBRIDGE_EVENT",
+  SEND_IN_APP_NOTIFICATION: "SEND_IN_APP_NOTIFICATION",
   SEND_NOTIFICATION: "SEND_NOTIFICATION",
   SUBMIT_AUTO_EVALUATION: "SUBMIT_AUTO_EVALUATION",
   UPDATE_CASE: "UPDATE_CASE",
@@ -421,6 +422,7 @@ export type EntityType = (typeof EntityType)[keyof typeof EntityType];
  */
 export const FileStatusType = {
   APPROVED: "APPROVED",
+  DRAFTING: "DRAFTING",
   FAILED: "FAILED",
   PROCESSING: "PROCESSING",
   REJECTED: "REJECTED",
@@ -2359,6 +2361,19 @@ export type RuleCapabilityTier = (typeof RuleCapabilityTier)[keyof typeof RuleCa
  * @public
  * @enum
  */
+export const SecurityProfileType = {
+  AWS_MANAGED: "AWS_MANAGED",
+  CUSTOMER_MANAGED: "CUSTOMER_MANAGED",
+} as const;
+/**
+ * @public
+ */
+export type SecurityProfileType = (typeof SecurityProfileType)[keyof typeof SecurityProfileType];
+
+/**
+ * @public
+ * @enum
+ */
 export const TrafficDistributionGroupStatus = {
   ACTIVE: "ACTIVE",
   CREATION_FAILED: "CREATION_FAILED",
@@ -2386,6 +2401,19 @@ export const Visibility = {
  * @public
  */
 export type Visibility = (typeof Visibility)[keyof typeof Visibility];
+
+/**
+ * @public
+ * @enum
+ */
+export const ContentDisposition = {
+  ATTACHMENT: "ATTACHMENT",
+  INLINE: "INLINE",
+} as const;
+/**
+ * @public
+ */
+export type ContentDisposition = (typeof ContentDisposition)[keyof typeof ContentDisposition];
 
 /**
  * @public

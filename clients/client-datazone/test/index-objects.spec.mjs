@@ -154,6 +154,10 @@ import {
   CreateDataSourceCommand,
   CreateDataSourceInput$,
   CreateDataSourceOutput$,
+  CreateDesignation$,
+  CreateDesignationCommand,
+  CreateDesignationInput$,
+  CreateDesignationOutput$,
   CreateDomain$,
   CreateDomainCommand,
   CreateDomainInput$,
@@ -298,6 +302,10 @@ import {
   DeleteDataSourceCommand,
   DeleteDataSourceInput$,
   DeleteDataSourceOutput$,
+  DeleteDesignation$,
+  DeleteDesignationCommand,
+  DeleteDesignationInput$,
+  DeleteDesignationOutput$,
   DeleteDomain$,
   DeleteDomainCommand,
   DeleteDomainInput$,
@@ -382,6 +390,8 @@ import {
   DeploymentProperties$,
   DeploymentStatus,
   DeploymentType,
+  DesignationSummary$,
+  DesignationType,
   DetailedGlossaryTerm$,
   DisassociateEnvironmentRole$,
   DisassociateEnvironmentRoleCommand,
@@ -476,6 +486,10 @@ import {
   GetDataSourceRunCommand,
   GetDataSourceRunInput$,
   GetDataSourceRunOutput$,
+  GetDesignation$,
+  GetDesignationCommand,
+  GetDesignationInput$,
+  GetDesignationOutput$,
   GetDomain$,
   GetDomainCommand,
   GetDomainInput$,
@@ -708,6 +722,10 @@ import {
   ListDataSourcesCommand,
   ListDataSourcesInput$,
   ListDataSourcesOutput$,
+  ListDesignations$,
+  ListDesignationsCommand,
+  ListDesignationsInput$,
+  ListDesignationsOutput$,
   ListDomains$,
   ListDomainsCommand,
   ListDomainsInput$,
@@ -851,11 +869,13 @@ import {
   NotebookSummary$,
   NotebookType,
   NotEqualToExpression$,
+  NotificationConfig$,
   NotificationOutput$,
   NotificationResource$,
   NotificationResourceType,
   NotificationRole,
   NotificationType,
+  NotifyOnState,
   NotInExpression$,
   NotLikeExpression$,
   OAuth2ClientApplication$,
@@ -884,6 +904,7 @@ import {
   paginateListDataSourceRunActivities,
   paginateListDataSourceRuns,
   paginateListDataSources,
+  paginateListDesignations,
   paginateListDomains,
   paginateListDomainUnitsForParent,
   paginateListEntityOwners,
@@ -1021,6 +1042,8 @@ import {
   RuleType,
   RunStatisticsForAssets$,
   S3Destination$,
+  S3File$,
+  S3FilesLocation$,
   S3Permission,
   S3PropertiesInput$,
   S3PropertiesOutput$,
@@ -1175,6 +1198,10 @@ import {
   UpdateDataSourceCommand,
   UpdateDataSourceInput$,
   UpdateDataSourceOutput$,
+  UpdateDesignation$,
+  UpdateDesignationCommand,
+  UpdateDesignationInput$,
+  UpdateDesignationOutput$,
   UpdateDomain$,
   UpdateDomainCommand,
   UpdateDomainInput$,
@@ -1312,6 +1339,8 @@ assert(typeof CreateDataProductRevisionCommand === "function");
 assert(typeof CreateDataProductRevision$ === "object");
 assert(typeof CreateDataSourceCommand === "function");
 assert(typeof CreateDataSource$ === "object");
+assert(typeof CreateDesignationCommand === "function");
+assert(typeof CreateDesignation$ === "object");
 assert(typeof CreateDomainCommand === "function");
 assert(typeof CreateDomain$ === "object");
 assert(typeof CreateDomainUnitCommand === "function");
@@ -1368,6 +1397,8 @@ assert(typeof DeleteDataProductCommand === "function");
 assert(typeof DeleteDataProduct$ === "object");
 assert(typeof DeleteDataSourceCommand === "function");
 assert(typeof DeleteDataSource$ === "object");
+assert(typeof DeleteDesignationCommand === "function");
+assert(typeof DeleteDesignation$ === "object");
 assert(typeof DeleteDomainCommand === "function");
 assert(typeof DeleteDomain$ === "object");
 assert(typeof DeleteDomainUnitCommand === "function");
@@ -1432,6 +1463,8 @@ assert(typeof GetDataSourceCommand === "function");
 assert(typeof GetDataSource$ === "object");
 assert(typeof GetDataSourceRunCommand === "function");
 assert(typeof GetDataSourceRun$ === "object");
+assert(typeof GetDesignationCommand === "function");
+assert(typeof GetDesignation$ === "object");
 assert(typeof GetDomainCommand === "function");
 assert(typeof GetDomain$ === "object");
 assert(typeof GetDomainUnitCommand === "function");
@@ -1510,6 +1543,8 @@ assert(typeof ListDataSourceRunsCommand === "function");
 assert(typeof ListDataSourceRuns$ === "object");
 assert(typeof ListDataSourcesCommand === "function");
 assert(typeof ListDataSources$ === "object");
+assert(typeof ListDesignationsCommand === "function");
+assert(typeof ListDesignations$ === "object");
 assert(typeof ListDomainsCommand === "function");
 assert(typeof ListDomains$ === "object");
 assert(typeof ListDomainUnitsForParentCommand === "function");
@@ -1618,6 +1653,8 @@ assert(typeof UpdateConnectionCommand === "function");
 assert(typeof UpdateConnection$ === "object");
 assert(typeof UpdateDataSourceCommand === "function");
 assert(typeof UpdateDataSource$ === "object");
+assert(typeof UpdateDesignationCommand === "function");
+assert(typeof UpdateDesignation$ === "object");
 assert(typeof UpdateDomainCommand === "function");
 assert(typeof UpdateDomain$ === "object");
 assert(typeof UpdateDomainUnitCommand === "function");
@@ -1756,6 +1793,8 @@ assert(typeof CreateDataProductRevisionInput$ === "object");
 assert(typeof CreateDataProductRevisionOutput$ === "object");
 assert(typeof CreateDataSourceInput$ === "object");
 assert(typeof CreateDataSourceOutput$ === "object");
+assert(typeof CreateDesignationInput$ === "object");
+assert(typeof CreateDesignationOutput$ === "object");
 assert(typeof CreateDomainInput$ === "object");
 assert(typeof CreateDomainOutput$ === "object");
 assert(typeof CreateDomainUnitInput$ === "object");
@@ -1833,6 +1872,8 @@ assert(typeof DeleteDataProductInput$ === "object");
 assert(typeof DeleteDataProductOutput$ === "object");
 assert(typeof DeleteDataSourceInput$ === "object");
 assert(typeof DeleteDataSourceOutput$ === "object");
+assert(typeof DeleteDesignationInput$ === "object");
+assert(typeof DeleteDesignationOutput$ === "object");
 assert(typeof DeleteDomainInput$ === "object");
 assert(typeof DeleteDomainOutput$ === "object");
 assert(typeof DeleteDomainUnitInput$ === "object");
@@ -1872,6 +1913,7 @@ assert(typeof DeleteTimeSeriesDataPointsInput$ === "object");
 assert(typeof DeleteTimeSeriesDataPointsOutput$ === "object");
 assert(typeof Deployment$ === "object");
 assert(typeof DeploymentProperties$ === "object");
+assert(typeof DesignationSummary$ === "object");
 assert(typeof DetailedGlossaryTerm$ === "object");
 assert(typeof DisassociateEnvironmentRoleInput$ === "object");
 assert(typeof DisassociateEnvironmentRoleOutput$ === "object");
@@ -1932,6 +1974,8 @@ assert(typeof GetDataSourceInput$ === "object");
 assert(typeof GetDataSourceOutput$ === "object");
 assert(typeof GetDataSourceRunInput$ === "object");
 assert(typeof GetDataSourceRunOutput$ === "object");
+assert(typeof GetDesignationInput$ === "object");
+assert(typeof GetDesignationOutput$ === "object");
 assert(typeof GetDomainInput$ === "object");
 assert(typeof GetDomainOutput$ === "object");
 assert(typeof GetDomainUnitInput$ === "object");
@@ -2068,6 +2112,8 @@ assert(typeof ListDataSourceRunsInput$ === "object");
 assert(typeof ListDataSourceRunsOutput$ === "object");
 assert(typeof ListDataSourcesInput$ === "object");
 assert(typeof ListDataSourcesOutput$ === "object");
+assert(typeof ListDesignationsInput$ === "object");
+assert(typeof ListDesignationsOutput$ === "object");
 assert(typeof ListDomainsInput$ === "object");
 assert(typeof ListDomainsOutput$ === "object");
 assert(typeof ListDomainUnitsForParentInput$ === "object");
@@ -2149,6 +2195,7 @@ assert(typeof NotebookRunError$ === "object");
 assert(typeof NotebookRunSummary$ === "object");
 assert(typeof NotebookSummary$ === "object");
 assert(typeof NotEqualToExpression$ === "object");
+assert(typeof NotificationConfig$ === "object");
 assert(typeof NotificationOutput$ === "object");
 assert(typeof NotificationResource$ === "object");
 assert(typeof NotInExpression$ === "object");
@@ -2238,6 +2285,8 @@ assert(typeof RuleSummary$ === "object");
 assert(typeof RuleTarget$ === "object");
 assert(typeof RunStatisticsForAssets$ === "object");
 assert(typeof S3Destination$ === "object");
+assert(typeof S3File$ === "object");
+assert(typeof S3FilesLocation$ === "object");
 assert(typeof S3PropertiesInput$ === "object");
 assert(typeof S3PropertiesOutput$ === "object");
 assert(typeof S3PropertiesPatch$ === "object");
@@ -2330,6 +2379,8 @@ assert(typeof UpdateConnectionInput$ === "object");
 assert(typeof UpdateConnectionOutput$ === "object");
 assert(typeof UpdateDataSourceInput$ === "object");
 assert(typeof UpdateDataSourceOutput$ === "object");
+assert(typeof UpdateDesignationInput$ === "object");
+assert(typeof UpdateDesignationOutput$ === "object");
 assert(typeof UpdateDomainInput$ === "object");
 assert(typeof UpdateDomainOutput$ === "object");
 assert(typeof UpdateDomainUnitInput$ === "object");
@@ -2403,6 +2454,7 @@ assert(typeof DataZoneEntityType === "object");
 assert(typeof DeploymentMode === "object");
 assert(typeof DeploymentStatus === "object");
 assert(typeof DeploymentType === "object");
+assert(typeof DesignationType === "object");
 assert(typeof DomainStatus === "object");
 assert(typeof DomainUnitDesignation === "object");
 assert(typeof DomainVersion === "object");
@@ -2444,6 +2496,7 @@ assert(typeof NotebookType === "object");
 assert(typeof NotificationResourceType === "object");
 assert(typeof NotificationRole === "object");
 assert(typeof NotificationType === "object");
+assert(typeof NotifyOnState === "object");
 assert(typeof OAuth2GrantType === "object");
 assert(typeof OpenLineageRunState === "object");
 assert(typeof OverallDeploymentStatus === "object");
@@ -2514,6 +2567,7 @@ assert(typeof paginateListDataProductRevisions === "function");
 assert(typeof paginateListDataSourceRunActivities === "function");
 assert(typeof paginateListDataSourceRuns === "function");
 assert(typeof paginateListDataSources === "function");
+assert(typeof paginateListDesignations === "function");
 assert(typeof paginateListDomainUnitsForParent === "function");
 assert(typeof paginateListDomains === "function");
 assert(typeof paginateListEntityOwners === "function");

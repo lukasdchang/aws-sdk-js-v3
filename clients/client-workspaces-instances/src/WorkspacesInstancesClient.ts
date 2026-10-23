@@ -86,6 +86,7 @@ import type {
   ListWorkspaceInstancesCommandInput,
   ListWorkspaceInstancesCommandOutput,
 } from "./commands/ListWorkspaceInstancesCommand";
+import type { ModifyVolumeCommandInput, ModifyVolumeCommandOutput } from "./commands/ModifyVolumeCommand";
 import type { TagResourceCommandInput, TagResourceCommandOutput } from "./commands/TagResourceCommand";
 import type { UntagResourceCommandInput, UntagResourceCommandOutput } from "./commands/UntagResourceCommand";
 import {
@@ -114,6 +115,7 @@ export type ServiceInputTypes =
   | ListRegionsCommandInput
   | ListTagsForResourceCommandInput
   | ListWorkspaceInstancesCommandInput
+  | ModifyVolumeCommandInput
   | TagResourceCommandInput
   | UntagResourceCommandInput;
 
@@ -132,6 +134,7 @@ export type ServiceOutputTypes =
   | ListRegionsCommandOutput
   | ListTagsForResourceCommandOutput
   | ListWorkspaceInstancesCommandOutput
+  | ModifyVolumeCommandOutput
   | TagResourceCommandOutput
   | UntagResourceCommandOutput;
 
@@ -265,7 +268,8 @@ export interface ClientDefaults extends Partial<__SmithyConfiguration<__HttpHand
 
   /**
    * Specifies which retry algorithm to use.
-   * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-smithy-util-retry/Enum/RETRY_MODES/
+   * Accepted values are "standard" and "adaptive".
+   * @see https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html
    *
    */
   retryMode?: string | __Provider<string>;

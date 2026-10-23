@@ -17,9 +17,7 @@ import type {
   DataSourceStatus,
   DestinationType,
   DetectionRuleConfigurationStatus,
-  DetectionRuleDataSource,
   DetectionRuleFilterCondition,
-  DetectionRuleSeverity,
   DetectorFeature,
   DetectorFeatureResult,
   EcsClusterStatus,
@@ -38,6 +36,7 @@ import type {
   KubernetesResourcesTypes,
   MalwareProtectionPlanTaggingActionStatus,
   MalwareProtectionScanType,
+  ManagedBy,
   ManagementType,
   MfaStatus,
   NetworkDirection,
@@ -52,8 +51,6 @@ import type {
   PublicBucketRestrictBehavior,
   PublishingStatus,
   ResourceType,
-  RuleLanguage,
-  RuleSchema,
   ScanCategory,
   ScanResult,
   ScanStatus,
@@ -2967,6 +2964,12 @@ export interface DestinationProperties {
    * @public
    */
   KmsKeyArn?: string | undefined;
+
+  /**
+   * <p>The 12-digit Amazon Web Services account ID of the account that owns the Amazon S3 bucket specified in the <code>DestinationArn</code> parameter.</p> <p>When you provide this value, GuardDuty verifies that the specified account owns the bucket before it exports findings. If the account ID doesn't match the actual owner of the bucket, GuardDuty doesn't export findings to that bucket. This helps prevent GuardDuty from exporting your findings to a bucket that a different Amazon Web Services account owns (for example, if the original bucket was deleted and its name was later claimed by another account). If you don't specify this value, GuardDuty doesn't perform this verification. GuardDuty strongly recommends that you provide the expected bucket owner when possible.</p> <p>When you update a publishing destination, omitting this field leaves the currently stored value unchanged. This field appears in the response only if it was provided when the publishing destination was created or updated.</p> <p>For more information, see <a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty-exportfindings-expected-bucket-owner">Verifying the Amazon S3 bucket owner</a> in the <i>Amazon GuardDuty User Guide</i>.</p>
+   * @public
+   */
+  ExpectedBucketOwner?: string | undefined;
 }
 
 /**
@@ -5183,6 +5186,42 @@ export interface Detection {
 }
 
 /**
+ * <p>The requirements for running a Runtime Monitoring custom detection rule on Amazon EC2.</p>
+ * @public
+ */
+export interface DetectionRuleEc2Requirements {
+  /**
+   * <p>The minimum GuardDuty agent version required to run the rule on Amazon EC2.</p>
+   * @public
+   */
+  MinAgentVersion?: string | undefined;
+}
+
+/**
+ * <p>The requirements for running a Runtime Monitoring custom detection rule on Amazon ECS with the Fargate launch type.</p>
+ * @public
+ */
+export interface DetectionRuleEcsFargateRequirements {
+  /**
+   * <p>The minimum GuardDuty agent version required to run the rule on Amazon ECS with the Fargate launch type.</p>
+   * @public
+   */
+  MinAgentVersion?: string | undefined;
+}
+
+/**
+ * <p>The requirements for running a Runtime Monitoring custom detection rule on Amazon EKS.</p>
+ * @public
+ */
+export interface DetectionRuleEksRequirements {
+  /**
+   * <p>The minimum GuardDuty agent version required to run the rule on Amazon EKS.</p>
+   * @public
+   */
+  MinAgentVersion?: string | undefined;
+}
+
+/**
  * <p>Contains filter criteria for listing custom detection rules or associations.</p>
  * @public
  */
@@ -5315,6 +5354,42 @@ export interface DetectionRuleOrgConfigurationSummary {
 }
 
 /**
+ * <p>The platforms on which a Runtime Monitoring custom detection rule can run. A member's presence is the support statement: when present, the rule runs on that platform and <code>minAgentVersion</code> is the minimum GuardDuty agent version required there. When absent, the rule cannot run on that platform at any agent version.</p>
+ * @public
+ */
+export interface DetectionRuleRuntimePlatforms {
+  /**
+   * <p>The requirements for running the rule on Amazon EKS.</p>
+   * @public
+   */
+  Eks?: DetectionRuleEksRequirements | undefined;
+
+  /**
+   * <p>The requirements for running the rule on Amazon EC2.</p>
+   * @public
+   */
+  Ec2?: DetectionRuleEc2Requirements | undefined;
+
+  /**
+   * <p>The requirements for running the rule on Amazon ECS with the Fargate launch type.</p>
+   * @public
+   */
+  EcsFargate?: DetectionRuleEcsFargateRequirements | undefined;
+}
+
+/**
+ * <p>Contains Runtime Monitoring-specific details for a custom detection rule.</p>
+ * @public
+ */
+export interface DetectionRuleRuntimeMonitoringDetails {
+  /**
+   * <p>The platforms on which the rule can run. The presence of a platform member indicates that the rule is supported on that platform; the absence of a member indicates that the rule cannot run on that platform at any agent version.</p>
+   * @public
+   */
+  Platforms?: DetectionRuleRuntimePlatforms | undefined;
+}
+
+/**
  * <p>Information about the additional configuration.</p>
  * @public
  */
@@ -5336,6 +5411,12 @@ export interface DetectorAdditionalConfigurationResult {
    * @public
    */
   UpdatedAt?: Date | undefined;
+
+  /**
+   * <p>Indicates what manages the additional configuration. A value of <code>GUARDDUTY_POLICY</code> means a GuardDuty policy manages the additional configuration.</p>
+   * @public
+   */
+  ManagedBy?: ManagedBy | undefined;
 }
 
 /**
@@ -5366,6 +5447,12 @@ export interface DetectorFeatureConfigurationResult {
    * @public
    */
   AdditionalConfiguration?: DetectorAdditionalConfigurationResult[] | undefined;
+
+  /**
+   * <p>Indicates what manages the feature. A value of <code>GUARDDUTY_POLICY</code> means a GuardDuty policy manages the feature.</p>
+   * @public
+   */
+  ManagedBy?: ManagedBy | undefined;
 }
 
 /**
@@ -7512,6 +7599,12 @@ export interface Finding {
    * @public
    */
   AssociatedAttackSequenceArn?: string | undefined;
+
+  /**
+   * <p>The name of the custom detection rule that generated this finding.</p>
+   * @public
+   */
+  CustomDetectionRuleName?: string | undefined;
 }
 
 /**
@@ -7719,156 +7812,4 @@ export interface RuleDefinition {
    * @public
    */
   Expression: string | undefined;
-}
-
-/**
- * <p>Contains the full details of a custom detection rule, including its detection logic.</p>
- * @public
- */
-export interface RuleDetail {
-  /**
-   * <p>The unique identifier for the rule.</p>
-   * @public
-   */
-  RuleId: string | undefined;
-
-  /**
-   * <p>The Amazon Resource Name (ARN) of the rule.</p>
-   * @public
-   */
-  Arn: string | undefined;
-
-  /**
-   * <p>The display name of the rule.</p>
-   * @public
-   */
-  Name: string | undefined;
-
-  /**
-   * <p>A description of what the rule detects.</p>
-   * @public
-   */
-  Description: string | undefined;
-
-  /**
-   * <p>The severity level assigned to findings generated by this rule.</p>
-   * @public
-   */
-  Severity: DetectionRuleSeverity | undefined;
-
-  /**
-   * <p>The data source that the rule analyzes.</p>
-   * @public
-   */
-  DataSource: DetectionRuleDataSource | undefined;
-
-  /**
-   * <p>The MITRE ATT&amp;CK tactic associated with the rule.</p>
-   * @public
-   */
-  Tactic: string | undefined;
-
-  /**
-   * <p>The MITRE ATT&amp;CK technique associated with the rule.</p>
-   * @public
-   */
-  Technique: string | undefined;
-
-  /**
-   * <p>The Amazon Web Services service associated with the rule.</p>
-   * @public
-   */
-  Service: string | undefined;
-
-  /**
-   * <p>The detection logic definition for the rule.</p>
-   * @public
-   */
-  Definition: RuleDefinition | undefined;
-
-  /**
-   * <p>The language used for the detection logic expression.</p>
-   * @public
-   */
-  Language?: RuleLanguage | undefined;
-
-  /**
-   * <p>The schema version used by the rule definition.</p>
-   * @public
-   */
-  Schema?: RuleSchema | undefined;
-
-  /**
-   * <p>The timestamp when the rule was created.</p>
-   * @public
-   */
-  CreatedAt: Date | undefined;
-
-  /**
-   * <p>The timestamp when the rule was last updated.</p>
-   * @public
-   */
-  UpdatedAt?: Date | undefined;
-}
-
-/**
- * @public
- */
-export interface GetCustomDetectionRuleResponse {
-  /**
-   * <p>The details of the custom detection rule.</p>
-   * @public
-   */
-  Rule: RuleDetail | undefined;
-}
-
-/**
- * @public
- */
-export interface GetCustomDetectionRuleAssociationRequest {
-  /**
-   * <p>The unique identifier for the custom detection rule.</p>
-   * @public
-   */
-  RuleId: string | undefined;
-
-  /**
-   * <p>The unique identifier for the association.</p>
-   * @public
-   */
-  AssociationId: string | undefined;
-}
-
-/**
- * @public
- */
-export interface GetCustomDetectionRuleAssociationResponse {
-  /**
-   * <p>The details of the custom detection rule association.</p>
-   * @public
-   */
-  RuleAssociation: AssociationDetail | undefined;
-
-  /**
-   * <p>The tags associated with the custom detection rule association resource.</p>
-   * @public
-   */
-  Tags?: Record<string, string> | undefined;
-}
-
-/**
- * @public
- */
-export interface GetCustomDetectionRuleOrgConfigurationRequest {
-  /**
-   * <p>The unique identifier for the custom detection rule.</p>
-   * @public
-   */
-  RuleId: string | undefined;
-
-  /**
-   * <p>The execution mode of the organization configuration to retrieve. Valid values: <code>LIVE</code> | <code>DRY_RUN</code>.</p>
-   * @public
-   */
-  Mode: AssociationMode | undefined;
 }

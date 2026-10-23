@@ -75,6 +75,10 @@ import type {
   GetCaseAttachmentUploadUrlCommandOutput,
 } from "./commands/GetCaseAttachmentUploadUrlCommand";
 import type { GetCaseCommandInput, GetCaseCommandOutput } from "./commands/GetCaseCommand";
+import type {
+  GetFindingMetricsCommandInput,
+  GetFindingMetricsCommandOutput,
+} from "./commands/GetFindingMetricsCommand";
 import type { GetMembershipCommandInput, GetMembershipCommandOutput } from "./commands/GetMembershipCommand";
 import type { ListCaseEditsCommandInput, ListCaseEditsCommandOutput } from "./commands/ListCaseEditsCommand";
 import type { ListCasesCommandInput, ListCasesCommandOutput } from "./commands/ListCasesCommand";
@@ -126,6 +130,7 @@ export type ServiceInputTypes =
   | GetCaseAttachmentDownloadUrlCommandInput
   | GetCaseAttachmentUploadUrlCommandInput
   | GetCaseCommandInput
+  | GetFindingMetricsCommandInput
   | GetMembershipCommandInput
   | ListCaseEditsCommandInput
   | ListCasesCommandInput
@@ -155,6 +160,7 @@ export type ServiceOutputTypes =
   | GetCaseAttachmentDownloadUrlCommandOutput
   | GetCaseAttachmentUploadUrlCommandOutput
   | GetCaseCommandOutput
+  | GetFindingMetricsCommandOutput
   | GetMembershipCommandOutput
   | ListCaseEditsCommandOutput
   | ListCasesCommandOutput
@@ -301,7 +307,8 @@ export interface ClientDefaults extends Partial<__SmithyConfiguration<__HttpHand
 
   /**
    * Specifies which retry algorithm to use.
-   * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-smithy-util-retry/Enum/RETRY_MODES/
+   * Accepted values are "standard" and "adaptive".
+   * @see https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html
    *
    */
   retryMode?: string | __Provider<string>;

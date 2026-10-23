@@ -356,7 +356,8 @@ export interface ClientDefaults extends Partial<__SmithyConfiguration<__HttpHand
 
   /**
    * Specifies which retry algorithm to use.
-   * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-smithy-util-retry/Enum/RETRY_MODES/
+   * Accepted values are "standard" and "adaptive".
+   * @see https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html
    *
    */
   retryMode?: string | __Provider<string>;
@@ -417,7 +418,8 @@ export type DataBrewClientResolvedConfigType = __SmithyResolvedConfiguration<__H
 export interface DataBrewClientResolvedConfig extends DataBrewClientResolvedConfigType {}
 
 /**
- * <p>Glue DataBrew is a visual, cloud-scale data-preparation service. DataBrew
+ * <p>
+ *             Glue DataBrew is a visual, cloud-scale data-preparation service. DataBrew
  *             simplifies data preparation tasks, targeting data issues that are hard to spot and
  *             time-consuming to fix. DataBrew empowers users of all technical levels to visualize the
  *             data and perform one-click data transformations, with no coding required.</p>

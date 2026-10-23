@@ -188,6 +188,11 @@ import {
   CreateContactCommand,
 } from "./commands/CreateContactCommand";
 import {
+  type CreateContactFlowAliasCommandInput,
+  type CreateContactFlowAliasCommandOutput,
+  CreateContactFlowAliasCommand,
+} from "./commands/CreateContactFlowAliasCommand";
+import {
   type CreateContactFlowCommandInput,
   type CreateContactFlowCommandOutput,
   CreateContactFlowCommand,
@@ -392,6 +397,11 @@ import {
   type DeleteContactEvaluationCommandOutput,
   DeleteContactEvaluationCommand,
 } from "./commands/DeleteContactEvaluationCommand";
+import {
+  type DeleteContactFlowAliasCommandInput,
+  type DeleteContactFlowAliasCommandOutput,
+  DeleteContactFlowAliasCommand,
+} from "./commands/DeleteContactFlowAliasCommand";
 import {
   type DeleteContactFlowCommandInput,
   type DeleteContactFlowCommandOutput,
@@ -602,6 +612,11 @@ import {
   type DescribeContactEvaluationCommandOutput,
   DescribeContactEvaluationCommand,
 } from "./commands/DescribeContactEvaluationCommand";
+import {
+  type DescribeContactFlowAliasCommandInput,
+  type DescribeContactFlowAliasCommandOutput,
+  DescribeContactFlowAliasCommand,
+} from "./commands/DescribeContactFlowAliasCommand";
 import {
   type DescribeContactFlowCommandInput,
   type DescribeContactFlowCommandOutput,
@@ -994,6 +1009,11 @@ import {
   ListContactEvaluationsCommand,
 } from "./commands/ListContactEvaluationsCommand";
 import {
+  type ListContactFlowAliasesCommandInput,
+  type ListContactFlowAliasesCommandOutput,
+  ListContactFlowAliasesCommand,
+} from "./commands/ListContactFlowAliasesCommand";
+import {
   type ListContactFlowModuleAliasesCommandInput,
   type ListContactFlowModuleAliasesCommandOutput,
   ListContactFlowModuleAliasesCommand,
@@ -1173,6 +1193,11 @@ import {
   type ListRealtimeContactAnalysisSegmentsV2CommandOutput,
   ListRealtimeContactAnalysisSegmentsV2Command,
 } from "./commands/ListRealtimeContactAnalysisSegmentsV2Command";
+import {
+  type ListReplicationFindingsCommandInput,
+  type ListReplicationFindingsCommandOutput,
+  ListReplicationFindingsCommand,
+} from "./commands/ListReplicationFindingsCommand";
 import {
   type ListRoutingProfileManualAssignmentQueuesCommandInput,
   type ListRoutingProfileManualAssignmentQueuesCommandOutput,
@@ -1662,6 +1687,11 @@ import {
   UpdateContactEvaluationCommand,
 } from "./commands/UpdateContactEvaluationCommand";
 import {
+  type UpdateContactFlowAliasCommandInput,
+  type UpdateContactFlowAliasCommandOutput,
+  UpdateContactFlowAliasCommand,
+} from "./commands/UpdateContactFlowAliasCommand";
+import {
   type UpdateContactFlowContentCommandInput,
   type UpdateContactFlowContentCommandOutput,
   UpdateContactFlowContentCommand,
@@ -1989,6 +2019,7 @@ import { paginateListAuthenticationProfiles } from "./pagination/ListAuthenticat
 import { paginateListBots } from "./pagination/ListBotsPaginator";
 import { paginateListChildHoursOfOperations } from "./pagination/ListChildHoursOfOperationsPaginator";
 import { paginateListContactEvaluations } from "./pagination/ListContactEvaluationsPaginator";
+import { paginateListContactFlowAliases } from "./pagination/ListContactFlowAliasesPaginator";
 import { paginateListContactFlowModuleAliases } from "./pagination/ListContactFlowModuleAliasesPaginator";
 import { paginateListContactFlowModules } from "./pagination/ListContactFlowModulesPaginator";
 import { paginateListContactFlowModuleVersions } from "./pagination/ListContactFlowModuleVersionsPaginator";
@@ -2025,6 +2056,7 @@ import { paginateListQuickConnects } from "./pagination/ListQuickConnectsPaginat
 import {
   paginateListRealtimeContactAnalysisSegmentsV2,
 } from "./pagination/ListRealtimeContactAnalysisSegmentsV2Paginator";
+import { paginateListReplicationFindings } from "./pagination/ListReplicationFindingsPaginator";
 import {
   paginateListRoutingProfileManualAssignmentQueues,
 } from "./pagination/ListRoutingProfileManualAssignmentQueuesPaginator";
@@ -2112,6 +2144,7 @@ const commands = {
   CreateAuthCodeCommand,
   CreateContactCommand,
   CreateContactFlowCommand,
+  CreateContactFlowAliasCommand,
   CreateContactFlowModuleCommand,
   CreateContactFlowModuleAliasCommand,
   CreateContactFlowModuleVersionCommand,
@@ -2153,6 +2186,7 @@ const commands = {
   DeleteContactDataCommand,
   DeleteContactEvaluationCommand,
   DeleteContactFlowCommand,
+  DeleteContactFlowAliasCommand,
   DeleteContactFlowModuleCommand,
   DeleteContactFlowModuleAliasCommand,
   DeleteContactFlowModuleVersionCommand,
@@ -2195,6 +2229,7 @@ const commands = {
   DescribeContactCommand,
   DescribeContactEvaluationCommand,
   DescribeContactFlowCommand,
+  DescribeContactFlowAliasCommand,
   DescribeContactFlowModuleCommand,
   DescribeContactFlowModuleAliasCommand,
   DescribeDataTableCommand,
@@ -2273,6 +2308,7 @@ const commands = {
   ListBotsCommand,
   ListChildHoursOfOperationsCommand,
   ListContactEvaluationsCommand,
+  ListContactFlowAliasesCommand,
   ListContactFlowModuleAliasesCommand,
   ListContactFlowModulesCommand,
   ListContactFlowModuleVersionsCommand,
@@ -2309,6 +2345,7 @@ const commands = {
   ListQueuesCommand,
   ListQuickConnectsCommand,
   ListRealtimeContactAnalysisSegmentsV2Command,
+  ListReplicationFindingsCommand,
   ListRoutingProfileManualAssignmentQueuesCommand,
   ListRoutingProfileQueuesCommand,
   ListRoutingProfilesCommand,
@@ -2409,6 +2446,7 @@ const commands = {
   UpdateContactCommand,
   UpdateContactAttributesCommand,
   UpdateContactEvaluationCommand,
+  UpdateContactFlowAliasCommand,
   UpdateContactFlowContentCommand,
   UpdateContactFlowMetadataCommand,
   UpdateContactFlowModuleAliasCommand,
@@ -2486,6 +2524,7 @@ const paginators = {
   paginateListBots,
   paginateListChildHoursOfOperations,
   paginateListContactEvaluations,
+  paginateListContactFlowAliases,
   paginateListContactFlowModuleAliases,
   paginateListContactFlowModules,
   paginateListContactFlowModuleVersions,
@@ -2520,6 +2559,7 @@ const paginators = {
   paginateListQueues,
   paginateListQuickConnects,
   paginateListRealtimeContactAnalysisSegmentsV2,
+  paginateListReplicationFindings,
   paginateListRoutingProfileManualAssignmentQueues,
   paginateListRoutingProfileQueues,
   paginateListRoutingProfiles,
@@ -3203,6 +3243,23 @@ export interface Connect {
     args: CreateContactFlowCommandInput,
     options: ConnectRequestOptions,
     cb: (err: any, data?: CreateContactFlowCommandOutput) => void
+  ): void;
+
+  /**
+   * @see {@link CreateContactFlowAliasCommand}
+   */
+  createContactFlowAlias(
+    args: CreateContactFlowAliasCommandInput,
+    options?: ConnectRequestOptions
+  ): Promise<CreateContactFlowAliasCommandOutput>;
+  createContactFlowAlias(
+    args: CreateContactFlowAliasCommandInput,
+    cb: (err: any, data?: CreateContactFlowAliasCommandOutput) => void
+  ): void;
+  createContactFlowAlias(
+    args: CreateContactFlowAliasCommandInput,
+    options: ConnectRequestOptions,
+    cb: (err: any, data?: CreateContactFlowAliasCommandOutput) => void
   ): void;
 
   /**
@@ -3900,6 +3957,23 @@ export interface Connect {
     args: DeleteContactFlowCommandInput,
     options: ConnectRequestOptions,
     cb: (err: any, data?: DeleteContactFlowCommandOutput) => void
+  ): void;
+
+  /**
+   * @see {@link DeleteContactFlowAliasCommand}
+   */
+  deleteContactFlowAlias(
+    args: DeleteContactFlowAliasCommandInput,
+    options?: ConnectRequestOptions
+  ): Promise<DeleteContactFlowAliasCommandOutput>;
+  deleteContactFlowAlias(
+    args: DeleteContactFlowAliasCommandInput,
+    cb: (err: any, data?: DeleteContactFlowAliasCommandOutput) => void
+  ): void;
+  deleteContactFlowAlias(
+    args: DeleteContactFlowAliasCommandInput,
+    options: ConnectRequestOptions,
+    cb: (err: any, data?: DeleteContactFlowAliasCommandOutput) => void
   ): void;
 
   /**
@@ -4614,6 +4688,23 @@ export interface Connect {
     args: DescribeContactFlowCommandInput,
     options: ConnectRequestOptions,
     cb: (err: any, data?: DescribeContactFlowCommandOutput) => void
+  ): void;
+
+  /**
+   * @see {@link DescribeContactFlowAliasCommand}
+   */
+  describeContactFlowAlias(
+    args: DescribeContactFlowAliasCommandInput,
+    options?: ConnectRequestOptions
+  ): Promise<DescribeContactFlowAliasCommandOutput>;
+  describeContactFlowAlias(
+    args: DescribeContactFlowAliasCommandInput,
+    cb: (err: any, data?: DescribeContactFlowAliasCommandOutput) => void
+  ): void;
+  describeContactFlowAlias(
+    args: DescribeContactFlowAliasCommandInput,
+    options: ConnectRequestOptions,
+    cb: (err: any, data?: DescribeContactFlowAliasCommandOutput) => void
   ): void;
 
   /**
@@ -5943,6 +6034,23 @@ export interface Connect {
   ): void;
 
   /**
+   * @see {@link ListContactFlowAliasesCommand}
+   */
+  listContactFlowAliases(
+    args: ListContactFlowAliasesCommandInput,
+    options?: ConnectRequestOptions
+  ): Promise<ListContactFlowAliasesCommandOutput>;
+  listContactFlowAliases(
+    args: ListContactFlowAliasesCommandInput,
+    cb: (err: any, data?: ListContactFlowAliasesCommandOutput) => void
+  ): void;
+  listContactFlowAliases(
+    args: ListContactFlowAliasesCommandInput,
+    options: ConnectRequestOptions,
+    cb: (err: any, data?: ListContactFlowAliasesCommandOutput) => void
+  ): void;
+
+  /**
    * @see {@link ListContactFlowModuleAliasesCommand}
    */
   listContactFlowModuleAliases(
@@ -6554,6 +6662,23 @@ export interface Connect {
     args: ListRealtimeContactAnalysisSegmentsV2CommandInput,
     options: ConnectRequestOptions,
     cb: (err: any, data?: ListRealtimeContactAnalysisSegmentsV2CommandOutput) => void
+  ): void;
+
+  /**
+   * @see {@link ListReplicationFindingsCommand}
+   */
+  listReplicationFindings(
+    args: ListReplicationFindingsCommandInput,
+    options?: ConnectRequestOptions
+  ): Promise<ListReplicationFindingsCommandOutput>;
+  listReplicationFindings(
+    args: ListReplicationFindingsCommandInput,
+    cb: (err: any, data?: ListReplicationFindingsCommandOutput) => void
+  ): void;
+  listReplicationFindings(
+    args: ListReplicationFindingsCommandInput,
+    options: ConnectRequestOptions,
+    cb: (err: any, data?: ListReplicationFindingsCommandOutput) => void
   ): void;
 
   /**
@@ -8260,6 +8385,23 @@ export interface Connect {
   ): void;
 
   /**
+   * @see {@link UpdateContactFlowAliasCommand}
+   */
+  updateContactFlowAlias(
+    args: UpdateContactFlowAliasCommandInput,
+    options?: ConnectRequestOptions
+  ): Promise<UpdateContactFlowAliasCommandOutput>;
+  updateContactFlowAlias(
+    args: UpdateContactFlowAliasCommandInput,
+    cb: (err: any, data?: UpdateContactFlowAliasCommandOutput) => void
+  ): void;
+  updateContactFlowAlias(
+    args: UpdateContactFlowAliasCommandInput,
+    options: ConnectRequestOptions,
+    cb: (err: any, data?: UpdateContactFlowAliasCommandOutput) => void
+  ): void;
+
+  /**
    * @see {@link UpdateContactFlowContentCommand}
    */
   updateContactFlowContent(
@@ -9463,6 +9605,17 @@ export interface Connect {
   ): Paginator<ListContactEvaluationsCommandOutput>;
 
   /**
+   * @see {@link ListContactFlowAliasesCommand}
+   * @param args - command input.
+   * @param paginationConfig - optional pagination config.
+   * @returns AsyncIterable of {@link ListContactFlowAliasesCommandOutput}.
+   */
+  paginateListContactFlowAliases(
+    args: ListContactFlowAliasesCommandInput,
+    paginationConfig?: Omit<PaginationConfiguration, "client">
+  ): Paginator<ListContactFlowAliasesCommandOutput>;
+
+  /**
    * @see {@link ListContactFlowModuleAliasesCommand}
    * @param args - command input.
    * @param paginationConfig - optional pagination config.
@@ -9835,6 +9988,17 @@ export interface Connect {
     args: ListRealtimeContactAnalysisSegmentsV2CommandInput,
     paginationConfig?: Omit<PaginationConfiguration, "client">
   ): Paginator<ListRealtimeContactAnalysisSegmentsV2CommandOutput>;
+
+  /**
+   * @see {@link ListReplicationFindingsCommand}
+   * @param args - command input.
+   * @param paginationConfig - optional pagination config.
+   * @returns AsyncIterable of {@link ListReplicationFindingsCommandOutput}.
+   */
+  paginateListReplicationFindings(
+    args: ListReplicationFindingsCommandInput,
+    paginationConfig?: Omit<PaginationConfiguration, "client">
+  ): Paginator<ListReplicationFindingsCommandOutput>;
 
   /**
    * @see {@link ListRoutingProfileManualAssignmentQueuesCommand}
