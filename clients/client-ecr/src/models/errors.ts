@@ -9,6 +9,7 @@ import { ECRServiceException as __BaseException } from "./ECRServiceException";
  * @public
  */
 export class InvalidParameterException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#InvalidParameterException";
   readonly name = "InvalidParameterException" as const;
   readonly $fault = "client" as const;
   /**
@@ -30,6 +31,7 @@ export class InvalidParameterException extends __BaseException {
  * @public
  */
 export class RepositoryNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#RepositoryNotFoundException";
   readonly name = "RepositoryNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -50,6 +52,7 @@ export class RepositoryNotFoundException extends __BaseException {
  * @public
  */
 export class ServerException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ServerException";
   readonly name = "ServerException" as const;
   readonly $fault = "server" as const;
   /**
@@ -72,6 +75,7 @@ export class ServerException extends __BaseException {
  * @public
  */
 export class LimitExceededException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#LimitExceededException";
   readonly name = "LimitExceededException" as const;
   readonly $fault = "client" as const;
   /**
@@ -94,6 +98,7 @@ export class LimitExceededException extends __BaseException {
  * @public
  */
 export class UnableToGetUpstreamImageException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#UnableToGetUpstreamImageException";
   readonly name = "UnableToGetUpstreamImageException" as const;
   readonly $fault = "client" as const;
   /**
@@ -114,6 +119,7 @@ export class UnableToGetUpstreamImageException extends __BaseException {
  * @public
  */
 export class ValidationException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ValidationException";
   readonly name = "ValidationException" as const;
   readonly $fault = "client" as const;
   /**
@@ -134,6 +140,7 @@ export class ValidationException extends __BaseException {
  * @public
  */
 export class EmptyUploadException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#EmptyUploadException";
   readonly name = "EmptyUploadException" as const;
   readonly $fault = "client" as const;
   /**
@@ -155,6 +162,7 @@ export class EmptyUploadException extends __BaseException {
  * @public
  */
 export class InvalidLayerException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#InvalidLayerException";
   readonly name = "InvalidLayerException" as const;
   readonly $fault = "client" as const;
   /**
@@ -175,6 +183,7 @@ export class InvalidLayerException extends __BaseException {
  * @public
  */
 export class KmsException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#KmsException";
   readonly name = "KmsException" as const;
   readonly $fault = "client" as const;
   /**
@@ -202,6 +211,7 @@ export class KmsException extends __BaseException {
  * @public
  */
 export class LayerAlreadyExistsException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#LayerAlreadyExistsException";
   readonly name = "LayerAlreadyExistsException" as const;
   readonly $fault = "client" as const;
   /**
@@ -222,6 +232,7 @@ export class LayerAlreadyExistsException extends __BaseException {
  * @public
  */
 export class LayerPartTooSmallException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#LayerPartTooSmallException";
   readonly name = "LayerPartTooSmallException" as const;
   readonly $fault = "client" as const;
   /**
@@ -243,6 +254,7 @@ export class LayerPartTooSmallException extends __BaseException {
  * @public
  */
 export class UploadNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#UploadNotFoundException";
   readonly name = "UploadNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -264,6 +276,7 @@ export class UploadNotFoundException extends __BaseException {
  * @public
  */
 export class PullThroughCacheRuleAlreadyExistsException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#PullThroughCacheRuleAlreadyExistsException";
   readonly name = "PullThroughCacheRuleAlreadyExistsException" as const;
   readonly $fault = "client" as const;
   /**
@@ -285,6 +298,7 @@ export class PullThroughCacheRuleAlreadyExistsException extends __BaseException 
  * @public
  */
 export class SecretNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#SecretNotFoundException";
   readonly name = "SecretNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -306,6 +320,7 @@ export class SecretNotFoundException extends __BaseException {
  * @public
  */
 export class UnableToAccessSecretException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#UnableToAccessSecretException";
   readonly name = "UnableToAccessSecretException" as const;
   readonly $fault = "client" as const;
   /**
@@ -327,6 +342,7 @@ export class UnableToAccessSecretException extends __BaseException {
  * @public
  */
 export class UnableToDecryptSecretValueException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#UnableToDecryptSecretValueException";
   readonly name = "UnableToDecryptSecretValueException" as const;
   readonly $fault = "client" as const;
   /**
@@ -347,6 +363,7 @@ export class UnableToDecryptSecretValueException extends __BaseException {
  * @public
  */
 export class UnsupportedUpstreamRegistryException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#UnsupportedUpstreamRegistryException";
   readonly name = "UnsupportedUpstreamRegistryException" as const;
   readonly $fault = "client" as const;
   /**
@@ -368,6 +385,7 @@ export class UnsupportedUpstreamRegistryException extends __BaseException {
  * @public
  */
 export class InvalidTagParameterException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#InvalidTagParameterException";
   readonly name = "InvalidTagParameterException" as const;
   readonly $fault = "client" as const;
   /**
@@ -388,6 +406,7 @@ export class InvalidTagParameterException extends __BaseException {
  * @public
  */
 export class RepositoryAlreadyExistsException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#RepositoryAlreadyExistsException";
   readonly name = "RepositoryAlreadyExistsException" as const;
   readonly $fault = "client" as const;
   /**
@@ -409,6 +428,7 @@ export class RepositoryAlreadyExistsException extends __BaseException {
  * @public
  */
 export class TooManyTagsException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#TooManyTagsException";
   readonly name = "TooManyTagsException" as const;
   readonly $fault = "client" as const;
   /**
@@ -430,6 +450,7 @@ export class TooManyTagsException extends __BaseException {
  * @public
  */
 export class TemplateAlreadyExistsException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#TemplateAlreadyExistsException";
   readonly name = "TemplateAlreadyExistsException" as const;
   readonly $fault = "client" as const;
   /**
@@ -451,6 +472,7 @@ export class TemplateAlreadyExistsException extends __BaseException {
  * @public
  */
 export class LifecyclePolicyNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#LifecyclePolicyNotFoundException";
   readonly name = "LifecyclePolicyNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -472,6 +494,7 @@ export class LifecyclePolicyNotFoundException extends __BaseException {
  * @public
  */
 export class PullThroughCacheRuleNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#PullThroughCacheRuleNotFoundException";
   readonly name = "PullThroughCacheRuleNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -492,6 +515,7 @@ export class PullThroughCacheRuleNotFoundException extends __BaseException {
  * @public
  */
 export class RegistryPolicyNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#RegistryPolicyNotFoundException";
   readonly name = "RegistryPolicyNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -513,6 +537,7 @@ export class RegistryPolicyNotFoundException extends __BaseException {
  * @public
  */
 export class RepositoryNotEmptyException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#RepositoryNotEmptyException";
   readonly name = "RepositoryNotEmptyException" as const;
   readonly $fault = "client" as const;
   /**
@@ -534,6 +559,7 @@ export class RepositoryNotEmptyException extends __BaseException {
  * @public
  */
 export class TemplateNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#TemplateNotFoundException";
   readonly name = "TemplateNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -555,6 +581,7 @@ export class TemplateNotFoundException extends __BaseException {
  * @public
  */
 export class RepositoryPolicyNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#RepositoryPolicyNotFoundException";
   readonly name = "RepositoryPolicyNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -576,6 +603,7 @@ export class RepositoryPolicyNotFoundException extends __BaseException {
  * @public
  */
 export class SigningConfigurationNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#SigningConfigurationNotFoundException";
   readonly name = "SigningConfigurationNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -596,6 +624,7 @@ export class SigningConfigurationNotFoundException extends __BaseException {
  * @public
  */
 export class ExclusionNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ExclusionNotFoundException";
   readonly name = "ExclusionNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -616,6 +645,7 @@ export class ExclusionNotFoundException extends __BaseException {
  * @public
  */
 export class ImageNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ImageNotFoundException";
   readonly name = "ImageNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -637,6 +667,7 @@ export class ImageNotFoundException extends __BaseException {
  * @public
  */
 export class ScanNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ScanNotFoundException";
   readonly name = "ScanNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -653,11 +684,34 @@ export class ScanNotFoundException extends __BaseException {
 }
 
 /**
+ * <p>The specified replication backfill could not be found. Check the specified replication
+ *             backfill ID and ensure that you are operating on the correct registry.</p>
+ * @public
+ */
+export class ReplicationBackfillNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ReplicationBackfillNotFoundException";
+  readonly name = "ReplicationBackfillNotFoundException" as const;
+  readonly $fault = "client" as const;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ReplicationBackfillNotFoundException, __BaseException>) {
+    super({
+      name: "ReplicationBackfillNotFoundException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ReplicationBackfillNotFoundException.prototype);
+  }
+}
+
+/**
  * <p>The specified layer is not available because it is not associated with an image.
  *             Unassociated image layers may be cleaned up at any time.</p>
  * @public
  */
 export class LayerInaccessibleException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#LayerInaccessibleException";
   readonly name = "LayerInaccessibleException" as const;
   readonly $fault = "client" as const;
   /**
@@ -679,6 +733,7 @@ export class LayerInaccessibleException extends __BaseException {
  * @public
  */
 export class LayersNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#LayersNotFoundException";
   readonly name = "LayersNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -700,6 +755,7 @@ export class LayersNotFoundException extends __BaseException {
  * @public
  */
 export class UnableToGetUpstreamLayerException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#UnableToGetUpstreamLayerException";
   readonly name = "UnableToGetUpstreamLayerException" as const;
   readonly $fault = "client" as const;
   /**
@@ -720,6 +776,7 @@ export class UnableToGetUpstreamLayerException extends __BaseException {
  * @public
  */
 export class LifecyclePolicyPreviewNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#LifecyclePolicyPreviewNotFoundException";
   readonly name = "LifecyclePolicyPreviewNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -742,6 +799,7 @@ export class LifecyclePolicyPreviewNotFoundException extends __BaseException {
  * @public
  */
 export class UnableToListUpstreamImageReferrersException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#UnableToListUpstreamImageReferrersException";
   readonly name = "UnableToListUpstreamImageReferrersException" as const;
   readonly $fault = "client" as const;
   /**
@@ -763,6 +821,7 @@ export class UnableToListUpstreamImageReferrersException extends __BaseException
  * @public
  */
 export class ImageAlreadyExistsException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ImageAlreadyExistsException";
   readonly name = "ImageAlreadyExistsException" as const;
   readonly $fault = "client" as const;
   /**
@@ -784,6 +843,7 @@ export class ImageAlreadyExistsException extends __BaseException {
  * @public
  */
 export class ImageDigestDoesNotMatchException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ImageDigestDoesNotMatchException";
   readonly name = "ImageDigestDoesNotMatchException" as const;
   readonly $fault = "client" as const;
   /**
@@ -805,6 +865,7 @@ export class ImageDigestDoesNotMatchException extends __BaseException {
  * @public
  */
 export class ImageTagAlreadyExistsException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ImageTagAlreadyExistsException";
   readonly name = "ImageTagAlreadyExistsException" as const;
   readonly $fault = "client" as const;
   /**
@@ -825,6 +886,7 @@ export class ImageTagAlreadyExistsException extends __BaseException {
  * @public
  */
 export class ReferencedImagesNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ReferencedImagesNotFoundException";
   readonly name = "ReferencedImagesNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -845,6 +907,7 @@ export class ReferencedImagesNotFoundException extends __BaseException {
  * @public
  */
 export class BlockedByOrganizationPolicyException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#BlockedByOrganizationPolicyException";
   readonly name = "BlockedByOrganizationPolicyException" as const;
   readonly $fault = "client" as const;
   /**
@@ -865,6 +928,7 @@ export class BlockedByOrganizationPolicyException extends __BaseException {
  * @public
  */
 export class ExclusionAlreadyExistsException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ExclusionAlreadyExistsException";
   readonly name = "ExclusionAlreadyExistsException" as const;
   readonly $fault = "client" as const;
   /**
@@ -885,6 +949,7 @@ export class ExclusionAlreadyExistsException extends __BaseException {
  * @public
  */
 export class ImageArchivedException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ImageArchivedException";
   readonly name = "ImageArchivedException" as const;
   readonly $fault = "client" as const;
   /**
@@ -905,6 +970,7 @@ export class ImageArchivedException extends __BaseException {
  * @public
  */
 export class UnsupportedImageTypeException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#UnsupportedImageTypeException";
   readonly name = "UnsupportedImageTypeException" as const;
   readonly $fault = "client" as const;
   /**
@@ -926,6 +992,7 @@ export class UnsupportedImageTypeException extends __BaseException {
  * @public
  */
 export class LifecyclePolicyPreviewInProgressException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#LifecyclePolicyPreviewInProgressException";
   readonly name = "LifecyclePolicyPreviewInProgressException" as const;
   readonly $fault = "client" as const;
   /**
@@ -942,10 +1009,60 @@ export class LifecyclePolicyPreviewInProgressException extends __BaseException {
 }
 
 /**
+ * <p>A replication backfill is already in progress for the specified destination Region.
+ *             This occurs because only one replication backfill can be in progress for a given
+ *             destination Region at a time. Wait for the in progress backfill to reach a terminal
+ *             status, or stop it with the <a>StopReplicationBackfill</a> operation, before
+ *             starting another one.</p>
+ * @public
+ */
+export class ReplicationBackfillInProgressException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ReplicationBackfillInProgressException";
+  readonly name = "ReplicationBackfillInProgressException" as const;
+  readonly $fault = "client" as const;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ReplicationBackfillInProgressException, __BaseException>) {
+    super({
+      name: "ReplicationBackfillInProgressException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ReplicationBackfillInProgressException.prototype);
+  }
+}
+
+/**
+ * <p>The requested operation can't be performed on the replication backfill because it is
+ *             not in a valid status for that operation. For example, you can't stop a replication
+ *             backfill that has already reached a terminal status. Use the <a>DescribeReplicationBackfillResults</a> operation to check the current status
+ *             before retrying.</p>
+ * @public
+ */
+export class ReplicationBackfillInvalidStatusException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ReplicationBackfillInvalidStatusException";
+  readonly name = "ReplicationBackfillInvalidStatusException" as const;
+  readonly $fault = "client" as const;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ReplicationBackfillInvalidStatusException, __BaseException>) {
+    super({
+      name: "ReplicationBackfillInvalidStatusException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ReplicationBackfillInvalidStatusException.prototype);
+  }
+}
+
+/**
  * <p>The requested image storage class update is not supported.</p>
  * @public
  */
 export class ImageStorageClassUpdateNotSupportedException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#ImageStorageClassUpdateNotSupportedException";
   readonly name = "ImageStorageClassUpdateNotSupportedException" as const;
   readonly $fault = "client" as const;
   /**
@@ -967,6 +1084,7 @@ export class ImageStorageClassUpdateNotSupportedException extends __BaseExceptio
  * @public
  */
 export class InvalidLayerPartException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.ecr#InvalidLayerPartException";
   readonly name = "InvalidLayerPartException" as const;
   readonly $fault = "client" as const;
   /**

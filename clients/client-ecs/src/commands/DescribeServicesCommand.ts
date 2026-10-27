@@ -2,7 +2,7 @@
 import type { MetadataBearer as __MetadataBearer } from "@smithy/types";
 
 import { _ep0, _mw0, command } from "../commandBuilder";
-import type { DescribeServicesRequest, DescribeServicesResponse } from "../models/models_0";
+import type { DescribeServicesRequest, DescribeServicesResponse } from "../models/models_1";
 import { DescribeServices$ } from "../schemas/schemas_0";
 
 /**
@@ -296,6 +296,11 @@ export interface DescribeServicesCommandOutput extends DescribeServicesResponse,
  * //               format: "TEXT" || "JSON", // required
  * //               includeQueryParameters: "DISABLED" || "ENABLED",
  * //             },
+ * //             containerConfigurations: [ // ServiceConnectContainerConfigurations
+ * //               { // ServiceConnectContainerConfiguration Union: only one key present
+ * //                 logLevel: "debug" || "info",
+ * //               },
+ * //             ],
  * //           },
  * //           serviceConnectResources: [ // ServiceConnectServiceResourceList
  * //             { // ServiceConnectServiceResource
@@ -340,6 +345,11 @@ export interface DescribeServicesCommandOutput extends DescribeServicesResponse,
  * //               roleArn: "STRING_VALUE", // required
  * //               targetGroupArn: "STRING_VALUE", // required
  * //               portName: "STRING_VALUE", // required
+ * //               advancedConfiguration: { // VpcLatticeAdvancedConfiguration
+ * //                 alternateTargetGroupArn: "STRING_VALUE",
+ * //                 productionListenerRule: "STRING_VALUE",
+ * //                 testListenerRule: "STRING_VALUE",
+ * //               },
  * //             },
  * //           ],
  * //         },

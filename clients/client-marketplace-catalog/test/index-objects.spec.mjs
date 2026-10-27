@@ -79,6 +79,14 @@ import {
   EntityTypeSort$,
   ErrorDetail$,
   ErrorScope$,
+  ExpressPrivateOfferConfigurationEntityIdFilter$,
+  ExpressPrivateOfferConfigurationFilters$,
+  ExpressPrivateOfferConfigurationProductIdFilter$,
+  ExpressPrivateOfferConfigurationSort$,
+  ExpressPrivateOfferConfigurationSortBy,
+  ExpressPrivateOfferConfigurationStateFilter$,
+  ExpressPrivateOfferConfigurationStateString,
+  ExpressPrivateOfferConfigurationSummary$,
   FailureCode,
   Filter$,
   FrameworkFilters$,
@@ -216,6 +224,21 @@ import {
   StartChangeSetCommand,
   StartChangeSetRequest$,
   StartChangeSetResponse$,
+  SubsidiaryAuthorizationCreatedDateFilter$,
+  SubsidiaryAuthorizationCreatedDateFilterDateRange$,
+  SubsidiaryAuthorizationEntityIdFilter$,
+  SubsidiaryAuthorizationFilters$,
+  SubsidiaryAuthorizationLastModifiedDateFilter$,
+  SubsidiaryAuthorizationLastModifiedDateFilterDateRange$,
+  SubsidiaryAuthorizationNameFilter$,
+  SubsidiaryAuthorizationResourceIdFilter$,
+  SubsidiaryAuthorizationResourceNameFilter$,
+  SubsidiaryAuthorizationSort$,
+  SubsidiaryAuthorizationSortBy,
+  SubsidiaryAuthorizationStatusFilter$,
+  SubsidiaryAuthorizationStatusString,
+  SubsidiaryAuthorizationSubsidiaryAccountIdFilter$,
+  SubsidiaryAuthorizationSummary$,
   Tag$,
   TagResource$,
   TagResourceCommand,
@@ -325,6 +348,12 @@ assert(typeof EntityTypeFilters$ === "object");
 assert(typeof EntityTypeSort$ === "object");
 assert(typeof ErrorDetail$ === "object");
 assert(typeof ErrorScope$ === "object");
+assert(typeof ExpressPrivateOfferConfigurationEntityIdFilter$ === "object");
+assert(typeof ExpressPrivateOfferConfigurationFilters$ === "object");
+assert(typeof ExpressPrivateOfferConfigurationProductIdFilter$ === "object");
+assert(typeof ExpressPrivateOfferConfigurationSort$ === "object");
+assert(typeof ExpressPrivateOfferConfigurationStateFilter$ === "object");
+assert(typeof ExpressPrivateOfferConfigurationSummary$ === "object");
 assert(typeof Filter$ === "object");
 assert(typeof FrameworkFilters$ === "object");
 assert(typeof FrameworkSummary$ === "object");
@@ -413,6 +442,19 @@ assert(typeof SaaSProductVisibilityFilter$ === "object");
 assert(typeof Sort$ === "object");
 assert(typeof StartChangeSetRequest$ === "object");
 assert(typeof StartChangeSetResponse$ === "object");
+assert(typeof SubsidiaryAuthorizationCreatedDateFilter$ === "object");
+assert(typeof SubsidiaryAuthorizationCreatedDateFilterDateRange$ === "object");
+assert(typeof SubsidiaryAuthorizationEntityIdFilter$ === "object");
+assert(typeof SubsidiaryAuthorizationFilters$ === "object");
+assert(typeof SubsidiaryAuthorizationLastModifiedDateFilter$ === "object");
+assert(typeof SubsidiaryAuthorizationLastModifiedDateFilterDateRange$ === "object");
+assert(typeof SubsidiaryAuthorizationNameFilter$ === "object");
+assert(typeof SubsidiaryAuthorizationResourceIdFilter$ === "object");
+assert(typeof SubsidiaryAuthorizationResourceNameFilter$ === "object");
+assert(typeof SubsidiaryAuthorizationSort$ === "object");
+assert(typeof SubsidiaryAuthorizationStatusFilter$ === "object");
+assert(typeof SubsidiaryAuthorizationSubsidiaryAccountIdFilter$ === "object");
+assert(typeof SubsidiaryAuthorizationSummary$ === "object");
 assert(typeof Tag$ === "object");
 assert(typeof TagResourceRequest$ === "object");
 assert(typeof TagResourceResponse$ === "object");
@@ -429,6 +471,8 @@ assert(typeof ContainerProductVisibilityString === "object");
 assert(typeof ControlAssessmentResult === "object");
 assert(typeof DataProductSortBy === "object");
 assert(typeof DataProductVisibilityString === "object");
+assert(typeof ExpressPrivateOfferConfigurationSortBy === "object");
+assert(typeof ExpressPrivateOfferConfigurationStateString === "object");
 assert(typeof FailureCode === "object");
 assert(typeof Intent === "object");
 assert(typeof MachineLearningProductSortBy === "object");
@@ -447,6 +491,8 @@ assert(typeof ResaleAuthorizationStatusString === "object");
 assert(typeof SaaSProductSortBy === "object");
 assert(typeof SaaSProductVisibilityString === "object");
 assert(typeof SortOrder === "object");
+assert(typeof SubsidiaryAuthorizationSortBy === "object");
+assert(typeof SubsidiaryAuthorizationStatusString === "object");
 assert(typeof ValidationExceptionReason === "object");
 // errors
 assert(AccessDeniedException.prototype instanceof MarketplaceCatalogServiceException);

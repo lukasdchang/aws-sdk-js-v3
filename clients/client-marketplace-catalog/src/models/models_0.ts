@@ -11,6 +11,8 @@ import type {
   ControlAssessmentResult,
   DataProductSortBy,
   DataProductVisibilityString,
+  ExpressPrivateOfferConfigurationSortBy,
+  ExpressPrivateOfferConfigurationStateString,
   FailureCode,
   Intent,
   MachineLearningProductSortBy,
@@ -29,6 +31,8 @@ import type {
   SaaSProductSortBy,
   SaaSProductVisibilityString,
   SortOrder,
+  SubsidiaryAuthorizationSortBy,
+  SubsidiaryAuthorizationStatusString,
   ValidationExceptionReason,
 } from "./enums";
 
@@ -1555,6 +1559,76 @@ export interface DataProductFilters {
 }
 
 /**
+ * <p>The filter for the <code>EntityId</code> of an express private offer configuration.</p>
+ * @public
+ */
+export interface ExpressPrivateOfferConfigurationEntityIdFilter {
+  /**
+   * <p>A list of <code>EntityId</code> values to filter on.</p>
+   * @public
+   */
+  ValueList?: string[] | undefined;
+}
+
+/**
+ * <p>The filter for the <code>ProductId</code> of an express private offer configuration.</p>
+ * @public
+ */
+export interface ExpressPrivateOfferConfigurationProductIdFilter {
+  /**
+   * <p>A list of <code>ProductId</code> values to filter on.</p>
+   * @public
+   */
+  ValueList?: string[] | undefined;
+}
+
+/**
+ * <p>The filter for the <code>State</code> of an express private offer configuration.</p>
+ * @public
+ */
+export interface ExpressPrivateOfferConfigurationStateFilter {
+  /**
+   * <p>A list of <code>State</code> values to filter on. Valid values are <code>ACTIVE</code> and <code>INACTIVE</code>.</p>
+   * @public
+   */
+  ValueList?: ExpressPrivateOfferConfigurationStateString[] | undefined;
+}
+
+/**
+ * <p>The filter fields for the express private offer configuration entity.</p>
+ * @public
+ */
+export interface ExpressPrivateOfferConfigurationFilters {
+  /**
+   * <p>You can filter on the <code>EntityId</code> of an express private offer configuration.</p>
+   * @public
+   */
+  EntityId?: ExpressPrivateOfferConfigurationEntityIdFilter | undefined;
+
+  /**
+   * <p>You can filter on the <code>ProductId</code> of an express private offer configuration.</p>
+   * @public
+   */
+  ProductId?: ExpressPrivateOfferConfigurationProductIdFilter | undefined;
+
+  /**
+   * <p>The state of the express private offer configuration to filter on. Valid values are the following:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>ACTIVE</code> – The configuration is active and you can use it to generate offers.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>INACTIVE</code> – The configuration is deprecated or deleted.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  State?: ExpressPrivateOfferConfigurationStateFilter | undefined;
+}
+
+/**
  * <p>The filter for machine learning product entity IDs.</p>
  * @public
  */
@@ -2656,6 +2730,248 @@ export interface SaaSProductFilters {
 }
 
 /**
+ * <p>A date range for filtering subsidiary authorizations by creation date.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationCreatedDateFilterDateRange {
+  /**
+   * <p>The start date (inclusive) of the date range. The operation returns subsidiary authorizations
+   *             created on or after this date.</p>
+   * @public
+   */
+  AfterValue?: string | undefined;
+
+  /**
+   * <p>The end date (inclusive) of the date range. The operation returns subsidiary authorizations
+   *             created on or before this date.</p>
+   * @public
+   */
+  BeforeValue?: string | undefined;
+}
+
+/**
+ * <p>The filter for the date a subsidiary authorization was created.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationCreatedDateFilter {
+  /**
+   * <p>A date range to filter by. The operation returns subsidiary authorizations with creation dates
+   *             that fall within this range.</p>
+   * @public
+   */
+  DateRange?: SubsidiaryAuthorizationCreatedDateFilterDateRange | undefined;
+}
+
+/**
+ * <p>The filter for subsidiary authorization entity IDs. Each ID begins with <code>subauthz-</code>
+ *             followed by 13 alphanumeric characters.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationEntityIdFilter {
+  /**
+   * <p>A list of entity IDs to filter by. The operation returns subsidiary authorizations with an
+   *             entity ID that matches any value in this list. You can include up to 10 entity IDs in
+   *             this list.</p>
+   * @public
+   */
+  ValueList?: string[] | undefined;
+}
+
+/**
+ * <p>A date range for filtering subsidiary authorizations by last modified date.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationLastModifiedDateFilterDateRange {
+  /**
+   * <p>The start date (inclusive) of the date range. The operation returns subsidiary authorizations
+   *             last modified on or after this date.</p>
+   * @public
+   */
+  AfterValue?: string | undefined;
+
+  /**
+   * <p>The end date (inclusive) of the date range. The operation returns subsidiary authorizations
+   *             last modified on or before this date.</p>
+   * @public
+   */
+  BeforeValue?: string | undefined;
+}
+
+/**
+ * <p>The filter for the date a subsidiary authorization was last modified.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationLastModifiedDateFilter {
+  /**
+   * <p>A date range to filter by. The operation returns subsidiary authorizations with last modified
+   *             dates that fall within this range.</p>
+   * @public
+   */
+  DateRange?: SubsidiaryAuthorizationLastModifiedDateFilterDateRange | undefined;
+}
+
+/**
+ * <p>The filter for subsidiary authorization names.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationNameFilter {
+  /**
+   * <p>A list of names to filter by. The operation returns subsidiary authorizations with a name that
+   *             matches any value in this list. You can include up to 10 names in this list.</p>
+   * @public
+   */
+  ValueList?: string[] | undefined;
+
+  /**
+   * <p>A partial name to filter by. The operation returns subsidiary authorizations whose
+   *             name contains this value. The value must be at least 3 characters.</p>
+   * @public
+   */
+  WildCardValue?: string | undefined;
+}
+
+/**
+ * <p>The filter for the IDs of resources that subsidiary authorizations apply to.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationResourceIdFilter {
+  /**
+   * <p>A list of resource IDs to filter by. The operation returns subsidiary authorizations for
+   *             resources with an ID that matches any value in this list. You can include up to 10
+   *             resource IDs in this list.</p>
+   * @public
+   */
+  ValueList?: string[] | undefined;
+}
+
+/**
+ * <p>The filter for the names of resources that subsidiary authorizations apply to.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationResourceNameFilter {
+  /**
+   * <p>A list of resource names to filter by. The operation returns subsidiary authorizations for
+   *             resources with a name that matches any value in this list. You can include up to 10
+   *             resource names in this list.</p>
+   * @public
+   */
+  ValueList?: string[] | undefined;
+
+  /**
+   * <p>A partial resource name to filter by. The operation returns subsidiary authorizations
+   *             for resources whose name contains this value. The value must be at least 3
+   *             characters.</p>
+   * @public
+   */
+  WildCardValue?: string | undefined;
+}
+
+/**
+ * <p>The filter for subsidiary authorization statuses.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationStatusFilter {
+  /**
+   * <p>A list of statuses to filter by. The operation returns subsidiary authorizations with a status
+   *     that matches a value in this list. Valid values are:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>Draft</code> - The subsidiary authorization was created but not yet released.
+   *                     The subsidiary account can't see it.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>Active</code> - The subsidiary account can use the subsidiary authorization to
+   *                     create offers for the authorized product.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>Restricted</code> - The subsidiary authorization was discarded while in
+   *                     <code>Draft</code> or revoked while <code>Active</code>. It can't be used to create new
+   *                     offers. This status is final.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  ValueList?: SubsidiaryAuthorizationStatusString[] | undefined;
+}
+
+/**
+ * <p>The filter for the AWS account IDs of subsidiary accounts.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationSubsidiaryAccountIdFilter {
+  /**
+   * <p>A list of AWS account IDs to filter by. The operation returns subsidiary authorizations whose
+   *             subsidiary account ID matches any value in this list. You can include up to 10 account
+   *             IDs in this list.</p>
+   * @public
+   */
+  ValueList?: string[] | undefined;
+}
+
+/**
+ * <p>The filters that you can use with the <code>ListEntities</code> operation to filter subsidiary
+ *             authorizations. You can filter by <code>EntityId</code>, <code>Status</code>,
+ *             <code>ResourceId</code>, <code>ResourceName</code>, <code>Name</code>,
+ *             <code>SubsidiaryAccountId</code>, <code>CreatedDate</code>, and
+ *             <code>LastModifiedDate</code>. You can add only one wildcard filter in a single
+ *             <code>ListEntities</code> request.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationFilters {
+  /**
+   * <p>A filter that matches subsidiary authorizations by entity ID.</p>
+   * @public
+   */
+  EntityId?: SubsidiaryAuthorizationEntityIdFilter | undefined;
+
+  /**
+   * <p>A filter that matches subsidiary authorizations by status.</p>
+   * @public
+   */
+  Status?: SubsidiaryAuthorizationStatusFilter | undefined;
+
+  /**
+   * <p>A filter that matches subsidiary authorizations by the ID of the authorized resource.</p>
+   * @public
+   */
+  ResourceId?: SubsidiaryAuthorizationResourceIdFilter | undefined;
+
+  /**
+   * <p>A filter that matches subsidiary authorizations by the name of the authorized resource.</p>
+   * @public
+   */
+  ResourceName?: SubsidiaryAuthorizationResourceNameFilter | undefined;
+
+  /**
+   * <p>A filter that matches subsidiary authorizations by name.</p>
+   * @public
+   */
+  Name?: SubsidiaryAuthorizationNameFilter | undefined;
+
+  /**
+   * <p>A filter that matches subsidiary authorizations by the AWS account ID of the subsidiary
+   *             account.</p>
+   * @public
+   */
+  SubsidiaryAccountId?: SubsidiaryAuthorizationSubsidiaryAccountIdFilter | undefined;
+
+  /**
+   * <p>A filter that matches subsidiary authorizations by creation date.</p>
+   * @public
+   */
+  CreatedDate?: SubsidiaryAuthorizationCreatedDateFilter | undefined;
+
+  /**
+   * <p>A filter that matches subsidiary authorizations by last modified date.</p>
+   * @public
+   */
+  LastModifiedDate?: SubsidiaryAuthorizationLastModifiedDateFilter | undefined;
+}
+
+/**
  * <p>Object containing all the filter fields per entity type.</p>
  * @public
  */
@@ -2663,11 +2979,13 @@ export type EntityTypeFilters =
   | EntityTypeFilters.AmiProductFiltersMember
   | EntityTypeFilters.ContainerProductFiltersMember
   | EntityTypeFilters.DataProductFiltersMember
+  | EntityTypeFilters.ExpressPrivateOfferConfigurationFiltersMember
   | EntityTypeFilters.MachineLearningProductFiltersMember
   | EntityTypeFilters.OfferFiltersMember
   | EntityTypeFilters.OfferSetFiltersMember
   | EntityTypeFilters.ResaleAuthorizationFiltersMember
   | EntityTypeFilters.SaaSProductFiltersMember
+  | EntityTypeFilters.SubsidiaryAuthorizationFiltersMember
   | EntityTypeFilters.$UnknownMember;
 
 /**
@@ -2687,6 +3005,8 @@ export namespace EntityTypeFilters {
     ResaleAuthorizationFilters?: never;
     MachineLearningProductFilters?: never;
     OfferSetFilters?: never;
+    ExpressPrivateOfferConfigurationFilters?: never;
+    SubsidiaryAuthorizationFilters?: never;
     $unknown?: never;
   }
 
@@ -2703,6 +3023,8 @@ export namespace EntityTypeFilters {
     ResaleAuthorizationFilters?: never;
     MachineLearningProductFilters?: never;
     OfferSetFilters?: never;
+    ExpressPrivateOfferConfigurationFilters?: never;
+    SubsidiaryAuthorizationFilters?: never;
     $unknown?: never;
   }
 
@@ -2719,6 +3041,8 @@ export namespace EntityTypeFilters {
     ResaleAuthorizationFilters?: never;
     MachineLearningProductFilters?: never;
     OfferSetFilters?: never;
+    ExpressPrivateOfferConfigurationFilters?: never;
+    SubsidiaryAuthorizationFilters?: never;
     $unknown?: never;
   }
 
@@ -2735,6 +3059,8 @@ export namespace EntityTypeFilters {
     ResaleAuthorizationFilters?: never;
     MachineLearningProductFilters?: never;
     OfferSetFilters?: never;
+    ExpressPrivateOfferConfigurationFilters?: never;
+    SubsidiaryAuthorizationFilters?: never;
     $unknown?: never;
   }
 
@@ -2751,6 +3077,8 @@ export namespace EntityTypeFilters {
     ResaleAuthorizationFilters?: never;
     MachineLearningProductFilters?: never;
     OfferSetFilters?: never;
+    ExpressPrivateOfferConfigurationFilters?: never;
+    SubsidiaryAuthorizationFilters?: never;
     $unknown?: never;
   }
 
@@ -2767,6 +3095,8 @@ export namespace EntityTypeFilters {
     ResaleAuthorizationFilters: ResaleAuthorizationFilters;
     MachineLearningProductFilters?: never;
     OfferSetFilters?: never;
+    ExpressPrivateOfferConfigurationFilters?: never;
+    SubsidiaryAuthorizationFilters?: never;
     $unknown?: never;
   }
 
@@ -2784,6 +3114,8 @@ export namespace EntityTypeFilters {
     ResaleAuthorizationFilters?: never;
     MachineLearningProductFilters: MachineLearningProductFilters;
     OfferSetFilters?: never;
+    ExpressPrivateOfferConfigurationFilters?: never;
+    SubsidiaryAuthorizationFilters?: never;
     $unknown?: never;
   }
 
@@ -2800,6 +3132,44 @@ export namespace EntityTypeFilters {
     ResaleAuthorizationFilters?: never;
     MachineLearningProductFilters?: never;
     OfferSetFilters: OfferSetFilters;
+    ExpressPrivateOfferConfigurationFilters?: never;
+    SubsidiaryAuthorizationFilters?: never;
+    $unknown?: never;
+  }
+
+  /**
+   * <p>A filter for express private offer configurations.</p>
+   * @public
+   */
+  export interface ExpressPrivateOfferConfigurationFiltersMember {
+    DataProductFilters?: never;
+    SaaSProductFilters?: never;
+    AmiProductFilters?: never;
+    OfferFilters?: never;
+    ContainerProductFilters?: never;
+    ResaleAuthorizationFilters?: never;
+    MachineLearningProductFilters?: never;
+    OfferSetFilters?: never;
+    ExpressPrivateOfferConfigurationFilters: ExpressPrivateOfferConfigurationFilters;
+    SubsidiaryAuthorizationFilters?: never;
+    $unknown?: never;
+  }
+
+  /**
+   * <p>A filter for subsidiary authorizations.</p>
+   * @public
+   */
+  export interface SubsidiaryAuthorizationFiltersMember {
+    DataProductFilters?: never;
+    SaaSProductFilters?: never;
+    AmiProductFilters?: never;
+    OfferFilters?: never;
+    ContainerProductFilters?: never;
+    ResaleAuthorizationFilters?: never;
+    MachineLearningProductFilters?: never;
+    OfferSetFilters?: never;
+    ExpressPrivateOfferConfigurationFilters?: never;
+    SubsidiaryAuthorizationFilters: SubsidiaryAuthorizationFilters;
     $unknown?: never;
   }
 
@@ -2815,6 +3185,8 @@ export namespace EntityTypeFilters {
     ResaleAuthorizationFilters?: never;
     MachineLearningProductFilters?: never;
     OfferSetFilters?: never;
+    ExpressPrivateOfferConfigurationFilters?: never;
+    SubsidiaryAuthorizationFilters?: never;
     $unknown: [string, any];
   }
 
@@ -2831,6 +3203,8 @@ export namespace EntityTypeFilters {
     ResaleAuthorizationFilters: (value: ResaleAuthorizationFilters) => T;
     MachineLearningProductFilters: (value: MachineLearningProductFilters) => T;
     OfferSetFilters: (value: OfferSetFilters) => T;
+    ExpressPrivateOfferConfigurationFilters: (value: ExpressPrivateOfferConfigurationFilters) => T;
+    SubsidiaryAuthorizationFilters: (value: SubsidiaryAuthorizationFilters) => T;
     _: (name: string, value: any) => T;
   }
 }
@@ -2866,6 +3240,24 @@ export interface DataProductSort {
 
   /**
    * <p>The sorting order. Can be <code>ASCENDING</code> or <code>DESCENDING</code>. The default value is <code>DESCENDING</code>.</p>
+   * @public
+   */
+  SortOrder?: SortOrder | undefined;
+}
+
+/**
+ * <p>The sort fields for express private offer configurations.</p>
+ * @public
+ */
+export interface ExpressPrivateOfferConfigurationSort {
+  /**
+   * <p>The field to sort by. Valid values are <code>EntityId</code>, <code>LastModifiedDate</code>, <code>ProductId</code>, and <code>State</code>.</p>
+   * @public
+   */
+  SortBy?: ExpressPrivateOfferConfigurationSortBy | undefined;
+
+  /**
+   * <p>The sorting order. Valid values are <code>ASCENDING</code> and <code>DESCENDING</code>.</p>
    * @public
    */
   SortOrder?: SortOrder | undefined;
@@ -2962,6 +3354,28 @@ export interface SaaSProductSort {
 }
 
 /**
+ * <p>Specifies the field to sort subsidiary authorizations by and the order (ascending or
+ *             descending) to apply.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationSort {
+  /**
+   * <p>The field to sort subsidiary authorizations by. Valid values are <code>EntityId</code>,
+   *             <code>Status</code>, <code>ResourceId</code>, <code>SubsidiaryAccountId</code>,
+   *             <code>CreatedDate</code>, and <code>LastModifiedDate</code>.</p>
+   * @public
+   */
+  SortBy?: SubsidiaryAuthorizationSortBy | undefined;
+
+  /**
+   * <p>The sorting order. Can be <code>ASCENDING</code> or <code>DESCENDING</code>. The
+   *             default value is <code>DESCENDING</code>.</p>
+   * @public
+   */
+  SortOrder?: SortOrder | undefined;
+}
+
+/**
  * <p>Object containing all the sort fields per entity type.</p>
  * @public
  */
@@ -2969,11 +3383,13 @@ export type EntityTypeSort =
   | EntityTypeSort.AmiProductSortMember
   | EntityTypeSort.ContainerProductSortMember
   | EntityTypeSort.DataProductSortMember
+  | EntityTypeSort.ExpressPrivateOfferConfigurationSortMember
   | EntityTypeSort.MachineLearningProductSortMember
   | EntityTypeSort.OfferSetSortMember
   | EntityTypeSort.OfferSortMember
   | EntityTypeSort.ResaleAuthorizationSortMember
   | EntityTypeSort.SaaSProductSortMember
+  | EntityTypeSort.SubsidiaryAuthorizationSortMember
   | EntityTypeSort.$UnknownMember;
 
 /**
@@ -2993,6 +3409,8 @@ export namespace EntityTypeSort {
     ResaleAuthorizationSort?: never;
     MachineLearningProductSort?: never;
     OfferSetSort?: never;
+    ExpressPrivateOfferConfigurationSort?: never;
+    SubsidiaryAuthorizationSort?: never;
     $unknown?: never;
   }
 
@@ -3009,6 +3427,8 @@ export namespace EntityTypeSort {
     ResaleAuthorizationSort?: never;
     MachineLearningProductSort?: never;
     OfferSetSort?: never;
+    ExpressPrivateOfferConfigurationSort?: never;
+    SubsidiaryAuthorizationSort?: never;
     $unknown?: never;
   }
 
@@ -3025,6 +3445,8 @@ export namespace EntityTypeSort {
     ResaleAuthorizationSort?: never;
     MachineLearningProductSort?: never;
     OfferSetSort?: never;
+    ExpressPrivateOfferConfigurationSort?: never;
+    SubsidiaryAuthorizationSort?: never;
     $unknown?: never;
   }
 
@@ -3041,6 +3463,8 @@ export namespace EntityTypeSort {
     ResaleAuthorizationSort?: never;
     MachineLearningProductSort?: never;
     OfferSetSort?: never;
+    ExpressPrivateOfferConfigurationSort?: never;
+    SubsidiaryAuthorizationSort?: never;
     $unknown?: never;
   }
 
@@ -3057,6 +3481,8 @@ export namespace EntityTypeSort {
     ResaleAuthorizationSort?: never;
     MachineLearningProductSort?: never;
     OfferSetSort?: never;
+    ExpressPrivateOfferConfigurationSort?: never;
+    SubsidiaryAuthorizationSort?: never;
     $unknown?: never;
   }
 
@@ -3073,6 +3499,8 @@ export namespace EntityTypeSort {
     ResaleAuthorizationSort: ResaleAuthorizationSort;
     MachineLearningProductSort?: never;
     OfferSetSort?: never;
+    ExpressPrivateOfferConfigurationSort?: never;
+    SubsidiaryAuthorizationSort?: never;
     $unknown?: never;
   }
 
@@ -3089,6 +3517,8 @@ export namespace EntityTypeSort {
     ResaleAuthorizationSort?: never;
     MachineLearningProductSort: MachineLearningProductSort;
     OfferSetSort?: never;
+    ExpressPrivateOfferConfigurationSort?: never;
+    SubsidiaryAuthorizationSort?: never;
     $unknown?: never;
   }
 
@@ -3105,6 +3535,44 @@ export namespace EntityTypeSort {
     ResaleAuthorizationSort?: never;
     MachineLearningProductSort?: never;
     OfferSetSort: OfferSetSort;
+    ExpressPrivateOfferConfigurationSort?: never;
+    SubsidiaryAuthorizationSort?: never;
+    $unknown?: never;
+  }
+
+  /**
+   * <p>A sort for express private offer configurations.</p>
+   * @public
+   */
+  export interface ExpressPrivateOfferConfigurationSortMember {
+    DataProductSort?: never;
+    SaaSProductSort?: never;
+    AmiProductSort?: never;
+    OfferSort?: never;
+    ContainerProductSort?: never;
+    ResaleAuthorizationSort?: never;
+    MachineLearningProductSort?: never;
+    OfferSetSort?: never;
+    ExpressPrivateOfferConfigurationSort: ExpressPrivateOfferConfigurationSort;
+    SubsidiaryAuthorizationSort?: never;
+    $unknown?: never;
+  }
+
+  /**
+   * <p>A sort for subsidiary authorizations.</p>
+   * @public
+   */
+  export interface SubsidiaryAuthorizationSortMember {
+    DataProductSort?: never;
+    SaaSProductSort?: never;
+    AmiProductSort?: never;
+    OfferSort?: never;
+    ContainerProductSort?: never;
+    ResaleAuthorizationSort?: never;
+    MachineLearningProductSort?: never;
+    OfferSetSort?: never;
+    ExpressPrivateOfferConfigurationSort?: never;
+    SubsidiaryAuthorizationSort: SubsidiaryAuthorizationSort;
     $unknown?: never;
   }
 
@@ -3120,6 +3588,8 @@ export namespace EntityTypeSort {
     ResaleAuthorizationSort?: never;
     MachineLearningProductSort?: never;
     OfferSetSort?: never;
+    ExpressPrivateOfferConfigurationSort?: never;
+    SubsidiaryAuthorizationSort?: never;
     $unknown: [string, any];
   }
 
@@ -3136,6 +3606,8 @@ export namespace EntityTypeSort {
     ResaleAuthorizationSort: (value: ResaleAuthorizationSort) => T;
     MachineLearningProductSort: (value: MachineLearningProductSort) => T;
     OfferSetSort: (value: OfferSetSort) => T;
+    ExpressPrivateOfferConfigurationSort: (value: ExpressPrivateOfferConfigurationSort) => T;
+    SubsidiaryAuthorizationSort: (value: SubsidiaryAuthorizationSort) => T;
     _: (name: string, value: any) => T;
   }
 }
@@ -3158,7 +3630,8 @@ export interface ListEntitiesRequest {
    *                 <code>DataProduct</code>, <code>SaaSProduct</code>, <code>ProcurementPolicy</code>,
    *                 <code>Experience</code>, <code>Audience</code>, <code>BrandingSettings</code>,
    *                 <code>Offer</code>, <code>OfferSet</code>, <code>Seller</code>,
-   *             <code>ResaleAuthorization</code>, <code>Solution</code>.</p>
+   *             <code>ResaleAuthorization</code>, <code>Solution</code>,
+   *                 <code>SubsidiaryAuthorization</code>.</p>
    * @public
    */
   EntityType: string | undefined;
@@ -3252,6 +3725,34 @@ export interface DataProductSummary {
    * @public
    */
   Visibility?: DataProductVisibilityString | undefined;
+}
+
+/**
+ * <p>Summarized information about an express private offer configuration.</p>
+ * @public
+ */
+export interface ExpressPrivateOfferConfigurationSummary {
+  /**
+   * <p>The product ID associated with the express private offer configuration.</p>
+   * @public
+   */
+  ProductId?: string | undefined;
+
+  /**
+   * <p>The state of the express private offer configuration. Valid values are the following:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>ACTIVE</code> – The configuration is active and you can use it to generate offers.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>INACTIVE</code> – The configuration is deprecated or deleted.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  State?: ExpressPrivateOfferConfigurationStateString | undefined;
 }
 
 /**
@@ -3495,6 +3996,71 @@ export interface SaaSProductSummary {
 }
 
 /**
+ * <p>An object that contains summary information about a subsidiary authorization, including its
+ *             name, status, authorized resource, subsidiary account, and creation date. A subsidiary
+ *             authorization lets a seller authorize one of its subsidiary accounts to create offers
+ *             for one of its products.</p>
+ * @public
+ */
+export interface SubsidiaryAuthorizationSummary {
+  /**
+   * <p>The name of the subsidiary authorization.</p>
+   * @public
+   */
+  Name?: string | undefined;
+
+  /**
+   * <p>The status of the subsidiary authorization. Valid values are:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>Draft</code> - The subsidiary authorization was created but not yet released.
+   *                     The subsidiary account can't see it.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>Active</code> - The subsidiary account can use the subsidiary authorization to
+   *                     create offers for the authorized product.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>Restricted</code> - The subsidiary authorization was discarded while in
+   *                     <code>Draft</code> or revoked while <code>Active</code>. It can't be used to create new
+   *                     offers. This status is final.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  Status?: string | undefined;
+
+  /**
+   * <p>The ID of the resource that the subsidiary authorization applies to. Currently, this is always
+   *             a product ID, such as <code>prod-example123</code>.</p>
+   * @public
+   */
+  ResourceId?: string | undefined;
+
+  /**
+   * <p>The name of the resource that the subsidiary authorization applies to. Currently, this is
+   *             always a product name.</p>
+   * @public
+   */
+  ResourceName?: string | undefined;
+
+  /**
+   * <p>The 12-digit AWS account ID of the subsidiary account.</p>
+   * @public
+   */
+  SubsidiaryAccountId?: string | undefined;
+
+  /**
+   * <p>The date the subsidiary authorization was created.</p>
+   * @public
+   */
+  CreatedDate?: string | undefined;
+}
+
+/**
  * <p>This object is a container for common summary information about the entity. The
  *             summary doesn't contain the whole entity structure, but it does contain information
  *             common across all entities.</p>
@@ -3588,6 +4154,20 @@ export interface EntitySummary {
    * @public
    */
   OfferSetSummary?: OfferSetSummary | undefined;
+
+  /**
+   * <p>An object that contains summary information about the express private offer configuration.</p>
+   * @public
+   */
+  ExpressPrivateOfferConfigurationSummary?: ExpressPrivateOfferConfigurationSummary | undefined;
+
+  /**
+   * <p>An object that contains summary information about the subsidiary authorization, such as its
+   *            status and authorized resource, when the entity type is
+   *            <code>SubsidiaryAuthorization</code>.</p>
+   * @public
+   */
+  SubsidiaryAuthorizationSummary?: SubsidiaryAuthorizationSummary | undefined;
 }
 
 /**

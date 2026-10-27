@@ -123,6 +123,7 @@ export const ProjectDesignation = {
   CONTRIBUTOR: "CONTRIBUTOR",
   OWNER: "OWNER",
   PROJECT_CATALOG_STEWARD: "PROJECT_CATALOG_STEWARD",
+  USER_CREATED_DESIGNATION: "USER_CREATED_DESIGNATION",
 } as const;
 /**
  * @public
@@ -321,8 +322,16 @@ export type ConfigurationStatus = (typeof ConfigurationStatus)[keyof typeof Conf
  */
 export const GlueConnectionType = {
   BIGQUERY: "BIGQUERY",
+  /**
+   * <p>A Databricks Unity Catalog (Iceberg REST) connection type.</p>
+   */
+  DATABRICKSICEBERGRESTCATALOG: "DATABRICKSICEBERGRESTCATALOG",
   DOCUMENTDB: "DOCUMENTDB",
   DYNAMODB: "DYNAMODB",
+  /**
+   * <p>A generic Iceberg REST catalog connection type.</p>
+   */
+  ICEBERGRESTCATALOG: "ICEBERGRESTCATALOG",
   MYSQL: "MYSQL",
   OPENSEARCH: "OPENSEARCH",
   ORACLE: "ORACLE",
@@ -330,6 +339,10 @@ export const GlueConnectionType = {
   REDSHIFT: "REDSHIFT",
   SAPHANA: "SAPHANA",
   SNOWFLAKE: "SNOWFLAKE",
+  /**
+   * <p>A Snowflake Horizon (Iceberg REST) catalog connection type.</p>
+   */
+  SNOWFLAKEICEBERGRESTCATALOG: "SNOWFLAKEICEBERGRESTCATALOG",
   SQLSERVER: "SQLSERVER",
   TERADATA: "TERADATA",
   VERTICA: "VERTICA",
@@ -481,6 +494,10 @@ export const ConnectionType = {
   ATHENA: "ATHENA",
   BIGQUERY: "BIGQUERY",
   DATABRICKS: "DATABRICKS",
+  /**
+   * <p>A Databricks Unity Catalog (Iceberg REST) connection type.</p>
+   */
+  DATABRICKSICEBERGRESTCATALOG: "DATABRICKSICEBERGRESTCATALOG",
   DOCUMENTDB: "DOCUMENTDB",
   DYNAMODB: "DYNAMODB",
   /**
@@ -489,6 +506,10 @@ export const ConnectionType = {
   GIT: "GIT",
   HYPERPOD: "HYPERPOD",
   IAM: "IAM",
+  /**
+   * <p>A generic Iceberg REST catalog connection type.</p>
+   */
+  ICEBERGRESTCATALOG: "ICEBERGRESTCATALOG",
   MLFLOW: "MLFLOW",
   MYSQL: "MYSQL",
   OPENSEARCH: "OPENSEARCH",
@@ -498,6 +519,10 @@ export const ConnectionType = {
   S3: "S3",
   SAPHANA: "SAPHANA",
   SNOWFLAKE: "SNOWFLAKE",
+  /**
+   * <p>A Snowflake Horizon (Iceberg REST) catalog connection type.</p>
+   */
+  SNOWFLAKEICEBERGRESTCATALOG: "SNOWFLAKEICEBERGRESTCATALOG",
   SPARK: "SPARK",
   SQLSERVER: "SQLSERVER",
   TERADATA: "TERADATA",
@@ -632,6 +657,25 @@ export const DataSourceStatus = {
  * @public
  */
 export type DataSourceStatus = (typeof DataSourceStatus)[keyof typeof DataSourceStatus];
+
+/**
+ * @public
+ * @enum
+ */
+export const DesignationType = {
+  /**
+   * System-defined designation that cannot be modified or deleted.
+   */
+  MANAGED: "MANAGED",
+  /**
+   * Created by a user via the CreateDesignation API.
+   */
+  USER_CREATED: "USER_CREATED",
+} as const;
+/**
+ * @public
+ */
+export type DesignationType = (typeof DesignationType)[keyof typeof DesignationType];
 
 /**
  * @public
@@ -877,6 +921,7 @@ export const UserDesignation = {
   PROJECT_CATALOG_VIEWER: "PROJECT_CATALOG_VIEWER",
   PROJECT_CONTRIBUTOR: "PROJECT_CONTRIBUTOR",
   PROJECT_OWNER: "PROJECT_OWNER",
+  USER_CREATED_DESIGNATION: "USER_CREATED_DESIGNATION",
 } as const;
 /**
  * @public
@@ -1477,6 +1522,45 @@ export const NetworkAccessType = {
  * @public
  */
 export type NetworkAccessType = (typeof NetworkAccessType)[keyof typeof NetworkAccessType];
+
+/**
+ * @public
+ * @enum
+ */
+export const NotifyOnState = {
+  /**
+   * <p>Notify when the notebook run fails.</p>
+   */
+  FAILED: "FAILED",
+  /**
+   * <p>Notify when the notebook run is queued.</p>
+   */
+  QUEUED: "QUEUED",
+  /**
+   * <p>Notify when the notebook run is running.</p>
+   */
+  RUNNING: "RUNNING",
+  /**
+   * <p>Notify when the notebook run is starting.</p>
+   */
+  STARTING: "STARTING",
+  /**
+   * <p>Notify when the notebook run is stopped.</p>
+   */
+  STOPPED: "STOPPED",
+  /**
+   * <p>Notify when the notebook run is stopping.</p>
+   */
+  STOPPING: "STOPPING",
+  /**
+   * <p>Notify when the notebook run succeeds.</p>
+   */
+  SUCCEEDED: "SUCCEEDED",
+} as const;
+/**
+ * @public
+ */
+export type NotifyOnState = (typeof NotifyOnState)[keyof typeof NotifyOnState];
 
 /**
  * @public

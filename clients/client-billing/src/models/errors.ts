@@ -10,6 +10,7 @@ import type { ValidationExceptionField } from "./models_0";
  * @public
  */
 export class AccessDeniedException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.billing#AccessDeniedException";
   readonly name = "AccessDeniedException" as const;
   readonly $fault = "client" as const;
   /**
@@ -26,30 +27,11 @@ export class AccessDeniedException extends __BaseException {
 }
 
 /**
- * <p> Exception thrown when a billing view's health status prevents an operation from being performed. This may occur if the billing view is in a state other than <code>HEALTHY</code>.</p>
- * @public
- */
-export class BillingViewHealthStatusException extends __BaseException {
-  readonly name = "BillingViewHealthStatusException" as const;
-  readonly $fault = "client" as const;
-  /**
-   * @internal
-   */
-  constructor(opts: __ExceptionOptionType<BillingViewHealthStatusException, __BaseException>) {
-    super({
-      name: "BillingViewHealthStatusException",
-      $fault: "client",
-      ...opts,
-    });
-    Object.setPrototypeOf(this, BillingViewHealthStatusException.prototype);
-  }
-}
-
-/**
  * <p> The requested operation would cause a conflict with the current state of a service resource associated with the request. Resolve the conflict before retrying this request. </p>
  * @public
  */
 export class ConflictException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.billing#ConflictException";
   readonly name = "ConflictException" as const;
   readonly $fault = "client" as const;
   /**
@@ -84,6 +66,7 @@ export class ConflictException extends __BaseException {
  * @public
  */
 export class InternalServerException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.billing#InternalServerException";
   readonly name = "InternalServerException" as const;
   readonly $fault = "server" as const;
   /**
@@ -104,6 +87,7 @@ export class InternalServerException extends __BaseException {
  * @public
  */
 export class ResourceNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.billing#ResourceNotFoundException";
   readonly name = "ResourceNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -134,10 +118,88 @@ export class ResourceNotFoundException extends __BaseException {
 }
 
 /**
+ * <p>The request was denied due to request throttling. </p>
+ * @public
+ */
+export class ThrottlingException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.billing#ThrottlingException";
+  readonly name = "ThrottlingException" as const;
+  readonly $fault = "client" as const;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ThrottlingException, __BaseException>) {
+    super({
+      name: "ThrottlingException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ThrottlingException.prototype);
+  }
+}
+
+/**
+ * <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+ * @public
+ */
+export class ValidationException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.billing#ValidationException";
+  readonly name = "ValidationException" as const;
+  readonly $fault = "client" as const;
+  /**
+   * <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+   * @public
+   */
+  reason: ValidationExceptionReason | undefined;
+
+  /**
+   * <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+   * @public
+   */
+  fieldList?: ValidationExceptionField[] | undefined;
+
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ValidationException, __BaseException>) {
+    super({
+      name: "ValidationException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ValidationException.prototype);
+    this.reason = opts.reason;
+    this.fieldList = opts.fieldList;
+  }
+}
+
+/**
+ * <p> Exception thrown when a billing view's health status prevents an operation from being performed. This may occur if the billing view is in a state other than <code>HEALTHY</code>.</p>
+ * @public
+ */
+export class BillingViewHealthStatusException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.billing#BillingViewHealthStatusException";
+  readonly name = "BillingViewHealthStatusException" as const;
+  readonly $fault = "client" as const;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<BillingViewHealthStatusException, __BaseException>) {
+    super({
+      name: "BillingViewHealthStatusException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, BillingViewHealthStatusException.prototype);
+  }
+}
+
+/**
  * <p> You've reached the limit of resources you can create, or exceeded the size of an individual resource. </p>
  * @public
  */
 export class ServiceQuotaExceededException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.billing#ServiceQuotaExceededException";
   readonly name = "ServiceQuotaExceededException" as const;
   readonly $fault = "client" as const;
   /**
@@ -178,59 +240,5 @@ export class ServiceQuotaExceededException extends __BaseException {
     this.resourceType = opts.resourceType;
     this.serviceCode = opts.serviceCode;
     this.quotaCode = opts.quotaCode;
-  }
-}
-
-/**
- * <p>The request was denied due to request throttling. </p>
- * @public
- */
-export class ThrottlingException extends __BaseException {
-  readonly name = "ThrottlingException" as const;
-  readonly $fault = "client" as const;
-  /**
-   * @internal
-   */
-  constructor(opts: __ExceptionOptionType<ThrottlingException, __BaseException>) {
-    super({
-      name: "ThrottlingException",
-      $fault: "client",
-      ...opts,
-    });
-    Object.setPrototypeOf(this, ThrottlingException.prototype);
-  }
-}
-
-/**
- * <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
- * @public
- */
-export class ValidationException extends __BaseException {
-  readonly name = "ValidationException" as const;
-  readonly $fault = "client" as const;
-  /**
-   * <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
-   * @public
-   */
-  reason: ValidationExceptionReason | undefined;
-
-  /**
-   * <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
-   * @public
-   */
-  fieldList?: ValidationExceptionField[] | undefined;
-
-  /**
-   * @internal
-   */
-  constructor(opts: __ExceptionOptionType<ValidationException, __BaseException>) {
-    super({
-      name: "ValidationException",
-      $fault: "client",
-      ...opts,
-    });
-    Object.setPrototypeOf(this, ValidationException.prototype);
-    this.reason = opts.reason;
-    this.fieldList = opts.fieldList;
   }
 }

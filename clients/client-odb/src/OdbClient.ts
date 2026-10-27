@@ -321,6 +321,10 @@ import type {
   UpdateExadbVmClusterCommandOutput,
 } from "./commands/UpdateExadbVmClusterCommand";
 import type {
+  UpdateExascaleCloudExadataInfrastructureCommandInput,
+  UpdateExascaleCloudExadataInfrastructureCommandOutput,
+} from "./commands/UpdateExascaleCloudExadataInfrastructureCommand";
+import type {
   UpdateExascaleDbStorageVaultCommandInput,
   UpdateExascaleDbStorageVaultCommandOutput,
 } from "./commands/UpdateExascaleDbStorageVaultCommand";
@@ -421,6 +425,7 @@ export type ServiceInputTypes =
   | UpdateAutonomousDatabaseCommandInput
   | UpdateCloudExadataInfrastructureCommandInput
   | UpdateExadbVmClusterCommandInput
+  | UpdateExascaleCloudExadataInfrastructureCommandInput
   | UpdateExascaleDbStorageVaultCommandInput
   | UpdateOdbNetworkCommandInput
   | UpdateOdbPeeringConnectionCommandInput;
@@ -506,6 +511,7 @@ export type ServiceOutputTypes =
   | UpdateAutonomousDatabaseCommandOutput
   | UpdateCloudExadataInfrastructureCommandOutput
   | UpdateExadbVmClusterCommandOutput
+  | UpdateExascaleCloudExadataInfrastructureCommandOutput
   | UpdateExascaleDbStorageVaultCommandOutput
   | UpdateOdbNetworkCommandOutput
   | UpdateOdbPeeringConnectionCommandOutput;
@@ -640,7 +646,8 @@ export interface ClientDefaults extends Partial<__SmithyConfiguration<__HttpHand
 
   /**
    * Specifies which retry algorithm to use.
-   * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-smithy-util-retry/Enum/RETRY_MODES/
+   * Accepted values are "standard" and "adaptive".
+   * @see https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html
    *
    */
   retryMode?: string | __Provider<string>;

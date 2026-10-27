@@ -40,9 +40,13 @@ import type {
   StrideCategory,
   TargetDomainStatus,
   TaskExecutionStatus,
+  TestScopeType,
   ThreatActor,
   ThreatSeverity,
   ThreatStatus,
+  TriggerEvent,
+  TriggerFilterMatchMode,
+  TriggerFilterType,
   UserRole,
   ValidationMode,
   ValidationStatus,
@@ -1260,10 +1264,58 @@ export interface AzureDevOpsRepositoryResource {
 }
 
 /**
+ * <p>A condition on a pull request value.</p>
+ * @public
+ */
+export interface TriggerFilter {
+  /**
+   * <p>The pull request value to match.</p>
+   * @public
+   */
+  type: TriggerFilterType | undefined;
+
+  /**
+   * <p>The regular expressions to match against the value.</p>
+   * @public
+   */
+  patterns: string[] | undefined;
+
+  /**
+   * <p>Whether the value must match the patterns. The default is <code>INCLUDE</code>.</p>
+   * @public
+   */
+  matchMode?: TriggerFilterMatchMode | undefined;
+}
+
+/**
+ * <p>A set of conditions that start an automatic code review when they all pass. A filter group must include <code>events</code>, <code>filters</code>, or both.</p>
+ * @public
+ */
+export interface TriggerFilterGroup {
+  /**
+   * <p>Passes when the pull request event is one of the listed events. If you omit this, the group matches <code>PULL_REQUEST_READY_FOR_REVIEW</code> and <code>PULL_REQUEST_DRAFT</code> events only.</p>
+   * @public
+   */
+  events?: TriggerEvent[] | undefined;
+
+  /**
+   * <p>Passes when every filter passes. If you omit this, the group matches its events on any target branch and with any labels.</p>
+   * @public
+   */
+  filters?: TriggerFilter[] | undefined;
+}
+
+/**
  * <p>Capabilities for an integrated Azure DevOps repository.</p>
  * @public
  */
 export interface AzureDevOpsResourceCapabilities {
+  /**
+   * <p>The filter groups that control which pull request events start an automatic code review when <code>leaveComments</code> is enabled. A review starts when any group matches. If you omit this, a review starts on <code>PULL_REQUEST_READY_FOR_REVIEW</code> events.</p>
+   * @public
+   */
+  triggerFilterGroups?: TriggerFilterGroup[] | undefined;
+
   /**
    * <p>Whether to post code review comments on pull requests.</p>
    * @public
@@ -1672,6 +1724,18 @@ export interface ReportFilters {
 }
 
 /**
+ * <p>The category of application a pentest targets.</p>
+ * @public
+ */
+export interface TestScope {
+  /**
+   * <p>The category of application under test.</p>
+   * @public
+   */
+  type: TestScopeType | undefined;
+}
+
+/**
  * <p>Represents a pentest configuration that defines the parameters for security testing, including target assets, risk type exclusions, and infrastructure settings.</p>
  * @public
  */
@@ -1771,6 +1835,12 @@ export interface Pentest {
    * @public
    */
   cicdConfiguration?: CiCdConfiguration | undefined;
+
+  /**
+   * <p>The category of application a pentest targets.</p>
+   * @public
+   */
+  testScope?: TestScope | undefined;
 
   /**
    * <p>The date and time the pentest was created, in UTC format.</p>
@@ -1907,6 +1977,234 @@ export interface BatchDeleteThreatModelsOutput {
    * @public
    */
   failed?: DeleteThreatModelFailure[] | undefined;
+}
+
+/**
+ * <p>The input for the BatchDisassociateFindingIssue operation.</p>
+ * @public
+ */
+export interface BatchDisassociateFindingIssueInput {
+  /**
+   * <p>The identifier of the agent space where the job exists.</p>
+   * @public
+   */
+  agentSpaceId: string | undefined;
+
+  /**
+   * <p>The identifier of the penetration test job. This parameter is mutually exclusive with <code>codeReviewJobId</code>.</p>
+   * @public
+   */
+  pentestJobId?: string | undefined;
+
+  /**
+   * <p>The identifier of the code review job. This parameter is mutually exclusive with <code>pentestJobId</code>.</p>
+   * @public
+   */
+  codeReviewJobId?: string | undefined;
+
+  /**
+   * <p>The identifiers of the findings to disassociate from their issues. Each must belong to the specified job.</p>
+   * @public
+   */
+  findingIds: string[] | undefined;
+}
+
+/**
+ * <p>A finding that failed to disassociate, with the cause of the failure.</p>
+ * @public
+ */
+export interface BatchDisassociateFindingIssueError {
+  /**
+   * <p>The identifier of the finding that failed to disassociate.</p>
+   * @public
+   */
+  findingId: string | undefined;
+
+  /**
+   * <p>The machine-readable failure category.</p>
+   * @public
+   */
+  code: ErrorCode | undefined;
+
+  /**
+   * <p>A customer-facing explanation of the failure.</p>
+   * @public
+   */
+  message: string | undefined;
+}
+
+/**
+ * <p>The output for the BatchDisassociateFindingIssue operation.</p>
+ * @public
+ */
+export interface BatchDisassociateFindingIssueOutput {
+  /**
+   * <p>The findings whose issue could not be disassociated.</p>
+   * @public
+   */
+  errors: BatchDisassociateFindingIssueError[] | undefined;
+}
+
+/**
+ * <p>A finding whose issue could not be created, with the cause of the failure.</p>
+ * @public
+ */
+export interface BatchExportFindingError {
+  /**
+   * <p>The identifier of the finding this error corresponds to.</p>
+   * @public
+   */
+  findingId: string | undefined;
+
+  /**
+   * <p>The machine-readable failure category.</p>
+   * @public
+   */
+  code: ErrorCode | undefined;
+
+  /**
+   * <p>A customer-facing explanation of why the issue could not be created.</p>
+   * @public
+   */
+  message: string | undefined;
+}
+
+/**
+ * <p>A reference to an issue created for a finding in a third-party issue tracker.</p>
+ * @public
+ */
+export interface LinkedIssue {
+  /**
+   * <p>The issue-tracker provider.</p>
+   * @public
+   */
+  provider?: Provider | undefined;
+
+  /**
+   * <p>The integration identifier for the issue-tracker provider.</p>
+   * @public
+   */
+  integrationId?: string | undefined;
+
+  /**
+   * <p>The key of the project the issue belongs to.</p>
+   * @public
+   */
+  projectKey?: string | undefined;
+
+  /**
+   * <p>The issue key.</p>
+   * @public
+   */
+  issueKey?: string | undefined;
+
+  /**
+   * <p>The stable numeric issue identifier.</p>
+   * @public
+   */
+  issueId?: string | undefined;
+
+  /**
+   * <p>The issue URL.</p>
+   * @public
+   */
+  issueUrl?: string | undefined;
+
+  /**
+   * <p>The Atlassian Cloud site URL.</p>
+   * @public
+   */
+  siteUrl?: string | undefined;
+}
+
+/**
+ * <p>A finding whose issue was created.</p>
+ * @public
+ */
+export interface BatchExportFindingResult {
+  /**
+   * <p>The identifier of the finding this result corresponds to.</p>
+   * @public
+   */
+  findingId: string | undefined;
+
+  /**
+   * <p>The issue that was created for the finding.</p>
+   * @public
+   */
+  linkedIssue: LinkedIssue | undefined;
+}
+
+/**
+ * <p>The destination for filing findings as issues in an integrated issue tracker.</p>
+ * @public
+ */
+export interface IssueDestination {
+  /**
+   * <p>The integration identifier for the issue-tracker provider.</p>
+   * @public
+   */
+  integrationId: string | undefined;
+
+  /**
+   * <p>The identifier of the project the issues are filed under.</p>
+   * @public
+   */
+  projectKey: string | undefined;
+}
+
+/**
+ * <p>The input for the BatchExportFindings operation.</p>
+ * @public
+ */
+export interface BatchExportFindingsInput {
+  /**
+   * <p>The identifier of the agent space where the job exists.</p>
+   * @public
+   */
+  agentSpaceId: string | undefined;
+
+  /**
+   * <p>The identifier of the penetration test job. This parameter is mutually exclusive with <code>codeReviewJobId</code>.</p>
+   * @public
+   */
+  pentestJobId?: string | undefined;
+
+  /**
+   * <p>The identifier of the code review job. This parameter is mutually exclusive with <code>pentestJobId</code>.</p>
+   * @public
+   */
+  codeReviewJobId?: string | undefined;
+
+  /**
+   * <p>The destination issue-tracker project the findings are exported to. Must be a connected capability of the agent space.</p>
+   * @public
+   */
+  issueDestination: IssueDestination | undefined;
+
+  /**
+   * <p>The identifiers of the findings to export. Each must belong to the specified job.</p>
+   * @public
+   */
+  findingIds: string[] | undefined;
+}
+
+/**
+ * <p>The output for the BatchExportFindings operation.</p>
+ * @public
+ */
+export interface BatchExportFindingsOutput {
+  /**
+   * <p>The findings whose issue was created, each with its linked issue.</p>
+   * @public
+   */
+  results: BatchExportFindingResult[] | undefined;
+
+  /**
+   * <p>The findings whose issue could not be created, each with a customer-facing reason.</p>
+   * @public
+   */
+  errors: BatchExportFindingError[] | undefined;
 }
 
 /**
@@ -2681,6 +2979,12 @@ export interface Finding {
   attackScript?: string | undefined;
 
   /**
+   * <p>The suggested fix for the finding, describing the changes recommended to remediate the vulnerability, with example code or configuration.</p>
+   * @public
+   */
+  remediationCode?: string | undefined;
+
+  /**
    * <p>The code remediation task associated with the finding, if code remediation was initiated.</p>
    * @public
    */
@@ -2727,6 +3031,12 @@ export interface Finding {
    * @public
    */
   originalFindingId?: string | undefined;
+
+  /**
+   * <p>The issue in a third-party issue tracker that this finding has been exported to.</p>
+   * @public
+   */
+  linkedIssue?: LinkedIssue | undefined;
 
   /**
    * <p>The date and time the finding was created, in UTC format.</p>
@@ -3027,6 +3337,12 @@ export interface PentestJob {
    * @public
    */
   cicdConfiguration?: CiCdConfiguration | undefined;
+
+  /**
+   * <p>The category of application a pentest targets.</p>
+   * @public
+   */
+  testScope?: TestScope | undefined;
 
   /**
    * <p>The date and time the pentest job was created, in UTC format.</p>
@@ -4189,6 +4505,12 @@ export interface BitbucketRepositoryResource {
  */
 export interface BitbucketResourceCapabilities {
   /**
+   * <p>The filter groups that control which pull request events start an automatic code review when <code>leaveComments</code> is enabled. A review starts when any group matches. If you omit this, a review starts on <code>PULL_REQUEST_READY_FOR_REVIEW</code> events.</p>
+   * @public
+   */
+  triggerFilterGroups?: TriggerFilterGroup[] | undefined;
+
+  /**
    * <p>Whether to post code review comments on pull requests.</p>
    * @public
    */
@@ -4688,6 +5010,36 @@ export interface GitLabIntegrationInput {
 }
 
 /**
+ * <p>The configuration for creating a Jira integration.</p>
+ * @public
+ */
+export interface JiraIntegrationInput {
+  /**
+   * <p>The Atlassian installation identifier, available from the Atlassian administration console.</p>
+   * @public
+   */
+  installationId: string | undefined;
+
+  /**
+   * <p>The OAuth 2.0 authorization code returned from the consent redirect.</p>
+   * @public
+   */
+  code: string | undefined;
+
+  /**
+   * <p>The CSRF state token echoed back from the OAuth redirect.</p>
+   * @public
+   */
+  state: string | undefined;
+
+  /**
+   * <p>The Jira Cloud site URL, for example https://mysite.atlassian.net.</p>
+   * @public
+   */
+  siteUrl: string | undefined;
+}
+
+/**
  * <p>The provider-specific input for creating an integration. This is a union type that contains provider-specific configuration.</p>
  * @public
  */
@@ -4698,6 +5050,7 @@ export type ProviderInput =
   | ProviderInput.ConfluenceMember
   | ProviderInput.GithubMember
   | ProviderInput.GitlabMember
+  | ProviderInput.JiraMember
   | ProviderInput.$UnknownMember;
 
 /**
@@ -4715,6 +5068,7 @@ export namespace ProviderInput {
     confluence?: never;
     azureDevOps?: never;
     bitbucketDataCenter?: never;
+    jira?: never;
     $unknown?: never;
   }
 
@@ -4729,6 +5083,7 @@ export namespace ProviderInput {
     confluence?: never;
     azureDevOps?: never;
     bitbucketDataCenter?: never;
+    jira?: never;
     $unknown?: never;
   }
 
@@ -4743,6 +5098,7 @@ export namespace ProviderInput {
     confluence?: never;
     azureDevOps?: never;
     bitbucketDataCenter?: never;
+    jira?: never;
     $unknown?: never;
   }
 
@@ -4757,6 +5113,7 @@ export namespace ProviderInput {
     confluence: ConfluenceIntegrationInput;
     azureDevOps?: never;
     bitbucketDataCenter?: never;
+    jira?: never;
     $unknown?: never;
   }
 
@@ -4771,6 +5128,7 @@ export namespace ProviderInput {
     confluence?: never;
     azureDevOps: AzureDevOpsIntegrationInput;
     bitbucketDataCenter?: never;
+    jira?: never;
     $unknown?: never;
   }
 
@@ -4785,6 +5143,22 @@ export namespace ProviderInput {
     confluence?: never;
     azureDevOps?: never;
     bitbucketDataCenter: BitbucketDataCenterIntegrationInput;
+    jira?: never;
+    $unknown?: never;
+  }
+
+  /**
+   * <p>The configuration for a Jira integration.</p>
+   * @public
+   */
+  export interface JiraMember {
+    github?: never;
+    gitlab?: never;
+    bitbucket?: never;
+    confluence?: never;
+    azureDevOps?: never;
+    bitbucketDataCenter?: never;
+    jira: JiraIntegrationInput;
     $unknown?: never;
   }
 
@@ -4798,6 +5172,7 @@ export namespace ProviderInput {
     confluence?: never;
     azureDevOps?: never;
     bitbucketDataCenter?: never;
+    jira?: never;
     $unknown: [string, any];
   }
 
@@ -4812,6 +5187,7 @@ export namespace ProviderInput {
     confluence: (value: ConfluenceIntegrationInput) => T;
     azureDevOps: (value: AzureDevOpsIntegrationInput) => T;
     bitbucketDataCenter: (value: BitbucketDataCenterIntegrationInput) => T;
+    jira: (value: JiraIntegrationInput) => T;
     _: (name: string, value: any) => T;
   }
 }
@@ -5049,6 +5425,12 @@ export interface CreatePentestInput {
    * @public
    */
   cicdConfiguration?: CiCdConfiguration | undefined;
+
+  /**
+   * <p>The category of application a pentest targets.</p>
+   * @public
+   */
+  testScope?: TestScope | undefined;
 }
 
 /**
@@ -5127,6 +5509,12 @@ export interface CreatePentestOutput {
    * @public
    */
   cicdConfiguration?: CiCdConfiguration | undefined;
+
+  /**
+   * <p>The category of application a pentest targets.</p>
+   * @public
+   */
+  testScope?: TestScope | undefined;
 }
 
 /**
@@ -6409,6 +6797,12 @@ export interface GetIntegrationOutput {
   targetUrl?: string | undefined;
 
   /**
+   * <p>The Atlassian Cloud site URL for Atlassian integrations.</p>
+   * @public
+   */
+  siteUrl?: string | undefined;
+
+  /**
    * <p>The payload URL of the integration's webhook, once it has been created. The signing secret is never returned on a read.</p>
    * @public
    */
@@ -6551,6 +6945,12 @@ export interface GitHubRepositoryResource {
  */
 export interface GitHubResourceCapabilities {
   /**
+   * <p>The filter groups that control which pull request events start an automatic code review when <code>leaveComments</code> is enabled. A review starts when any group matches. If you omit this, a review starts on <code>PULL_REQUEST_READY_FOR_REVIEW</code> events.</p>
+   * @public
+   */
+  triggerFilterGroups?: TriggerFilterGroup[] | undefined;
+
+  /**
    * <p>Indicates whether the integration can leave comments on pull requests.</p>
    * @public
    */
@@ -6616,6 +7016,12 @@ export interface GitLabRepositoryResource {
  * @public
  */
 export interface GitLabResourceCapabilities {
+  /**
+   * <p>The filter groups that control which merge request events start an automatic code review when <code>leaveComments</code> is enabled. A review starts when any group matches. If you omit this, a review starts on <code>PULL_REQUEST_READY_FOR_REVIEW</code> events.</p>
+   * @public
+   */
+  triggerFilterGroups?: TriggerFilterGroup[] | undefined;
+
   /**
    * <p>Whether to post code review comments on merge request discussions.</p>
    * @public
@@ -6779,6 +7185,36 @@ export interface InitiateProviderRegistrationOutput {
 }
 
 /**
+ * <p>Represents a Jira project resource used in an integration.</p>
+ * @public
+ */
+export interface JiraProjectResource {
+  /**
+   * <p>Name of the resource e.g. repository name, etc.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>The Jira project key, for example PROJ.</p>
+   * @public
+   */
+  projectKey: string | undefined;
+
+  /**
+   * <p>The Jira project identifier.</p>
+   * @public
+   */
+  projectId: string | undefined;
+
+  /**
+   * <p>The display name of the Jira project.</p>
+   * @public
+   */
+  projectName?: string | undefined;
+}
+
+/**
  * <p>Represents an integrated resource from a third-party provider. This is a union type that contains provider-specific resource information.</p>
  * @public
  */
@@ -6788,6 +7224,7 @@ export type IntegratedResource =
   | IntegratedResource.ConfluenceDocumentMember
   | IntegratedResource.GithubRepositoryMember
   | IntegratedResource.GitlabRepositoryMember
+  | IntegratedResource.JiraProjectMember
   | IntegratedResource.$UnknownMember;
 
 /**
@@ -6804,6 +7241,7 @@ export namespace IntegratedResource {
     bitbucketRepository?: never;
     confluenceDocument?: never;
     azureDevOpsRepository?: never;
+    jiraProject?: never;
     $unknown?: never;
   }
 
@@ -6817,6 +7255,7 @@ export namespace IntegratedResource {
     bitbucketRepository?: never;
     confluenceDocument?: never;
     azureDevOpsRepository?: never;
+    jiraProject?: never;
     $unknown?: never;
   }
 
@@ -6830,6 +7269,7 @@ export namespace IntegratedResource {
     bitbucketRepository: BitbucketRepositoryResource;
     confluenceDocument?: never;
     azureDevOpsRepository?: never;
+    jiraProject?: never;
     $unknown?: never;
   }
 
@@ -6843,6 +7283,7 @@ export namespace IntegratedResource {
     bitbucketRepository?: never;
     confluenceDocument: ConfluenceDocumentResource;
     azureDevOpsRepository?: never;
+    jiraProject?: never;
     $unknown?: never;
   }
 
@@ -6856,6 +7297,21 @@ export namespace IntegratedResource {
     bitbucketRepository?: never;
     confluenceDocument?: never;
     azureDevOpsRepository: AzureDevOpsRepositoryResource;
+    jiraProject?: never;
+    $unknown?: never;
+  }
+
+  /**
+   * <p>The Jira project resource information.</p>
+   * @public
+   */
+  export interface JiraProjectMember {
+    githubRepository?: never;
+    gitlabRepository?: never;
+    bitbucketRepository?: never;
+    confluenceDocument?: never;
+    azureDevOpsRepository?: never;
+    jiraProject: JiraProjectResource;
     $unknown?: never;
   }
 
@@ -6868,6 +7324,7 @@ export namespace IntegratedResource {
     bitbucketRepository?: never;
     confluenceDocument?: never;
     azureDevOpsRepository?: never;
+    jiraProject?: never;
     $unknown: [string, any];
   }
 
@@ -6881,8 +7338,27 @@ export namespace IntegratedResource {
     bitbucketRepository: (value: BitbucketRepositoryResource) => T;
     confluenceDocument: (value: ConfluenceDocumentResource) => T;
     azureDevOpsRepository: (value: AzureDevOpsRepositoryResource) => T;
+    jiraProject: (value: JiraProjectResource) => T;
     _: (name: string, value: any) => T;
   }
+}
+
+/**
+ * <p>Capabilities for an integrated Jira project.</p>
+ * @public
+ */
+export interface JiraResourceCapabilities {
+  /**
+   * <p>Whether to create issues in the integrated jira project.</p>
+   * @public
+   */
+  createIssue?: boolean | undefined;
+
+  /**
+   * <p>Whether to post comments on issues in the integrated jira project.</p>
+   * @public
+   */
+  commentIssue?: boolean | undefined;
 }
 
 /**
@@ -6895,6 +7371,7 @@ export type ProviderResourceCapabilities =
   | ProviderResourceCapabilities.ConfluenceMember
   | ProviderResourceCapabilities.GithubMember
   | ProviderResourceCapabilities.GitlabMember
+  | ProviderResourceCapabilities.JiraMember
   | ProviderResourceCapabilities.$UnknownMember;
 
 /**
@@ -6911,6 +7388,7 @@ export namespace ProviderResourceCapabilities {
     bitbucket?: never;
     confluence?: never;
     azureDevOps?: never;
+    jira?: never;
     $unknown?: never;
   }
 
@@ -6924,6 +7402,7 @@ export namespace ProviderResourceCapabilities {
     bitbucket?: never;
     confluence?: never;
     azureDevOps?: never;
+    jira?: never;
     $unknown?: never;
   }
 
@@ -6937,6 +7416,7 @@ export namespace ProviderResourceCapabilities {
     bitbucket: BitbucketResourceCapabilities;
     confluence?: never;
     azureDevOps?: never;
+    jira?: never;
     $unknown?: never;
   }
 
@@ -6950,6 +7430,7 @@ export namespace ProviderResourceCapabilities {
     bitbucket?: never;
     confluence: ConfluenceResourceCapabilities;
     azureDevOps?: never;
+    jira?: never;
     $unknown?: never;
   }
 
@@ -6963,6 +7444,21 @@ export namespace ProviderResourceCapabilities {
     bitbucket?: never;
     confluence?: never;
     azureDevOps: AzureDevOpsResourceCapabilities;
+    jira?: never;
+    $unknown?: never;
+  }
+
+  /**
+   * <p>The Jira-specific resource capabilities.</p>
+   * @public
+   */
+  export interface JiraMember {
+    github?: never;
+    gitlab?: never;
+    bitbucket?: never;
+    confluence?: never;
+    azureDevOps?: never;
+    jira: JiraResourceCapabilities;
     $unknown?: never;
   }
 
@@ -6975,6 +7471,7 @@ export namespace ProviderResourceCapabilities {
     bitbucket?: never;
     confluence?: never;
     azureDevOps?: never;
+    jira?: never;
     $unknown: [string, any];
   }
 
@@ -6988,6 +7485,7 @@ export namespace ProviderResourceCapabilities {
     bitbucket: (value: BitbucketResourceCapabilities) => T;
     confluence: (value: ConfluenceResourceCapabilities) => T;
     azureDevOps: (value: AzureDevOpsResourceCapabilities) => T;
+    jira: (value: JiraResourceCapabilities) => T;
     _: (name: string, value: any) => T;
   }
 }
@@ -7011,6 +7509,42 @@ export interface IntegratedResourceInputItem {
 }
 
 /**
+ * <p>Contains metadata about a Jira project that is integrated with the service.</p>
+ * @public
+ */
+export interface JiraProjectMetadata {
+  /**
+   * <p>Name of the resource e.g. repository name, etc.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>Provider Id of the resource e.g. GitHub repository id, etc.</p>
+   * @public
+   */
+  providerResourceId: string | undefined;
+
+  /**
+   * <p>The Jira project key, for example PROJ.</p>
+   * @public
+   */
+  projectKey: string | undefined;
+
+  /**
+   * <p>The Jira project identifier.</p>
+   * @public
+   */
+  projectId: string | undefined;
+
+  /**
+   * <p>The display name of the Jira project.</p>
+   * @public
+   */
+  projectName?: string | undefined;
+}
+
+/**
  * <p>Contains metadata about an integrated resource. This is a union type that contains provider-specific metadata.</p>
  * @public
  */
@@ -7020,6 +7554,7 @@ export type IntegratedResourceMetadata =
   | IntegratedResourceMetadata.ConfluenceDocumentMember
   | IntegratedResourceMetadata.GithubRepositoryMember
   | IntegratedResourceMetadata.GitlabRepositoryMember
+  | IntegratedResourceMetadata.JiraProjectMember
   | IntegratedResourceMetadata.$UnknownMember;
 
 /**
@@ -7036,6 +7571,7 @@ export namespace IntegratedResourceMetadata {
     bitbucketRepository?: never;
     confluenceDocument?: never;
     azureDevOpsRepository?: never;
+    jiraProject?: never;
     $unknown?: never;
   }
 
@@ -7049,6 +7585,7 @@ export namespace IntegratedResourceMetadata {
     bitbucketRepository?: never;
     confluenceDocument?: never;
     azureDevOpsRepository?: never;
+    jiraProject?: never;
     $unknown?: never;
   }
 
@@ -7062,6 +7599,7 @@ export namespace IntegratedResourceMetadata {
     bitbucketRepository: BitbucketRepositoryMetadata;
     confluenceDocument?: never;
     azureDevOpsRepository?: never;
+    jiraProject?: never;
     $unknown?: never;
   }
 
@@ -7075,6 +7613,7 @@ export namespace IntegratedResourceMetadata {
     bitbucketRepository?: never;
     confluenceDocument: ConfluenceDocumentMetadata;
     azureDevOpsRepository?: never;
+    jiraProject?: never;
     $unknown?: never;
   }
 
@@ -7088,6 +7627,21 @@ export namespace IntegratedResourceMetadata {
     bitbucketRepository?: never;
     confluenceDocument?: never;
     azureDevOpsRepository: AzureDevOpsRepositoryMetadata;
+    jiraProject?: never;
+    $unknown?: never;
+  }
+
+  /**
+   * <p>The Jira project metadata.</p>
+   * @public
+   */
+  export interface JiraProjectMember {
+    githubRepository?: never;
+    gitlabRepository?: never;
+    bitbucketRepository?: never;
+    confluenceDocument?: never;
+    azureDevOpsRepository?: never;
+    jiraProject: JiraProjectMetadata;
     $unknown?: never;
   }
 
@@ -7100,6 +7654,7 @@ export namespace IntegratedResourceMetadata {
     bitbucketRepository?: never;
     confluenceDocument?: never;
     azureDevOpsRepository?: never;
+    jiraProject?: never;
     $unknown: [string, any];
   }
 
@@ -7113,6 +7668,7 @@ export namespace IntegratedResourceMetadata {
     bitbucketRepository: (value: BitbucketRepositoryMetadata) => T;
     confluenceDocument: (value: ConfluenceDocumentMetadata) => T;
     azureDevOpsRepository: (value: AzureDevOpsRepositoryMetadata) => T;
+    jiraProject: (value: JiraProjectMetadata) => T;
     _: (name: string, value: any) => T;
   }
 }
@@ -9428,423 +9984,3 @@ export interface StartThreatModelJobOutput {
    */
   agentSpaceId?: string | undefined;
 }
-
-/**
- * <p>Input for stopping the execution of a code review job.</p>
- * @public
- */
-export interface StopCodeReviewJobInput {
-  /**
-   * <p>The unique identifier of the agent space.</p>
-   * @public
-   */
-  agentSpaceId: string | undefined;
-
-  /**
-   * <p>The unique identifier of the code review job to stop.</p>
-   * @public
-   */
-  codeReviewJobId: string | undefined;
-}
-
-/**
- * <p>Output for the StopCodeReviewJob operation.</p>
- * @public
- */
-export interface StopCodeReviewJobOutput {}
-
-/**
- * <p>Input for stopping the execution of a pentest.</p>
- * @public
- */
-export interface StopPentestJobInput {
-  /**
-   * <p>The unique identifier of the agent space.</p>
-   * @public
-   */
-  agentSpaceId: string | undefined;
-
-  /**
-   * <p>The unique identifier of the pentest job to stop.</p>
-   * @public
-   */
-  pentestJobId: string | undefined;
-}
-
-/**
- * <p>Output for the StopPentestJob operation.</p>
- * @public
- */
-export interface StopPentestJobOutput {}
-
-/**
- * <p>Input for stopping a threat model job.</p>
- * @public
- */
-export interface StopThreatModelJobInput {
-  /**
-   * <p>The unique identifier of the agent space.</p>
-   * @public
-   */
-  agentSpaceId: string | undefined;
-
-  /**
-   * <p>The unique identifier of the threat model job to stop.</p>
-   * @public
-   */
-  threatModelJobId: string | undefined;
-}
-
-/**
- * <p>Output for the StopThreatModelJob operation.</p>
- * @public
- */
-export interface StopThreatModelJobOutput {}
-
-/**
- * <p>Input for TagResource operation.</p>
- * @public
- */
-export interface TagResourceInput {
-  /**
-   * <p>The Amazon Resource Name (ARN) of the resource to tag.</p>
-   * @public
-   */
-  resourceArn: string | undefined;
-
-  /**
-   * <p>The tags to add to the resource.</p>
-   * @public
-   */
-  tags: Record<string, string> | undefined;
-}
-
-/**
- * <p>Output for TagResource operation.</p>
- * @public
- */
-export interface TagResourceOutput {}
-
-/**
- * <p>Input for updating a target domain.</p>
- * @public
- */
-export interface UpdateTargetDomainInput {
-  /**
-   * <p>The unique identifier of the target domain to update.</p>
-   * @public
-   */
-  targetDomainId: string | undefined;
-
-  /**
-   * <p>The updated verification method for the target domain.</p>
-   * @public
-   */
-  verificationMethod: DomainVerificationMethod | undefined;
-}
-
-/**
- * <p>Output for the UpdateTargetDomain operation.</p>
- * @public
- */
-export interface UpdateTargetDomainOutput {
-  /**
-   * <p>The unique identifier of the target domain.</p>
-   * @public
-   */
-  targetDomainId: string | undefined;
-
-  /**
-   * <p>The domain name of the target domain.</p>
-   * @public
-   */
-  domainName: string | undefined;
-
-  /**
-   * <p>The current verification status of the target domain.</p>
-   * @public
-   */
-  verificationStatus: TargetDomainStatus | undefined;
-
-  /**
-   * <p>The reason for the current target domain verification status.</p>
-   * @public
-   */
-  verificationStatusReason?: string | undefined;
-
-  /**
-   * <p>The updated verification details for the target domain.</p>
-   * @public
-   */
-  verificationDetails?: VerificationDetails | undefined;
-
-  /**
-   * <p>The date and time the target domain was created, in UTC format.</p>
-   * @public
-   */
-  createdAt?: Date | undefined;
-
-  /**
-   * <p>The date and time the target domain was verified, in UTC format.</p>
-   * @public
-   */
-  verifiedAt?: Date | undefined;
-}
-
-/**
- * <p>Input for UntagResource operation.</p>
- * @public
- */
-export interface UntagResourceInput {
-  /**
-   * <p>The Amazon Resource Name (ARN) of the resource to remove tags from.</p>
-   * @public
-   */
-  resourceArn: string | undefined;
-
-  /**
-   * <p>The list of tag keys to remove from the resource.</p>
-   * @public
-   */
-  tagKeys: string[] | undefined;
-}
-
-/**
- * <p>Output for UntagResource operation.</p>
- * @public
- */
-export interface UntagResourceOutput {}
-
-/**
- * <p>Input for updating an existing code review.</p>
- * @public
- */
-export interface UpdateCodeReviewInput {
-  /**
-   * <p>The unique identifier of the code review to update.</p>
-   * @public
-   */
-  codeReviewId: string | undefined;
-
-  /**
-   * <p>The unique identifier of the agent space that contains the code review.</p>
-   * @public
-   */
-  agentSpaceId: string | undefined;
-
-  /**
-   * <p>The updated title of the code review.</p>
-   * @public
-   */
-  title?: string | undefined;
-
-  /**
-   * <p>The updated assets for the code review.</p>
-   * @public
-   */
-  assets?: Assets | undefined;
-
-  /**
-   * <p>The updated IAM service role for the code review.</p>
-   * @public
-   */
-  serviceRole?: string | undefined;
-
-  /**
-   * <p>The updated CloudWatch Logs configuration for the code review.</p>
-   * @public
-   */
-  logConfig?: CloudWatchLog | undefined;
-
-  /**
-   * <p>The updated code remediation strategy for the code review.</p>
-   * @public
-   */
-  codeRemediationStrategy?: CodeRemediationStrategy | undefined;
-
-  /**
-   * <p>The updated validation mode for the code review. Valid values are SIMULATED and DISABLED.</p>
-   * @public
-   */
-  validationMode?: ValidationMode | undefined;
-
-  /**
-   * <p>The updated maximum number of billable task hours allowed for jobs started from this code review.</p>
-   * @public
-   */
-  maxTaskHours?: number | undefined;
-
-  /**
-   * <p>The destination for publishing scan reports to an integrated document provider.</p>
-   * @public
-   */
-  reportDestination?: ReportDestination | undefined;
-
-  /**
-   * <p>The report-generation filters applied when the report is exported.</p>
-   * @public
-   */
-  reportFilters?: ReportFilters | undefined;
-}
-
-/**
- * <p>Output for the UpdateCodeReview operation.</p>
- * @public
- */
-export interface UpdateCodeReviewOutput {
-  /**
-   * <p>The unique identifier of the code review.</p>
-   * @public
-   */
-  codeReviewId: string | undefined;
-
-  /**
-   * <p>The title of the code review.</p>
-   * @public
-   */
-  title?: string | undefined;
-
-  /**
-   * <p>The date and time the code review was created, in UTC format.</p>
-   * @public
-   */
-  createdAt?: Date | undefined;
-
-  /**
-   * <p>The date and time the code review was last updated, in UTC format.</p>
-   * @public
-   */
-  updatedAt?: Date | undefined;
-
-  /**
-   * <p>The assets included in the code review.</p>
-   * @public
-   */
-  assets?: Assets | undefined;
-
-  /**
-   * <p>The IAM service role used for the code review.</p>
-   * @public
-   */
-  serviceRole?: string | undefined;
-
-  /**
-   * <p>The CloudWatch Logs configuration for the code review.</p>
-   * @public
-   */
-  logConfig?: CloudWatchLog | undefined;
-
-  /**
-   * <p>The unique identifier of the agent space that contains the code review.</p>
-   * @public
-   */
-  agentSpaceId?: string | undefined;
-
-  /**
-   * <p>The code remediation strategy for the code review.</p>
-   * @public
-   */
-  codeRemediationStrategy?: CodeRemediationStrategy | undefined;
-
-  /**
-   * <p>The validation mode for the code review.</p>
-   * @public
-   */
-  validationMode?: ValidationMode | undefined;
-
-  /**
-   * <p>The maximum number of billable task hours configured for jobs started from this code review. Null if no budget cap is set.</p>
-   * @public
-   */
-  maxTaskHours?: number | undefined;
-
-  /**
-   * <p>The destination for publishing scan reports to an integrated document provider.</p>
-   * @public
-   */
-  reportDestination?: ReportDestination | undefined;
-
-  /**
-   * <p>The report-generation filters applied when the report is exported.</p>
-   * @public
-   */
-  reportFilters?: ReportFilters | undefined;
-}
-
-/**
- * <p>Input for updating an existing security finding.</p>
- * @public
- */
-export interface UpdateFindingInput {
-  /**
-   * <p>The unique identifier of the finding to update.</p>
-   * @public
-   */
-  findingId: string | undefined;
-
-  /**
-   * <p>The unique identifier of the agent space that contains the finding.</p>
-   * @public
-   */
-  agentSpaceId: string | undefined;
-
-  /**
-   * <p>The updated name for the finding.</p>
-   * @public
-   */
-  name?: string | undefined;
-
-  /**
-   * <p>The updated description for the finding.</p>
-   * @public
-   */
-  description?: string | undefined;
-
-  /**
-   * <p>The updated risk type for the finding.</p>
-   * @public
-   */
-  riskType?: string | undefined;
-
-  /**
-   * <p>The updated risk level for the finding.</p>
-   * @public
-   */
-  riskLevel?: RiskLevel | undefined;
-
-  /**
-   * <p>The updated numerical risk score for the finding.</p>
-   * @public
-   */
-  riskScore?: string | undefined;
-
-  /**
-   * <p>The updated attack script for the finding.</p>
-   * @public
-   */
-  attackScript?: string | undefined;
-
-  /**
-   * <p>The updated reasoning for the finding.</p>
-   * @public
-   */
-  reasoning?: string | undefined;
-
-  /**
-   * <p>The updated status for the finding.</p>
-   * @public
-   */
-  status?: FindingStatus | undefined;
-
-  /**
-   * <p>A customer-provided note on the finding.</p>
-   * @public
-   */
-  customerNote?: string | undefined;
-}
-
-/**
- * <p>Output for the UpdateFinding operation.</p>
- * @public
- */
-export interface UpdateFindingOutput {}

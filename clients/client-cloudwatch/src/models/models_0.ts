@@ -3,6 +3,8 @@ import type {
   ActionsSuppressedBy,
   AlarmMuteRuleStatus,
   AlarmType,
+  AnomalyDetectorAdaptationSpeed,
+  AnomalyDetectorOutlierFilteringStrength,
   AnomalyDetectorStateValue,
   AnomalyDetectorType,
   ComparisonOperator,
@@ -17,6 +19,66 @@ import type {
   Statistic,
   StatusCode,
 } from "./enums";
+
+/**
+ * <p>Includes the alarm's tags in the notifications that the alarm sends to Amazon SNS
+ *             topics and Lambda functions. The tags are also included in the alarm's
+ *             state-change events in Amazon EventBridge. Other types of alarm actions don't receive
+ *             the tags.</p>
+ *          <p>By default, the alarm's tags aren't included.</p>
+ *          <p>Use this to route or filter notifications and events by tag, such as by team or
+ *             environment. You can also use it to read the alarm's tags without looking them up
+ *             separately.</p>
+ *          <p>To limit which tags are included, specify either <code>IncludedTagKeys</code> or
+ *                 <code>ExcludedTagKeys</code>. You can't specify both. If you specify neither, all of
+ *             the alarm's tags are included. This includes tags that you add to the alarm later.</p>
+ * @public
+ */
+export interface AlarmTagsPropagation {
+  /**
+   * <p>Set to <code>true</code> to include the alarm's tags. Set to <code>false</code> to
+   *             stop including them.</p>
+   *          <p>When this is <code>true</code>, you must have the
+   *                 <code>cloudwatch:ListTagsForResource</code> permission on the alarm to create or
+   *             update it.</p>
+   * @public
+   */
+  Enabled: boolean | undefined;
+
+  /**
+   * <p>The tag keys to include. Only the alarm's tags with these keys are included.</p>
+   *          <p>You can specify 1 to 50 tag keys. Each tag key must be 1 to 128 characters long.</p>
+   *          <p>You can't specify both <code>IncludedTagKeys</code> and
+   *             <code>ExcludedTagKeys</code>.</p>
+   * @public
+   */
+  IncludedTagKeys?: string[] | undefined;
+
+  /**
+   * <p>The tag keys to exclude. All of the alarm's tags except those with these keys are
+   *             included.</p>
+   *          <p>You can specify 1 to 50 tag keys. Each tag key must be 1 to 128 characters long.</p>
+   *          <p>You can't specify both <code>IncludedTagKeys</code> and
+   *             <code>ExcludedTagKeys</code>.</p>
+   * @public
+   */
+  ExcludedTagKeys?: string[] | undefined;
+}
+
+/**
+ * <p>Settings that change the content of the notifications and events that an alarm sends
+ *             when its state changes. These settings apply to the alarm's actions, whichever state
+ *             triggers them.</p>
+ * @public
+ */
+export interface ActionConfiguration {
+  /**
+   * <p>Settings for including the alarm's tags in its action notifications and
+   *             state-change events.</p>
+   * @public
+   */
+  AlarmTagsPropagation?: AlarmTagsPropagation | undefined;
+}
 
 /**
  * <p>Represents an individual contributor to a multi-timeseries alarm, containing
@@ -225,6 +287,53 @@ export interface AnomalyDetectorConfiguration {
    * @public
    */
   MetricTimezone?: string | undefined;
+
+  /**
+   * <p>The speed at which the anomaly detection model adapts to sustained changes in the
+   *             metric's baseline. Faster adaptation lets the model track shifting workloads sooner, but
+   *             increases the chance that the model treats a real, lasting change as normal.</p>
+   *          <p>Valid values:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>FAST</code> - The model adapts quickly to sustained changes in the baseline.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>NORMAL</code> - The model adapts at a moderate pace. This is the default value.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>SLOW</code> - The model adapts slowly, reducing the risk of treating a real change as normal.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  AdaptationSpeed?: AnomalyDetectorAdaptationSpeed | undefined;
+
+  /**
+   * <p>The aggressiveness with which CloudWatch filters outliers from the metric data
+   *             that the anomaly detection model uses. Stronger filtering excludes more extreme values,
+   *             which can produce a tighter band of expected values but may also suppress legitimate
+   *             spikes.</p>
+   *          <p>Valid values:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>MINIMAL</code> - Excludes only the most extreme outliers.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>MODERATE</code> - Excludes a moderate range of outliers. This is the default value.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>STRICT</code> - Excludes a wider range of outliers, which can suppress legitimate spikes.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  OutlierFilteringStrength?: AnomalyDetectorOutlierFilteringStrength | undefined;
 }
 
 /**
@@ -834,6 +943,14 @@ export interface CompositeAlarm {
    * @public
    */
   ActionsSuppressorExtensionPeriod?: number | undefined;
+
+  /**
+   * <p>Settings that change the content of the notifications and events that the alarm
+   *             sends when its state changes. These settings apply to the alarm's actions, whichever
+   *             state triggers them.</p>
+   * @public
+   */
+  ActionConfiguration?: ActionConfiguration | undefined;
 }
 
 /**
@@ -1743,6 +1860,14 @@ export interface LogAlarm {
    * @public
    */
   WarmUpConfiguration?: WarmUpConfiguration | undefined;
+
+  /**
+   * <p>Settings that change the content of the notifications and events that the alarm
+   *             sends when its state changes. These settings apply to the alarm's actions, whichever
+   *             state triggers them.</p>
+   * @public
+   */
+  ActionConfiguration?: ActionConfiguration | undefined;
 }
 
 /**
@@ -2133,6 +2258,14 @@ export interface MetricAlarm {
    * @public
    */
   EvaluationInterval?: number | undefined;
+
+  /**
+   * <p>Settings that change the content of the notifications and events that the alarm
+   *             sends when its state changes. These settings apply to the alarm's actions, whichever
+   *             state triggers them.</p>
+   * @public
+   */
+  ActionConfiguration?: ActionConfiguration | undefined;
 }
 
 /**
@@ -4878,6 +5011,14 @@ export interface PutCompositeAlarmInput {
    * @public
    */
   ActionsSuppressorExtensionPeriod?: number | undefined;
+
+  /**
+   * <p>Settings that change the content of the notifications and events that the alarm
+   *             sends when its state changes. These settings apply to the alarm's actions, whichever
+   *             state triggers them.</p>
+   * @public
+   */
+  ActionConfiguration?: ActionConfiguration | undefined;
 }
 
 /**
@@ -5202,6 +5343,14 @@ export interface PutLogAlarmInput {
    * @public
    */
   WarmUpConfiguration?: WarmUpConfiguration | undefined;
+
+  /**
+   * <p>Settings that change the content of the notifications and events that the alarm
+   *             sends when its state changes. These settings apply to the alarm's actions, whichever
+   *             state triggers them.</p>
+   * @public
+   */
+  ActionConfiguration?: ActionConfiguration | undefined;
 }
 
 /**
@@ -5957,6 +6106,14 @@ export interface PutMetricAlarmInput {
    * @public
    */
   EvaluationInterval?: number | undefined;
+
+  /**
+   * <p>Settings that change the content of the notifications and events that the alarm
+   *             sends when its state changes. These settings apply to the alarm's actions, whichever
+   *             state triggers them.</p>
+   * @public
+   */
+  ActionConfiguration?: ActionConfiguration | undefined;
 }
 
 /**

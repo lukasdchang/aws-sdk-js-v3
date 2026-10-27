@@ -4,11 +4,13 @@ import type { ExceptionOptionType as __ExceptionOptionType } from "@smithy/core/
 import { CodestarNotificationsServiceException as __BaseException } from "./CodestarNotificationsServiceException";
 
 /**
- * <p>CodeStar Notifications can't create the notification rule because you do not have sufficient
+ * <p>
+ *             CodeStar Notifications can't create the notification rule because you do not have sufficient
  *       permissions.</p>
  * @public
  */
 export class AccessDeniedException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.codestarnotifications#AccessDeniedException";
   readonly name = "AccessDeniedException" as const;
   readonly $fault = "client" as const;
   Message?: string | undefined;
@@ -27,11 +29,13 @@ export class AccessDeniedException extends __BaseException {
 }
 
 /**
- * <p>CodeStar Notifications can't complete the request because the resource is being modified by
+ * <p>
+ *             CodeStar Notifications can't complete the request because the resource is being modified by
  *       another process. Wait a few minutes and try again.</p>
  * @public
  */
 export class ConcurrentModificationException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.codestarnotifications#ConcurrentModificationException";
   readonly name = "ConcurrentModificationException" as const;
   readonly $fault = "client" as const;
   Message?: string | undefined;
@@ -54,6 +58,7 @@ export class ConcurrentModificationException extends __BaseException {
  * @public
  */
 export class ConfigurationException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.codestarnotifications#ConfigurationException";
   readonly name = "ConfigurationException" as const;
   readonly $fault = "client" as const;
   Message?: string | undefined;
@@ -78,6 +83,7 @@ export class ConfigurationException extends __BaseException {
  * @public
  */
 export class LimitExceededException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.codestarnotifications#LimitExceededException";
   readonly name = "LimitExceededException" as const;
   readonly $fault = "client" as const;
   Message?: string | undefined;
@@ -101,6 +107,7 @@ export class LimitExceededException extends __BaseException {
  * @public
  */
 export class ResourceAlreadyExistsException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.codestarnotifications#ResourceAlreadyExistsException";
   readonly name = "ResourceAlreadyExistsException" as const;
   readonly $fault = "client" as const;
   Message?: string | undefined;
@@ -123,6 +130,7 @@ export class ResourceAlreadyExistsException extends __BaseException {
  * @public
  */
 export class ValidationException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.codestarnotifications#ValidationException";
   readonly name = "ValidationException" as const;
   readonly $fault = "client" as const;
   Message?: string | undefined;
@@ -141,10 +149,12 @@ export class ValidationException extends __BaseException {
 }
 
 /**
- * <p>CodeStar Notifications can't find a resource that matches the provided ARN. </p>
+ * <p>
+ *             CodeStar Notifications can't find a resource that matches the provided ARN. </p>
  * @public
  */
 export class ResourceNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.codestarnotifications#ResourceNotFoundException";
   readonly name = "ResourceNotFoundException" as const;
   readonly $fault = "client" as const;
   Message?: string | undefined;
@@ -167,6 +177,7 @@ export class ResourceNotFoundException extends __BaseException {
  * @public
  */
 export class InvalidNextTokenException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.codestarnotifications#InvalidNextTokenException";
   readonly name = "InvalidNextTokenException" as const;
   readonly $fault = "client" as const;
   Message?: string | undefined;

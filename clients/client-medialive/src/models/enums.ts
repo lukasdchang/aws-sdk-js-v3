@@ -1448,6 +1448,7 @@ export type CloudWatchAlarmTemplateStatistic =
  */
 export const CloudWatchAlarmTemplateTargetResourceType = {
   CLOUDFRONT_DISTRIBUTION: "CLOUDFRONT_DISTRIBUTION",
+  ELEMENTAL_INFERENCE_FEED: "ELEMENTAL_INFERENCE_FEED",
   MEDIACONNECT_FLOW: "MEDIACONNECT_FLOW",
   MEDIALIVE_CHANNEL: "MEDIALIVE_CHANNEL",
   MEDIALIVE_INPUT_DEVICE: "MEDIALIVE_INPUT_DEVICE",
@@ -3658,6 +3659,19 @@ export type Av1BitDepth = (typeof Av1BitDepth)[keyof typeof Av1BitDepth];
  * @public
  * @enum
  */
+export const PerceptualFilterStrength = {
+  STRENGTH_1: "STRENGTH_1",
+  STRENGTH_2: "STRENGTH_2",
+} as const;
+/**
+ * @public
+ */
+export type PerceptualFilterStrength = (typeof PerceptualFilterStrength)[keyof typeof PerceptualFilterStrength];
+
+/**
+ * @public
+ * @enum
+ */
 export const FixedAfd = {
   AFD_0000: "AFD_0000",
   AFD_0010: "AFD_0010",
@@ -3860,6 +3874,20 @@ export const H264AdaptiveQuantization = {
  * @public
  */
 export type H264AdaptiveQuantization = (typeof H264AdaptiveQuantization)[keyof typeof H264AdaptiveQuantization];
+
+/**
+ * @public
+ * @enum
+ */
+export const H264AllowExplicitWeightedPrediction = {
+  DISABLED: "DISABLED",
+  ENABLED: "ENABLED",
+} as const;
+/**
+ * @public
+ */
+export type H264AllowExplicitWeightedPrediction =
+  (typeof H264AllowExplicitWeightedPrediction)[keyof typeof H264AllowExplicitWeightedPrediction];
 
 /**
  * @public

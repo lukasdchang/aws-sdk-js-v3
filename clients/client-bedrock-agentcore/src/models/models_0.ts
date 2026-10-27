@@ -14,7 +14,7 @@ import type {
   CodeInterpreterSessionStatus,
   CommandExecutionStatus,
   ContentBlockType,
-  ExtractionMode,
+  FindingTargetType,
   HarnessBedrockApiFormat,
   HarnessConversationRole,
   HarnessHookDecision,
@@ -25,6 +25,7 @@ import type {
   HarnessToolUseStatus,
   HarnessToolUseType,
   InsightsFailureCategory,
+  InsightType,
   LanguageRuntime,
   MemoryRecordStatus,
   MouseButton,
@@ -34,6 +35,7 @@ import type {
   ProgrammingLanguage,
   RecommendationStatus,
   RecommendationType,
+  RecordExpiryAction,
   ResourceContentType,
   ResultDestination,
   Role,
@@ -4189,6 +4191,12 @@ export interface EvaluationResultContent {
   evaluatorName: string | undefined;
 
   /**
+   * <p> The name of the dimension that this result scores. This field is set only on results produced by an evaluator that uses a multi-dimensional rating scale, where each dimension is scored independently. For evaluators with a single rating scale, this field is absent. </p>
+   * @public
+   */
+  evaluationDimensionName?: string | undefined;
+
+  /**
    * <p> The detailed explanation provided by the evaluator describing the reasoning behind the assigned score. This qualitative feedback helps understand why specific ratings were given and provides actionable insights for improvement. </p>
    * @public
    */
@@ -4574,6 +4582,12 @@ export interface EvaluatorSummary {
   evaluatorId?: string | undefined;
 
   /**
+   * <p>The name of the dimension that this summary covers. This field is set only for evaluators that use a multi-dimensional rating scale, where each dimension is summarized separately. For single-scale evaluators, this field is not set.</p>
+   * @public
+   */
+  evaluationDimensionName?: string | undefined;
+
+  /**
    * <p>The aggregated statistics for this evaluator.</p>
    * @public
    */
@@ -4845,6 +4859,150 @@ export interface FailureAnalysisResultContent {
 }
 
 /**
+ * <p>A failure found in a session.</p>
+ * @public
+ */
+export interface SessionFinding {
+  /**
+   * <p>The identifier or name of the location in the session where the failure was found, interpreted according to <code>targetType</code>.</p>
+   * @public
+   */
+  targetId?: string | undefined;
+
+  /**
+   * <p>The type of location that <code>targetId</code> refers to.</p>
+   * @public
+   */
+  targetType?: FindingTargetType | undefined;
+
+  /**
+   * <p>A description of the failure.</p>
+   * @public
+   */
+  description: string | undefined;
+
+  /**
+   * <p>The category of the failure.</p>
+   * @public
+   */
+  category?: string | undefined;
+
+  /**
+   * <p>The confidence that the finding is a failure, from 0 to 1.</p>
+   * @public
+   */
+  confidence?: number | undefined;
+}
+
+/**
+ * <p>A session affected by an insight or root cause. Use the session ID to find the per-session evaluation results in CloudWatch Logs.</p>
+ * @public
+ */
+export interface SampleSession {
+  /**
+   * <p>The unique identifier of the session.</p>
+   * @public
+   */
+  sessionId: string | undefined;
+
+  /**
+   * <p>The latest timestamp observed for the session in the batch evaluation input.</p>
+   * @public
+   */
+  lastSeenAt?: Date | undefined;
+
+  /**
+   * <p>The failures found in the session that belong to the insight or root cause, up to 10.</p>
+   * @public
+   */
+  findings?: SessionFinding[] | undefined;
+}
+
+/**
+ * <p>A root cause that contributes to an insight.</p>
+ * @public
+ */
+export interface InsightRootCause {
+  /**
+   * <p>A generated label for the root cause.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>An explanation of how the root cause leads to the failures in the insight.</p>
+   * @public
+   */
+  explanation: string | undefined;
+
+  /**
+   * <p>The number of distinct sessions affected by the root cause. A session can be affected by more than one root cause of the same insight.</p>
+   * @public
+   */
+  affectedSessionCount?: number | undefined;
+
+  /**
+   * <p>A suggested change to the agent that addresses the root cause.</p>
+   * @public
+   */
+  suggestedFix?: string | undefined;
+
+  /**
+   * <p>A sample of up to 10 sessions affected by the root cause.</p>
+   * @public
+   */
+  sampleSessions?: SampleSession[] | undefined;
+}
+
+/**
+ * <p>An insight that groups related failures found across the sessions in a batch evaluation.</p>
+ * @public
+ */
+export interface InsightResult {
+  /**
+   * <p>The type of insight. <code>FAILURE</code> indicates a group of related failures.</p>
+   * @public
+   */
+  type: InsightType | undefined;
+
+  /**
+   * <p>A generated label for the insight. The name is not an identifier and can differ between batch evaluations.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>A description of the failure pattern that the insight represents.</p>
+   * @public
+   */
+  description: string | undefined;
+
+  /**
+   * <p>The timestamp when the insight was generated.</p>
+   * @public
+   */
+  createdAt: Date | undefined;
+
+  /**
+   * <p>The number of distinct sessions affected by the insight.</p>
+   * @public
+   */
+  affectedSessionCount?: number | undefined;
+
+  /**
+   * <p>A sample of up to 10 sessions affected by the insight. Returned only when the insight has no root causes. Otherwise, sample sessions are returned for each root cause.</p>
+   * @public
+   */
+  sampleSessions?: SampleSession[] | undefined;
+
+  /**
+   * <p>The root causes identified for the insight.</p>
+   * @public
+   */
+  rootCauses?: InsightRootCause[] | undefined;
+}
+
+/**
  * <p>A reference to an insight analysis to run against sessions during batch evaluation. Insights provide deeper analysis beyond individual evaluator scores, including failure detection, user intent clustering, and execution summarization.</p>
  * @public
  */
@@ -5054,6 +5212,12 @@ export interface GetBatchEvaluationResponse {
    * @public
    */
   evaluationResults?: EvaluationJobResults | undefined;
+
+  /**
+   * <p>The insights generated when the batch evaluation includes the <code>Builtin.FailureAnalysis</code> evaluator. Each insight groups related failures found across the evaluated sessions. An empty list means that no failures were found. If the analysis fails, this field is omitted and <code>errorDetails</code> describes the error.</p>
+   * @public
+   */
+  insightResults?: InsightResult[] | undefined;
 
   /**
    * <p>The failure analysis results from insights, containing categorized failure clusters with root causes and recommendations.</p>
@@ -8030,7 +8194,7 @@ export namespace HarnessModelConfiguration {
 }
 
 /**
- * <p>Passed to show that AWS Skills should be included.</p>
+ * <p>Passed to show that Amazon Web Services Skills should be included.</p>
  * @public
  */
 export interface HarnessSkillAwsSkillsSource {
@@ -8147,7 +8311,7 @@ export namespace HarnessSkill {
   }
 
   /**
-   * <p>AWS Skills baked into the Harness's underlying Runtime.</p>
+   * <p>Amazon Web Services Skills baked into the Harness's underlying Runtime.</p>
    * @public
    */
   export interface AwsSkillsMember {
@@ -8323,7 +8487,7 @@ export namespace HarnessGatewayOutboundAuth {
   }
 
   /**
-   * <p>OAuth 2.0 authentication via AgentCore Identity.</p>
+   * <p>OAuth 2.0 authentication via AgentCore Identity.</p> <p>The <code>AUTHORIZATION_CODE</code> grant type is not supported for outbound authentication from a harness to an AgentCore Gateway, even when <code>defaultReturnUrl</code> is specified.</p>
    * @public
    */
   export interface OauthMember {
@@ -9430,6 +9594,59 @@ export interface InvokeHarnessResponse {
 }
 
 /**
+ * <p>Specifies the record expiry (long-term memory time-to-live) applied to the records in a batch request. Provide exactly one of <code>recordExpiryDurationDays</code> or <code>action</code>. Set <code>recordExpiryDurationDays</code> to configure or update the expiry, or set <code>action</code> to <code>REMOVE</code> to remove a previously configured expiry.</p>
+ * @public
+ */
+export type RecordExpirySpecification =
+  | RecordExpirySpecification.ActionMember
+  | RecordExpirySpecification.RecordExpiryDurationDaysMember
+  | RecordExpirySpecification.$UnknownMember;
+
+/**
+ * @public
+ */
+export namespace RecordExpirySpecification {
+  /**
+   * <p>The duration, in days, after which the records in this request expire. The minimum is 31 days.</p>
+   * @public
+   */
+  export interface RecordExpiryDurationDaysMember {
+    recordExpiryDurationDays: number;
+    action?: never;
+    $unknown?: never;
+  }
+
+  /**
+   * <p>The action to apply to the existing record expiry configuration. Set to <code>REMOVE</code> to remove a previously configured expiry so that the records no longer expire. This value does not apply when creating records.</p>
+   * @public
+   */
+  export interface ActionMember {
+    recordExpiryDurationDays?: never;
+    action: RecordExpiryAction;
+    $unknown?: never;
+  }
+
+  /**
+   * @public
+   */
+  export interface $UnknownMember {
+    recordExpiryDurationDays?: never;
+    action?: never;
+    $unknown: [string, any];
+  }
+
+  /**
+   * @deprecated unused in schema-serde mode.
+   *
+   */
+  export interface Visitor<T> {
+    recordExpiryDurationDays: (value: number) => T;
+    action: (value: RecordExpiryAction) => T;
+    _: (name: string, value: any) => T;
+  }
+}
+
+/**
  * <p>Contains the content of a memory record.</p>
  * @public
  */
@@ -9618,6 +9835,12 @@ export interface BatchCreateMemoryRecordsInput {
    * @public
    */
   clientToken?: string | undefined;
+
+  /**
+   * <p>The record expiry (long-term memory time-to-live) applied to every record created by this request. Set <code>recordExpiryDurationDays</code> to the number of days after which the records expire. Only the expiry provided here is applied; the records' strategy association has no effect on their expiry. If you do not provide this value, the records do not expire. The <code>REMOVE</code> action does not apply when creating records.</p>
+   * @public
+   */
+  recordExpirySpecification?: RecordExpirySpecification | undefined;
 }
 
 /**
@@ -9788,6 +10011,12 @@ export interface BatchUpdateMemoryRecordsInput {
    * @public
    */
   records: MemoryRecordUpdateInput[] | undefined;
+
+  /**
+   * <p>The record expiry (long-term memory time-to-live) applied to every record updated by this request. Set <code>recordExpiryDurationDays</code> to configure or overwrite the number of days after which the records expire, or set <code>action</code> to <code>REMOVE</code> to clear a previously configured expiry so that the records no longer expire.</p> <p>When you do not provide this value, the service determines each record's expiry from its current state:</p> <ul> <li> <p>If the record already has an expiry configured, the service resets and reapplies the expiry based on the last applied <code>recordExpiryDurationDays</code>.</p> </li> <li> <p>If the record does not have an expiry configured, no expiry is applied and the record remains non-expiring. This is the outcome regardless of whether the record's strategy configures an expiry.</p> </li> </ul> <p>Providing an explicit <code>recordExpiryDurationDays</code> always takes precedence: it overwrites an existing expiry, or sets one on a record that previously had none.</p>
+   * @public
+   */
+  recordExpirySpecification?: RecordExpirySpecification | undefined;
 }
 
 /**
@@ -10012,174 +10241,4 @@ export namespace PayloadType {
     json: (value: MemoryJsonData) => T;
     _: (name: string, value: any) => T;
   }
-}
-
-/**
- * @public
- */
-export interface CreateEventInput {
-  /**
-   * <p>The identifier of the AgentCore Memory resource in which to create the event.</p>
-   * @public
-   */
-  memoryId: string | undefined;
-
-  /**
-   * <p>The identifier of the actor associated with this event. An actor represents an entity that participates in sessions and generates events.</p>
-   * @public
-   */
-  actorId: string | undefined;
-
-  /**
-   * <p>The identifier of the session in which this event occurs. A session represents a sequence of related events.</p>
-   * @public
-   */
-  sessionId?: string | undefined;
-
-  /**
-   * <p>The timestamp when the event occurred. If not specified, the current time is used.</p>
-   * @public
-   */
-  eventTimestamp: Date | undefined;
-
-  /**
-   * <p>The content payload of the event. This can include conversational data, JSON data, or binary content.</p>
-   * @public
-   */
-  payload: PayloadType[] | undefined;
-
-  /**
-   * <p>The branch information for this event. Branches allow for organizing events into different conversation threads or paths.</p>
-   * @public
-   */
-  branch?: Branch | undefined;
-
-  /**
-   * <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, AgentCore ignores the request, but does not return an error.</p>
-   * @public
-   */
-  clientToken?: string | undefined;
-
-  /**
-   * <p>The key-value metadata to attach to the event.</p>
-   * @public
-   */
-  metadata?: Record<string, MetadataValue> | undefined;
-
-  /**
-   * <p>Controls long-term memory extraction for this event. When set to <code>SKIP</code>, the event is stored in short-term memory but is excluded from long-term memory extraction. If not specified, the event is processed for extraction as usual.</p>
-   * @public
-   */
-  extractionMode?: ExtractionMode | undefined;
-
-  /**
-   * <p>The extraction configuration for long-term memory records. Use this parameter to specify namespace variable keys and their values for namespace substitution during extraction.</p>
-   * @public
-   */
-  extractionConfig?: ExtractionConfig | undefined;
-}
-
-/**
- * <p>Contains information about an event in an AgentCore Memory resource.</p>
- * @public
- */
-export interface Event {
-  /**
-   * <p>The identifier of the AgentCore Memory resource containing the event.</p>
-   * @public
-   */
-  memoryId: string | undefined;
-
-  /**
-   * <p>The identifier of the actor associated with the event.</p>
-   * @public
-   */
-  actorId: string | undefined;
-
-  /**
-   * <p>The identifier of the session containing the event.</p>
-   * @public
-   */
-  sessionId: string | undefined;
-
-  /**
-   * <p>The unique identifier of the event.</p>
-   * @public
-   */
-  eventId: string | undefined;
-
-  /**
-   * <p>The timestamp when the event occurred.</p>
-   * @public
-   */
-  eventTimestamp: Date | undefined;
-
-  /**
-   * <p>The content payload of the event.</p>
-   * @public
-   */
-  payload: PayloadType[] | undefined;
-
-  /**
-   * <p>The branch information for the event.</p>
-   * @public
-   */
-  branch?: Branch | undefined;
-
-  /**
-   * <p>Metadata associated with an event.</p>
-   * @public
-   */
-  metadata?: Record<string, MetadataValue> | undefined;
-}
-
-/**
- * @public
- */
-export interface CreateEventOutput {
-  /**
-   * <p>The event that was created.</p>
-   * @public
-   */
-  event: Event | undefined;
-}
-
-/**
- * @public
- */
-export interface DeleteEventInput {
-  /**
-   * <p>The identifier of the AgentCore Memory resource from which to delete the event.</p>
-   * @public
-   */
-  memoryId: string | undefined;
-
-  /**
-   * <p>The identifier of the session containing the event to delete.</p>
-   * @public
-   */
-  sessionId: string | undefined;
-
-  /**
-   * <p>The identifier of the event to delete.</p>
-   * @public
-   */
-  eventId: string | undefined;
-
-  /**
-   * <p>The identifier of the actor associated with the event to delete.</p>
-   * @public
-   */
-  actorId: string | undefined;
-}
-
-/**
- * @public
- */
-export interface DeleteEventOutput {
-  /**
-   * <p>The identifier of the event that was deleted.</p>
-   * @public
-   */
-  eventId: string | undefined;
 }

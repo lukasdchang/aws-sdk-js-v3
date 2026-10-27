@@ -151,6 +151,13 @@ export const MetricName = {
   ClientTLSNegotiationErrorCount: "ClientTLSNegotiationErrorCount",
   DatabaseConnections: "DatabaseConnections",
   DiskQueueDepth: "DiskQueueDepth",
+  DiskQueueLength: "DiskQueueLength",
+  DiskReadBytes: "DiskReadBytes",
+  DiskReadOps: "DiskReadOps",
+  DiskTotalReadTime: "DiskTotalReadTime",
+  DiskTotalWriteTime: "DiskTotalWriteTime",
+  DiskWriteBytes: "DiskWriteBytes",
+  DiskWriteOps: "DiskWriteOps",
   FreeStorageSpace: "FreeStorageSpace",
   FreeableMemory: "FreeableMemory",
   HTTPCode_Instance_2XX_Count: "HTTPCode_Instance_2XX_Count",
@@ -885,6 +892,32 @@ export type ViewerMinimumTlsProtocolVersionEnum =
  * @public
  * @enum
  */
+export const WafPayloadTypeEnum = {
+  FORM_ENCODED: "FORM_ENCODED",
+  JSON: "JSON",
+} as const;
+/**
+ * @public
+ */
+export type WafPayloadTypeEnum = (typeof WafPayloadTypeEnum)[keyof typeof WafPayloadTypeEnum];
+
+/**
+ * @public
+ * @enum
+ */
+export const WafInspectionLevelEnum = {
+  COMMON: "COMMON",
+  TARGETED: "TARGETED",
+} as const;
+/**
+ * @public
+ */
+export type WafInspectionLevelEnum = (typeof WafInspectionLevelEnum)[keyof typeof WafInspectionLevelEnum];
+
+/**
+ * @public
+ * @enum
+ */
 export const Status = {
   FailedInstanceCreation: "failedInstanceCreation",
   FailedStartingGUISession: "failedStartingGUISession",
@@ -944,6 +977,8 @@ export const DistributionMetricName = {
   Http5xxErrorRate: "Http5xxErrorRate",
   Requests: "Requests",
   TotalErrorRate: "TotalErrorRate",
+  WafAllowedRequests: "WafAllowedRequests",
+  WafBlockedRequests: "WafBlockedRequests",
 } as const;
 /**
  * @public
@@ -1081,6 +1116,13 @@ export const InstanceMetricName = {
   BurstCapacityPercentage: "BurstCapacityPercentage",
   BurstCapacityTime: "BurstCapacityTime",
   CPUUtilization: "CPUUtilization",
+  DiskQueueLength: "DiskQueueLength",
+  DiskReadBytes: "DiskReadBytes",
+  DiskReadOps: "DiskReadOps",
+  DiskTotalReadTime: "DiskTotalReadTime",
+  DiskTotalWriteTime: "DiskTotalWriteTime",
+  DiskWriteBytes: "DiskWriteBytes",
+  DiskWriteOps: "DiskWriteOps",
   MetadataNoToken: "MetadataNoToken",
   NetworkIn: "NetworkIn",
   NetworkOut: "NetworkOut",

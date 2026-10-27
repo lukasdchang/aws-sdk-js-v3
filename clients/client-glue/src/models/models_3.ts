@@ -1,19 +1,25 @@
 // smithy-typescript generated code
 import type {
+  AuthenticationType,
   Comparator,
   Compatibility,
   ConnectionPropertyKey,
   ConnectionType,
+  ConnectorOAuth2GrantType,
+  ContentType,
   CsvHeaderOption,
   CsvSerdeOption,
   ExecutionClass,
+  HTTPMethod,
   IcebergUpdateAction,
+  IntegrationType,
   JobMode,
   Permission,
   RecommendationMode,
   ResourceAction,
   ResourceShareType,
   ResourceState,
+  SchemaVersionStatus,
   SearchFilterOperator,
   SearchSortOrder,
   Sort,
@@ -130,6 +136,7 @@ import type {
 import type {
   ColumnStatistics,
   ConnectionInput,
+  ConnectorProperty,
   DatabaseInput,
   FederatedTable,
   IcebergPartitionSpec,
@@ -137,6 +144,7 @@ import type {
   IcebergSortOrder,
   ProfileConfiguration,
   RegistryId,
+  RestConfiguration,
   SourceProcessingProperties,
   SourceTableConfig,
   TableIdentifier,
@@ -151,10 +159,523 @@ import type {
   DataQualityRuleRecommendationRunAdditionalRunOptions,
   IcebergTableMetadata,
   JobBookmarkEntry,
+  MetadataKeyValuePair,
+  RLSProperties,
   SchemaVersionNumber,
   ViewDefinition,
   ViewValidation,
 } from "./models_2";
+
+/**
+ * @public
+ */
+export interface PutWorkflowRunPropertiesResponse {}
+
+/**
+ * @public
+ */
+export interface QuerySchemaVersionMetadataInput {
+  /**
+   * <p>A wrapper structure that may contain the schema name and Amazon Resource Name (ARN).</p>
+   * @public
+   */
+  SchemaId?: SchemaId | undefined;
+
+  /**
+   * <p>The version number of the schema.</p>
+   * @public
+   */
+  SchemaVersionNumber?: SchemaVersionNumber | undefined;
+
+  /**
+   * <p>The unique version ID of the schema version.</p>
+   * @public
+   */
+  SchemaVersionId?: string | undefined;
+
+  /**
+   * <p>Search key-value pairs for metadata, if they are not provided all the metadata information will be fetched.</p>
+   * @public
+   */
+  MetadataList?: MetadataKeyValuePair[] | undefined;
+
+  /**
+   * <p>Maximum number of results required per page. If the value is not supplied, this will be defaulted to 25 per page.</p>
+   * @public
+   */
+  MaxResults?: number | undefined;
+
+  /**
+   * <p>A continuation token, if this is a continuation call.</p>
+   * @public
+   */
+  NextToken?: string | undefined;
+}
+
+/**
+ * <p>A structure containing other metadata for a schema version belonging to the same metadata key.</p>
+ * @public
+ */
+export interface OtherMetadataValueListItem {
+  /**
+   * <p>The metadata key’s corresponding value for the other metadata belonging to the same metadata key.</p>
+   * @public
+   */
+  MetadataValue?: string | undefined;
+
+  /**
+   * <p>The time at which the entry was created.</p>
+   * @public
+   */
+  CreatedTime?: string | undefined;
+}
+
+/**
+ * <p>A structure containing metadata information for a schema version.</p>
+ * @public
+ */
+export interface MetadataInfo {
+  /**
+   * <p>The metadata key’s corresponding value.</p>
+   * @public
+   */
+  MetadataValue?: string | undefined;
+
+  /**
+   * <p>The time at which the entry was created.</p>
+   * @public
+   */
+  CreatedTime?: string | undefined;
+
+  /**
+   * <p>Other metadata belonging to the same metadata key.</p>
+   * @public
+   */
+  OtherMetadataValueList?: OtherMetadataValueListItem[] | undefined;
+}
+
+/**
+ * @public
+ */
+export interface QuerySchemaVersionMetadataResponse {
+  /**
+   * <p>A map of a metadata key and associated values.</p>
+   * @public
+   */
+  MetadataInfoMap?: Record<string, MetadataInfo> | undefined;
+
+  /**
+   * <p>The unique version ID of the schema version.</p>
+   * @public
+   */
+  SchemaVersionId?: string | undefined;
+
+  /**
+   * <p>A continuation token for paginating the returned list of tokens, returned if the current segment of the list is not the last.</p>
+   * @public
+   */
+  NextToken?: string | undefined;
+}
+
+/**
+ * <p>Configuration that defines the base URL and additional request parameters needed during connection creation.</p>
+ * @public
+ */
+export interface ConnectionPropertiesConfiguration {
+  /**
+   * <p>The base instance URL for the endpoint that this connection type will connect to.</p>
+   * @public
+   */
+  Url?: ConnectorProperty | undefined;
+
+  /**
+   * <p>Key-value pairs of additional request parameters that may be needed during connection creation, such as API versions or service-specific configuration options.</p>
+   * @public
+   */
+  AdditionalRequestParameters?: ConnectorProperty[] | undefined;
+}
+
+/**
+ * <p>Basic authentication configuration that defines the username and password properties for HTTP Basic authentication.</p>
+ * @public
+ */
+export interface BasicAuthenticationProperties {
+  /**
+   * <p>The username property name to use for Basic authentication credentials.</p>
+   * @public
+   */
+  Username?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The password property name to use for Basic authentication credentials.</p>
+   * @public
+   */
+  Password?: ConnectorProperty | undefined;
+}
+
+/**
+ * <p>Custom authentication configuration that allows for flexible authentication mechanisms beyond standard Basic and OAuth2 flows.</p>
+ * @public
+ */
+export interface CustomAuthenticationProperties {
+  /**
+   * <p>A map of custom authentication parameters that define the specific authentication mechanism and required properties.</p>
+   * @public
+   */
+  AuthenticationParameters: ConnectorProperty[] | undefined;
+}
+
+/**
+ * <p>OAuth2 authorization code configuration that defines the properties needed for the Authorization Code grant type flow.</p>
+ * @public
+ */
+export interface ConnectorAuthorizationCodeProperties {
+  /**
+   * <p>The authorization endpoint URL where users will be redirected to grant authorization.</p>
+   * @public
+   */
+  AuthorizationCodeUrl?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The authorization code received from the authorization server after user consent.</p>
+   * @public
+   */
+  AuthorizationCode?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The redirect URI that must match the URI registered with the authorization server.</p>
+   * @public
+   */
+  RedirectUri?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The token endpoint URL where the authorization code will be exchanged for an access token.</p>
+   * @public
+   */
+  TokenUrl?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The HTTP method to use when making token exchange requests, typically POST.</p>
+   * @public
+   */
+  RequestMethod?: HTTPMethod | undefined;
+
+  /**
+   * <p>The content type to use for token exchange requests, such as application/x-www-form-urlencoded or application/json.</p>
+   * @public
+   */
+  ContentType?: ContentType | undefined;
+
+  /**
+   * <p>The OAuth2 client identifier provided by the authorization server.</p>
+   * @public
+   */
+  ClientId?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The OAuth2 client secret provided by the authorization server.</p>
+   * @public
+   */
+  ClientSecret?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The OAuth2 scope that defines the level of access requested for the authorization code flow.</p>
+   * @public
+   */
+  Scope?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The OAuth2 prompt parameter that controls the authorization server's behavior during user authentication.</p>
+   * @public
+   */
+  Prompt?: ConnectorProperty | undefined;
+
+  /**
+   * <p>Additional parameters to include in token URL requests as key-value pairs.</p>
+   * @public
+   */
+  TokenUrlParameters?: ConnectorProperty[] | undefined;
+}
+
+/**
+ * <p>OAuth2 client credentials configuration that defines the properties needed for the Client Credentials grant type flow.</p>
+ * @public
+ */
+export interface ClientCredentialsProperties {
+  /**
+   * <p>The token endpoint URL where the client will request access tokens using client credentials.</p>
+   * @public
+   */
+  TokenUrl?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The HTTP method to use when making token requests, typically POST.</p>
+   * @public
+   */
+  RequestMethod?: HTTPMethod | undefined;
+
+  /**
+   * <p>The content type to use for token requests, such as application/x-www-form-urlencoded or application/json.</p>
+   * @public
+   */
+  ContentType?: ContentType | undefined;
+
+  /**
+   * <p>The OAuth2 client identifier provided by the authorization server.</p>
+   * @public
+   */
+  ClientId?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The OAuth2 client secret provided by the authorization server.</p>
+   * @public
+   */
+  ClientSecret?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The OAuth2 scope that defines the level of access requested for the client credentials flow.</p>
+   * @public
+   */
+  Scope?: ConnectorProperty | undefined;
+
+  /**
+   * <p>Additional parameters to include in token URL requests as key-value pairs.</p>
+   * @public
+   */
+  TokenUrlParameters?: ConnectorProperty[] | undefined;
+}
+
+/**
+ * <p>JWT bearer token configuration that defines the properties needed for the JWT Bearer grant type flow.</p>
+ * @public
+ */
+export interface JWTBearerProperties {
+  /**
+   * <p>The token endpoint URL where the JWT bearer token will be exchanged for an access token.</p>
+   * @public
+   */
+  TokenUrl?: ConnectorProperty | undefined;
+
+  /**
+   * <p>The HTTP method to use when making JWT bearer token requests, typically POST.</p>
+   * @public
+   */
+  RequestMethod?: HTTPMethod | undefined;
+
+  /**
+   * <p>The content type to use for JWT bearer token requests, such as application/x-www-form-urlencoded or application/json.</p>
+   * @public
+   */
+  ContentType?: ContentType | undefined;
+
+  /**
+   * <p>The JWT token to be used in the bearer token grant flow for authentication.</p>
+   * @public
+   */
+  JwtToken?: ConnectorProperty | undefined;
+
+  /**
+   * <p>Additional parameters to include in token URL requests as key-value pairs.</p>
+   * @public
+   */
+  TokenUrlParameters?: ConnectorProperty[] | undefined;
+}
+
+/**
+ * <p>OAuth2 configuration container that defines the authentication properties and flow-specific configurations for OAuth2-based connections.</p>
+ * @public
+ */
+export interface ConnectorOAuth2Properties {
+  /**
+   * <p>The OAuth2 grant type to use for authentication, such as CLIENT_CREDENTIALS, JWT_BEARER, or AUTHORIZATION_CODE.</p>
+   * @public
+   */
+  OAuth2GrantType: ConnectorOAuth2GrantType | undefined;
+
+  /**
+   * <p>Configuration properties specific to the OAuth2 Client Credentials grant type flow.</p>
+   * @public
+   */
+  ClientCredentialsProperties?: ClientCredentialsProperties | undefined;
+
+  /**
+   * <p>Configuration properties specific to the OAuth2 JWT Bearer grant type flow.</p>
+   * @public
+   */
+  JWTBearerProperties?: JWTBearerProperties | undefined;
+
+  /**
+   * <p>Configuration properties specific to the OAuth2 Authorization Code grant type flow.</p>
+   * @public
+   */
+  AuthorizationCodeProperties?: ConnectorAuthorizationCodeProperties | undefined;
+}
+
+/**
+ * <p>Configuration that defines the supported authentication types and required properties for the connection type.</p>
+ * @public
+ */
+export interface ConnectorAuthenticationConfiguration {
+  /**
+   * <p>A list of authentication types supported by this connection type, such as Basic, OAuth2, or Custom authentication methods.</p>
+   * @public
+   */
+  AuthenticationTypes: AuthenticationType[] | undefined;
+
+  /**
+   * <p>OAuth2 configuration container that defines the authentication properties and flow-specific configurations for OAuth2-based connections.</p>
+   * @public
+   */
+  OAuth2Properties?: ConnectorOAuth2Properties | undefined;
+
+  /**
+   * <p>Basic authentication configuration that defines the username and password properties for HTTP Basic authentication.</p>
+   * @public
+   */
+  BasicAuthenticationProperties?: BasicAuthenticationProperties | undefined;
+
+  /**
+   * <p>Custom authentication configuration that allows for flexible authentication mechanisms beyond standard Basic and OAuth2 flows.</p>
+   * @public
+   */
+  CustomAuthenticationProperties?: CustomAuthenticationProperties | undefined;
+}
+
+/**
+ * @public
+ */
+export interface RegisterConnectionTypeRequest {
+  /**
+   * <p>The name of the connection type. Must be between 1 and 255 characters and must be prefixed with "REST-" to indicate it is a REST-based connector.</p>
+   * @public
+   */
+  ConnectionType: string | undefined;
+
+  /**
+   * <p>The integration type for the connection. Currently only "REST" protocol is supported.</p>
+   * @public
+   */
+  IntegrationType: IntegrationType | undefined;
+
+  /**
+   * <p>A description of the connection type. Can be up to 2048 characters and provides details about the purpose and functionality of the connection type.</p>
+   * @public
+   */
+  Description?: string | undefined;
+
+  /**
+   * <p>Defines the base URL and additional request parameters needed during connection creation for this connection type.</p>
+   * @public
+   */
+  ConnectionProperties: ConnectionPropertiesConfiguration | undefined;
+
+  /**
+   * <p>Defines the supported authentication types and required properties for this connection type, including Basic, OAuth2, and Custom authentication methods.</p>
+   * @public
+   */
+  ConnectorAuthenticationConfiguration: ConnectorAuthenticationConfiguration | undefined;
+
+  /**
+   * <p>Defines the HTTP request and response configuration, validation endpoint, and entity configurations for REST API interactions.</p>
+   * @public
+   */
+  RestConfiguration: RestConfiguration | undefined;
+
+  /**
+   * <p>The tags you assign to the connection type.</p>
+   * @public
+   */
+  Tags?: Record<string, string> | undefined;
+}
+
+/**
+ * <p>Contains the Amazon Resource Name (ARN) of the newly registered connection type.</p>
+ * @public
+ */
+export interface RegisterConnectionTypeResponse {
+  /**
+   * <p>The Amazon Resource Name (ARN) of the registered connection type. This unique identifier can be used to reference the connection type in other Glue operations.</p>
+   * @public
+   */
+  ConnectionTypeArn?: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface RegisterSchemaVersionInput {
+  /**
+   * <p>This is a wrapper structure to contain schema identity fields. The structure contains:</p>
+   *          <ul>
+   *             <li>
+   *                <p>SchemaId$SchemaArn: The Amazon Resource Name (ARN) of the schema. Either <code>SchemaArn</code> or <code>SchemaName</code> and <code>RegistryName</code> has to be provided.</p>
+   *             </li>
+   *             <li>
+   *                <p>SchemaId$SchemaName: The name of the schema. Either <code>SchemaArn</code> or <code>SchemaName</code> and <code>RegistryName</code> has to be provided.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  SchemaId: SchemaId | undefined;
+
+  /**
+   * <p>The schema definition using the <code>DataFormat</code> setting for the <code>SchemaName</code>.</p>
+   * @public
+   */
+  SchemaDefinition: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface RegisterSchemaVersionResponse {
+  /**
+   * <p>The unique ID that represents the version of this schema.</p>
+   * @public
+   */
+  SchemaVersionId?: string | undefined;
+
+  /**
+   * <p>The version of this schema (for sync flow only, in case this is the first version).</p>
+   * @public
+   */
+  VersionNumber?: number | undefined;
+
+  /**
+   * <p>The status of the schema version.</p>
+   * @public
+   */
+  Status?: SchemaVersionStatus | undefined;
+}
+
+/**
+ * @public
+ */
+export interface RemoveSchemaVersionMetadataInput {
+  /**
+   * <p>A wrapper structure that may contain the schema name and Amazon Resource Name (ARN).</p>
+   * @public
+   */
+  SchemaId?: SchemaId | undefined;
+
+  /**
+   * <p>The version number of the schema.</p>
+   * @public
+   */
+  SchemaVersionNumber?: SchemaVersionNumber | undefined;
+
+  /**
+   * <p>The unique version ID of the schema version.</p>
+   * @public
+   */
+  SchemaVersionId?: string | undefined;
+
+  /**
+   * <p>The value of the metadata key.</p>
+   * @public
+   */
+  MetadataKeyValue: MetadataKeyValuePair | undefined;
+}
 
 /**
  * @public
@@ -737,6 +1258,12 @@ export interface StartColumnStatisticsTaskRunScheduleRequest {
    * @public
    */
   TableName: string | undefined;
+
+  /**
+   * <p>The ID of the Data Catalog where the table resides. If none is supplied, the Amazon Web Services account ID is used by default.</p>
+   * @public
+   */
+  CatalogID?: string | undefined;
 }
 
 /**
@@ -1082,9 +1609,11 @@ export interface StartJobRunRequest {
   NotificationProperty?: NotificationProperty | undefined;
 
   /**
-   * <p>The type of predefined worker that is allocated when a job runs. Accepts a value of
-   *           G.1X, G.2X, G.4X, G.8X or G.025X for Spark jobs. Accepts the value Z.2X for Ray jobs.</p>
+   * <p>The type of predefined worker that is allocated when a job runs. Accepts a value of G.025X, G.1X, G.2X, G.4X, G.8X, G.12X, G.16X, R.1X, R.2X, R.4X, or R.8X for Spark jobs. Accepts the value Z.2X for Ray jobs.</p>
    *          <ul>
+   *             <li>
+   *                <p>For the <code>G.025X</code> worker type, each worker maps to 0.25 DPU (2 vCPUs, 4 GB of memory) with 84GB disk, and provides 1 executor per worker. We recommend this worker type for low volume streaming jobs. This worker type is only available for Glue version 3.0 or later streaming jobs.</p>
+   *             </li>
    *             <li>
    *                <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPUs, 16 GB of memory) with 94GB disk, and provides 1 executor per worker. We recommend this worker type for workloads such as data transforms, joins, and queries, to offers a scalable and cost effective way to run most jobs.</p>
    *             </li>
@@ -1092,13 +1621,28 @@ export interface StartJobRunRequest {
    *                <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPUs, 32 GB of memory) with 138GB disk, and provides 1 executor per worker. We recommend this worker type for workloads such as data transforms, joins, and queries, to offers a scalable and cost effective way to run most jobs.</p>
    *             </li>
    *             <li>
-   *                <p>For the <code>G.4X</code> worker type, each worker maps to 4 DPU (16 vCPUs, 64 GB of memory) with 256GB disk, and provides 1 executor per worker. We recommend this worker type for jobs whose workloads contain your most demanding transforms, aggregations, joins, and queries. This worker type is available only for Glue version 3.0 or later Spark ETL jobs in the following Amazon Web Services Regions: US East (Ohio), US East (N. Virginia), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Canada (Central), Europe (Frankfurt), Europe (Ireland), and Europe (Stockholm).</p>
+   *                <p>For the <code>G.4X</code> worker type, each worker maps to 4 DPU (16 vCPUs, 64 GB of memory) with 256GB disk, and provides 1 executor per worker. We recommend this worker type for jobs whose workloads contain your most demanding transforms, aggregations, joins, and queries. This worker type is available only for Glue version 3.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
    *             </li>
    *             <li>
-   *                <p>For the <code>G.8X</code> worker type, each worker maps to 8 DPU (32 vCPUs, 128 GB of memory) with 512GB disk, and provides 1 executor per worker. We recommend this worker type for jobs whose workloads contain your most demanding transforms, aggregations, joins, and queries. This worker type is available only for Glue version 3.0 or later Spark ETL jobs, in the same Amazon Web Services Regions as supported for the <code>G.4X</code> worker type.</p>
+   *                <p>For the <code>G.8X</code> worker type, each worker maps to 8 DPU (32 vCPUs, 128 GB of memory) with 512GB disk, and provides 1 executor per worker. We recommend this worker type for jobs whose workloads contain your most demanding transforms, aggregations, joins, and queries. This worker type is available only for Glue version 3.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
    *             </li>
    *             <li>
-   *                <p>For the <code>G.025X</code> worker type, each worker maps to 0.25 DPU (2 vCPUs, 4 GB of memory) with 84GB disk, and provides 1 executor per worker. We recommend this worker type for low volume streaming jobs. This worker type is only available for Glue version 3.0 or later streaming jobs.</p>
+   *                <p>For the <code>G.12X</code> worker type, each worker maps to 12 DPU (48 vCPUs, 192 GB of memory) with 768GB disk, and provides 1 executor per worker. We recommend this worker type for jobs with very large workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
+   *             </li>
+   *             <li>
+   *                <p>For the <code>G.16X</code> worker type, each worker maps to 16 DPU (64 vCPUs, 256 GB of memory) with 1024GB disk, and provides 1 executor per worker. We recommend this worker type for jobs with very large workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
+   *             </li>
+   *             <li>
+   *                <p>For the <code>R.1X</code> worker type, each worker maps to 1 M-DPU (4 vCPUs, 32 GB of memory) with 94GB disk, and provides 1 executor per worker. We recommend this worker type for memory-intensive workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
+   *             </li>
+   *             <li>
+   *                <p>For the <code>R.2X</code> worker type, each worker maps to 2 M-DPU (8 vCPUs, 64 GB of memory) with 138GB disk, and provides 1 executor per worker. We recommend this worker type for memory-intensive workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
+   *             </li>
+   *             <li>
+   *                <p>For the <code>R.4X</code> worker type, each worker maps to 4 M-DPU (16 vCPUs, 128 GB of memory) with 256GB disk, and provides 1 executor per worker. We recommend this worker type for memory-intensive workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
+   *             </li>
+   *             <li>
+   *                <p>For the <code>R.8X</code> worker type, each worker maps to 8 M-DPU (32 vCPUs, 256 GB of memory) with 512GB disk, and provides 1 executor per worker. We recommend this worker type for memory-intensive workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
    *             </li>
    *             <li>
    *                <p>For the <code>Z.2X</code> worker type, each worker maps to 2 M-DPU (8vCPUs, 64 GB of memory) with 128 GB disk, and provides up to 8 Ray workers based on the autoscaler.</p>
@@ -1298,6 +1842,12 @@ export interface StopColumnStatisticsTaskRunRequest {
    * @public
    */
   TableName: string | undefined;
+
+  /**
+   * <p>The ID of the Data Catalog where the table resides. If none is supplied, the Amazon Web Services account ID is used by default.</p>
+   * @public
+   */
+  CatalogID?: string | undefined;
 }
 
 /**
@@ -1320,6 +1870,12 @@ export interface StopColumnStatisticsTaskRunScheduleRequest {
    * @public
    */
   TableName: string | undefined;
+
+  /**
+   * <p>The ID of the Data Catalog where the table resides. If none is supplied, the Amazon Web Services account ID is used by default.</p>
+   * @public
+   */
+  CatalogID?: string | undefined;
 }
 
 /**
@@ -2154,6 +2710,12 @@ export interface UpdateCrawlerRequest {
    * @public
    */
   CrawlerSecurityConfiguration?: string | undefined;
+
+  /**
+   * <p>The ID of the Data Catalog in which to store the crawler's output. If you omit this value, the existing value on the crawler is preserved.</p>
+   * @public
+   */
+  CatalogId?: string | undefined;
 }
 
 /**
@@ -3725,6 +4287,12 @@ export interface Table {
    * @public
    */
   Status?: TableStatus | undefined;
+
+  /**
+   * <p>A <code>RLSProperties</code> structure that describes the default row-level security policy of the table.</p>
+   * @public
+   */
+  RLSProperties?: RLSProperties | undefined;
 }
 
 /**
@@ -4695,9 +5263,11 @@ export interface CreateJobRequest {
   NumberOfWorkers?: number | undefined;
 
   /**
-   * <p>The type of predefined worker that is allocated when a job runs. Accepts a value of
-   *       G.1X, G.2X, G.4X, G.8X or G.025X for Spark jobs. Accepts the value Z.2X for Ray jobs.</p>
+   * <p>The type of predefined worker that is allocated when a job runs. Accepts a value of G.025X, G.1X, G.2X, G.4X, G.8X, G.12X, G.16X, R.1X, R.2X, R.4X, or R.8X for Spark jobs. Accepts the value Z.2X for Ray jobs.</p>
    *          <ul>
+   *             <li>
+   *                <p>For the <code>G.025X</code> worker type, each worker maps to 0.25 DPU (2 vCPUs, 4 GB of memory) with 84GB disk, and provides 1 executor per worker. We recommend this worker type for low volume streaming jobs. This worker type is only available for Glue version 3.0 or later streaming jobs.</p>
+   *             </li>
    *             <li>
    *                <p>For the <code>G.1X</code> worker type, each worker maps to 1 DPU (4 vCPUs, 16 GB of memory) with 94GB disk, and provides 1 executor per worker. We recommend this worker type for workloads such as data transforms, joins, and queries, to offers a scalable and cost effective way to run most jobs.</p>
    *             </li>
@@ -4705,13 +5275,28 @@ export interface CreateJobRequest {
    *                <p>For the <code>G.2X</code> worker type, each worker maps to 2 DPU (8 vCPUs, 32 GB of memory) with 138GB disk, and provides 1 executor per worker. We recommend this worker type for workloads such as data transforms, joins, and queries, to offers a scalable and cost effective way to run most jobs.</p>
    *             </li>
    *             <li>
-   *                <p>For the <code>G.4X</code> worker type, each worker maps to 4 DPU (16 vCPUs, 64 GB of memory) with 256GB disk, and provides 1 executor per worker. We recommend this worker type for jobs whose workloads contain your most demanding transforms, aggregations, joins, and queries. This worker type is available only for Glue version 3.0 or later Spark ETL jobs in the following Amazon Web Services Regions: US East (Ohio), US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Mumbai), Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Canada (Central), Europe (Frankfurt), Europe (Ireland), Europe (London), Europe (Spain), Europe (Stockholm), and South America (São Paulo).</p>
+   *                <p>For the <code>G.4X</code> worker type, each worker maps to 4 DPU (16 vCPUs, 64 GB of memory) with 256GB disk, and provides 1 executor per worker. We recommend this worker type for jobs whose workloads contain your most demanding transforms, aggregations, joins, and queries. This worker type is available only for Glue version 3.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
    *             </li>
    *             <li>
-   *                <p>For the <code>G.8X</code> worker type, each worker maps to 8 DPU (32 vCPUs, 128 GB of memory) with 512GB disk, and provides 1 executor per worker. We recommend this worker type for jobs whose workloads contain your most demanding transforms, aggregations, joins, and queries. This worker type is available only for Glue version 3.0 or later Spark ETL jobs, in the same Amazon Web Services Regions as supported for the <code>G.4X</code> worker type.</p>
+   *                <p>For the <code>G.8X</code> worker type, each worker maps to 8 DPU (32 vCPUs, 128 GB of memory) with 512GB disk, and provides 1 executor per worker. We recommend this worker type for jobs whose workloads contain your most demanding transforms, aggregations, joins, and queries. This worker type is available only for Glue version 3.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
    *             </li>
    *             <li>
-   *                <p>For the <code>G.025X</code> worker type, each worker maps to 0.25 DPU (2 vCPUs, 4 GB of memory) with 84GB disk, and provides 1 executor per worker. We recommend this worker type for low volume streaming jobs. This worker type is only available for Glue version 3.0 or later streaming jobs.</p>
+   *                <p>For the <code>G.12X</code> worker type, each worker maps to 12 DPU (48 vCPUs, 192 GB of memory) with 768GB disk, and provides 1 executor per worker. We recommend this worker type for jobs with very large workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
+   *             </li>
+   *             <li>
+   *                <p>For the <code>G.16X</code> worker type, each worker maps to 16 DPU (64 vCPUs, 256 GB of memory) with 1024GB disk, and provides 1 executor per worker. We recommend this worker type for jobs with very large workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
+   *             </li>
+   *             <li>
+   *                <p>For the <code>R.1X</code> worker type, each worker maps to 1 M-DPU (4 vCPUs, 32 GB of memory) with 94GB disk, and provides 1 executor per worker. We recommend this worker type for memory-intensive workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
+   *             </li>
+   *             <li>
+   *                <p>For the <code>R.2X</code> worker type, each worker maps to 2 M-DPU (8 vCPUs, 64 GB of memory) with 138GB disk, and provides 1 executor per worker. We recommend this worker type for memory-intensive workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
+   *             </li>
+   *             <li>
+   *                <p>For the <code>R.4X</code> worker type, each worker maps to 4 M-DPU (16 vCPUs, 128 GB of memory) with 256GB disk, and provides 1 executor per worker. We recommend this worker type for memory-intensive workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
+   *             </li>
+   *             <li>
+   *                <p>For the <code>R.8X</code> worker type, each worker maps to 8 M-DPU (32 vCPUs, 256 GB of memory) with 512GB disk, and provides 1 executor per worker. We recommend this worker type for memory-intensive workloads. This worker type is available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
    *             </li>
    *             <li>
    *                <p>For the <code>Z.2X</code> worker type, each worker maps to 2 M-DPU (8vCPUs, 64 GB of memory) with 128 GB disk, and provides up to 8 Ray workers based on the autoscaler.</p>
@@ -4967,18 +5552,19 @@ export interface Job {
    *          <p>R Worker Types (Memory-optimized workers):</p>
    *          <ul>
    *             <li>
-   *                <p>R.1X: 1 M-DPU (4 vCPUs, 32 GB memory)</p>
+   *                <p>R.1X: 1 M-DPU (4 vCPUs, 32 GB memory, 94GB disk)</p>
    *             </li>
    *             <li>
-   *                <p>R.2X: 2 M-DPU (8 vCPUs, 64 GB memory)</p>
+   *                <p>R.2X: 2 M-DPU (8 vCPUs, 64 GB memory, 138GB disk)</p>
    *             </li>
    *             <li>
-   *                <p>R.4X: 4 M-DPU (16 vCPUs, 128 GB memory)</p>
+   *                <p>R.4X: 4 M-DPU (16 vCPUs, 128 GB memory, 256GB disk)</p>
    *             </li>
    *             <li>
-   *                <p>R.8X: 8 M-DPU (32 vCPUs, 256 GB memory)</p>
+   *                <p>R.8X: 8 M-DPU (32 vCPUs, 256 GB memory, 512GB disk)</p>
    *             </li>
    *          </ul>
+   *          <p>The <code>G.12X</code>, <code>G.16X</code>, and <code>R.1X</code> through <code>R.8X</code> worker types are available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
    * @public
    */
   WorkerType?: WorkerType | undefined;
@@ -5207,11 +5793,11 @@ export interface JobUpdate {
   MaxCapacity?: number | undefined;
 
   /**
-   * <p>The type of predefined worker that is allocated when a job runs. Accepts a value of
-   *       G.1X, G.2X, G.4X, G.8X or G.025X for Spark jobs. Accepts the value Z.2X for Ray jobs. For more information, see
+   * <p>The type of predefined worker that is allocated when a job runs. Accepts a value of G.025X, G.1X, G.2X, G.4X, G.8X, G.12X, G.16X, R.1X, R.2X, R.4X, or R.8X for Spark jobs. Accepts the value Z.2X for Ray jobs. For more information, see
    *       <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html#create-job">Defining job properties for Spark jobs
    *       </a>
    *          </p>
+   *          <p>The <code>G.12X</code>, <code>G.16X</code>, and <code>R.1X</code> through <code>R.8X</code> worker types are available only for Glue version 4.0 or later Spark ETL jobs in select Amazon Web Services Regions. For the supported Regions, see <a href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Configuring job properties for Spark jobs</a> in the developer guide.</p>
    * @public
    */
   WorkerType?: WorkerType | undefined;

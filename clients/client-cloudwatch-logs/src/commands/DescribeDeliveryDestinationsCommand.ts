@@ -36,6 +36,9 @@ export interface DescribeDeliveryDestinationsCommandOutput extends DescribeDeliv
  * const input = { // DescribeDeliveryDestinationsRequest
  *   nextToken: "STRING_VALUE",
  *   limit: Number("int"),
+ *   names: [ // DeliveryDestinationNames
+ *     "STRING_VALUE",
+ *   ],
  * };
  * const command = new DescribeDeliveryDestinationsCommand(input);
  * const response = await client.send(command);
@@ -49,6 +52,7 @@ export interface DescribeDeliveryDestinationsCommandOutput extends DescribeDeliv
  * //       deliveryDestinationConfiguration: { // DeliveryDestinationConfiguration
  * //         destinationResourceArn: "STRING_VALUE", // required
  * //       },
+ * //       roleArn: "STRING_VALUE",
  * //       tags: { // Tags
  * //         "<keys>": "STRING_VALUE",
  * //       },

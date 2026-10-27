@@ -35,6 +35,18 @@ export type CentralizationFailureReason =
  * @public
  * @enum
  */
+export const DeletionProtection = {
+  ENABLED: "ENABLED",
+} as const;
+/**
+ * @public
+ */
+export type DeletionProtection = (typeof DeletionProtection)[keyof typeof DeletionProtection];
+
+/**
+ * @public
+ * @enum
+ */
 export const EncryptionConflictResolutionStrategy = {
   ALLOW: "ALLOW",
   SKIP: "SKIP",
@@ -280,6 +292,7 @@ export const ResourceType = {
   AWS_BEDROCK_AGENTCORE_CODE_INTERPRETER: "AWS::BedrockAgentCore::CodeInterpreter",
   AWS_BEDROCK_AGENTCORE_GATEWAY: "AWS::BedrockAgentCore::Gateway",
   AWS_BEDROCK_AGENTCORE_MEMORY: "AWS::BedrockAgentCore::Memory",
+  AWS_BEDROCK_AGENTCORE_PAYMENT_MANAGER: "AWS::BedrockAgentCore::PaymentManager",
   AWS_BEDROCK_AGENTCORE_RUNTIME: "AWS::BedrockAgentCore::Runtime",
   AWS_BEDROCK_AGENTCORE_WORKLOAD_IDENTITY: "AWS::BedrockAgentCore::WorkloadIdentity",
   AWS_BEDROCK_KNOWLEDGEBASE: "AWS::Bedrock::KnowledgeBase",
@@ -297,6 +310,7 @@ export const ResourceType = {
   AWS_SECURITY_HUB: "AWS::SecurityHub::Hub",
   AWS_SECURITY_HUB_HUBV2: "AWS::SecurityHub::HubV2",
   AWS_WAF_V2_WEB_ACL: "AWS::WAFv2::WebACL",
+  AWS_XRAY_TRANSACTION_SEARCH_CONFIG: "AWS::XRay::TransactionSearchConfig",
 } as const;
 /**
  * @public
@@ -326,6 +340,7 @@ export type TelemetrySourceType = (typeof TelemetrySourceType)[keyof typeof Tele
  * @enum
  */
 export const TelemetryType = {
+  INSIGHTS: "Insights",
   LOGS: "Logs",
   METRICS: "Metrics",
   TRACES: "Traces",

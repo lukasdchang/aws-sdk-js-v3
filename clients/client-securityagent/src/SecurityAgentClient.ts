@@ -76,6 +76,14 @@ import type {
   BatchDeleteThreatModelsCommandOutput,
 } from "./commands/BatchDeleteThreatModelsCommand";
 import type {
+  BatchDisassociateFindingIssueCommandInput,
+  BatchDisassociateFindingIssueCommandOutput,
+} from "./commands/BatchDisassociateFindingIssueCommand";
+import type {
+  BatchExportFindingsCommandInput,
+  BatchExportFindingsCommandOutput,
+} from "./commands/BatchExportFindingsCommand";
+import type {
   BatchGetAgentSpacesCommandInput,
   BatchGetAgentSpacesCommandOutput,
 } from "./commands/BatchGetAgentSpacesCommand";
@@ -349,6 +357,8 @@ export type ServiceInputTypes =
   | BatchDeletePentestsCommandInput
   | BatchDeleteSecurityRequirementsCommandInput
   | BatchDeleteThreatModelsCommandInput
+  | BatchDisassociateFindingIssueCommandInput
+  | BatchExportFindingsCommandInput
   | BatchGetAgentSpacesCommandInput
   | BatchGetArtifactMetadataCommandInput
   | BatchGetCodeReviewJobTasksCommandInput
@@ -448,6 +458,8 @@ export type ServiceOutputTypes =
   | BatchDeletePentestsCommandOutput
   | BatchDeleteSecurityRequirementsCommandOutput
   | BatchDeleteThreatModelsCommandOutput
+  | BatchDisassociateFindingIssueCommandOutput
+  | BatchExportFindingsCommandOutput
   | BatchGetAgentSpacesCommandOutput
   | BatchGetArtifactMetadataCommandOutput
   | BatchGetCodeReviewJobTasksCommandOutput
@@ -667,7 +679,8 @@ export interface ClientDefaults extends Partial<__SmithyConfiguration<__HttpHand
 
   /**
    * Specifies which retry algorithm to use.
-   * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-smithy-util-retry/Enum/RETRY_MODES/
+   * Accepted values are "standard" and "adaptive".
+   * @see https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html
    *
    */
   retryMode?: string | __Provider<string>;

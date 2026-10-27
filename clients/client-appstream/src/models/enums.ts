@@ -242,6 +242,7 @@ export const PlatformType = {
   ROCKY_LINUX8: "ROCKY_LINUX8",
   UBUNTU_PRO_2404: "UBUNTU_PRO_2404",
   WINDOWS: "WINDOWS",
+  WINDOWS_11: "WINDOWS_11",
   WINDOWS_SERVER_2016: "WINDOWS_SERVER_2016",
   WINDOWS_SERVER_2019: "WINDOWS_SERVER_2019",
   WINDOWS_SERVER_2022: "WINDOWS_SERVER_2022",
@@ -526,6 +527,20 @@ export type VisibilityType = (typeof VisibilityType)[keyof typeof VisibilityType
  * @public
  * @enum
  */
+export const StorageConnectorAuthentication = {
+  FORCE_REAUTHENTICATION: "FORCE_REAUTHENTICATION",
+  REUSE_CREDENTIALS: "REUSE_CREDENTIALS",
+} as const;
+/**
+ * @public
+ */
+export type StorageConnectorAuthentication =
+  (typeof StorageConnectorAuthentication)[keyof typeof StorageConnectorAuthentication];
+
+/**
+ * @public
+ * @enum
+ */
 export const StorageConnectorType = {
   GOOGLE_DRIVE: "GOOGLE_DRIVE",
   HOMEFOLDERS: "HOMEFOLDERS",
@@ -721,6 +736,7 @@ export const StackAttribute = {
   IAM_ROLE_ARN: "IAM_ROLE_ARN",
   REDIRECT_URL: "REDIRECT_URL",
   STORAGE_CONNECTORS: "STORAGE_CONNECTORS",
+  STORAGE_CONNECTOR_AUTHENTICATION: "STORAGE_CONNECTOR_AUTHENTICATION",
   STORAGE_CONNECTOR_GOOGLE_DRIVE: "STORAGE_CONNECTOR_GOOGLE_DRIVE",
   STORAGE_CONNECTOR_HOMEFOLDERS: "STORAGE_CONNECTOR_HOMEFOLDERS",
   STORAGE_CONNECTOR_ONE_DRIVE: "STORAGE_CONNECTOR_ONE_DRIVE",

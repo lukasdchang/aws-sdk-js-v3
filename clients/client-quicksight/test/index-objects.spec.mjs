@@ -634,6 +634,8 @@ import {
   DefaultFormatting$,
   DefaultFreeFormLayoutConfiguration$,
   DefaultGridLayoutConfiguration$,
+  DefaultHierarchyFilterDropDownControlOptions$,
+  DefaultHierarchyFilterListControlOptions$,
   DefaultInteractiveLayoutConfiguration$,
   DefaultNewSheetConfiguration$,
   DefaultPaginatedLayoutConfiguration$,
@@ -1332,6 +1334,15 @@ import {
   HeatMapFieldWells$,
   HeatMapSortConfiguration$,
   HeatMapVisual$,
+  HierarchyFilter$,
+  HierarchyFilterDropDownControl$,
+  HierarchyFilterDropDownControlDisplayOptions$,
+  HierarchyFilterLevel$,
+  HierarchyFilterListControl$,
+  HierarchyFilterListControlDisplayOptions$,
+  HierarchyFilterListControlSearchOptions$,
+  HierarchyFilterMatchOperator,
+  HierarchyFilterNode$,
   HistogramAggregatedFieldWells$,
   HistogramBinOptions$,
   HistogramBinType,
@@ -1738,6 +1749,7 @@ import {
   OAuthClientAuthenticationType,
   OAuthClientCredentials$,
   OAuthParameters$,
+  OneDriveClientCredentials$,
   OneDriveParameters$,
   OracleParameters$,
   OtherCategories,
@@ -2103,6 +2115,7 @@ import {
   SemanticTable$,
   SemanticType$,
   SeriesItem$,
+  ServiceAccountCredentials$,
   ServiceNowParameters$,
   ServiceType,
   SessionLifetimeInMinutesInvalidException,
@@ -2112,6 +2125,7 @@ import {
   ShapeConditionalFormat$,
   SharedColumnSemanticMetadata$,
   SharedViewConfigurations$,
+  SharePointClientCredentials$,
   SharePointParameters$,
   SharingModel,
   Sheet$,
@@ -3799,6 +3813,8 @@ assert(typeof DefaultFilterListControlOptions$ === "object");
 assert(typeof DefaultFormatting$ === "object");
 assert(typeof DefaultFreeFormLayoutConfiguration$ === "object");
 assert(typeof DefaultGridLayoutConfiguration$ === "object");
+assert(typeof DefaultHierarchyFilterDropDownControlOptions$ === "object");
+assert(typeof DefaultHierarchyFilterListControlOptions$ === "object");
 assert(typeof DefaultInteractiveLayoutConfiguration$ === "object");
 assert(typeof DefaultNewSheetConfiguration$ === "object");
 assert(typeof DefaultPaginatedLayoutConfiguration$ === "object");
@@ -4219,6 +4235,14 @@ assert(typeof HeatMapConfiguration$ === "object");
 assert(typeof HeatMapFieldWells$ === "object");
 assert(typeof HeatMapSortConfiguration$ === "object");
 assert(typeof HeatMapVisual$ === "object");
+assert(typeof HierarchyFilter$ === "object");
+assert(typeof HierarchyFilterDropDownControl$ === "object");
+assert(typeof HierarchyFilterDropDownControlDisplayOptions$ === "object");
+assert(typeof HierarchyFilterLevel$ === "object");
+assert(typeof HierarchyFilterListControl$ === "object");
+assert(typeof HierarchyFilterListControlDisplayOptions$ === "object");
+assert(typeof HierarchyFilterListControlSearchOptions$ === "object");
+assert(typeof HierarchyFilterNode$ === "object");
 assert(typeof HistogramAggregatedFieldWells$ === "object");
 assert(typeof HistogramBinOptions$ === "object");
 assert(typeof HistogramConfiguration$ === "object");
@@ -4459,6 +4483,7 @@ assert(typeof OAuthClientApplication$ === "object");
 assert(typeof OAuthClientApplicationSummary$ === "object");
 assert(typeof OAuthClientCredentials$ === "object");
 assert(typeof OAuthParameters$ === "object");
+assert(typeof OneDriveClientCredentials$ === "object");
 assert(typeof OneDriveParameters$ === "object");
 assert(typeof OracleParameters$ === "object");
 assert(typeof OutputColumn$ === "object");
@@ -4676,12 +4701,14 @@ assert(typeof SemanticModelConfiguration$ === "object");
 assert(typeof SemanticTable$ === "object");
 assert(typeof SemanticType$ === "object");
 assert(typeof SeriesItem$ === "object");
+assert(typeof ServiceAccountCredentials$ === "object");
 assert(typeof ServiceNowParameters$ === "object");
 assert(typeof SessionTag$ === "object");
 assert(typeof SetParameterValueConfiguration$ === "object");
 assert(typeof ShapeConditionalFormat$ === "object");
 assert(typeof SharedColumnSemanticMetadata$ === "object");
 assert(typeof SharedViewConfigurations$ === "object");
+assert(typeof SharePointClientCredentials$ === "object");
 assert(typeof SharePointParameters$ === "object");
 assert(typeof Sheet$ === "object");
 assert(typeof SheetBackgroundStyle$ === "object");
@@ -5226,6 +5253,7 @@ assert(typeof GeospatialSelectedPointStyle === "object");
 assert(typeof GovernedAction === "object");
 assert(typeof GroupFilterAttribute === "object");
 assert(typeof GroupFilterOperator === "object");
+assert(typeof HierarchyFilterMatchOperator === "object");
 assert(typeof HistogramBinType === "object");
 assert(typeof HorizontalTextAlignment === "object");
 assert(typeof Icon === "object");

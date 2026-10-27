@@ -91,6 +91,7 @@ export const ClusterInstanceType = {
   ML_C7G_LARGE: "ml.c7g.large",
   ML_C7G_MEDIUM: "ml.c7g.medium",
   ML_C7G_XLARGE: "ml.c7g.xlarge",
+  ML_C8A_16XLARGE: "ml.c8a.16xlarge",
   ML_C8G_12XLARGE: "ml.c8g.12xlarge",
   ML_C8G_16XLARGE: "ml.c8g.16xlarge",
   ML_C8G_24XLARGE: "ml.c8g.24xlarge",
@@ -204,6 +205,7 @@ export const ClusterInstanceType = {
   ML_M7I_8XLARGE: "ml.m7i.8xlarge",
   ML_M7I_LARGE: "ml.m7i.large",
   ML_M7I_XLARGE: "ml.m7i.xlarge",
+  ML_M8A_16XLARGE: "ml.m8a.16xlarge",
   ML_M8G_12XLARGE: "ml.m8g.12xlarge",
   ML_M8G_16XLARGE: "ml.m8g.16xlarge",
   ML_M8G_24XLARGE: "ml.m8g.24xlarge",
@@ -2557,6 +2559,19 @@ export type ClarifyTextLanguage = (typeof ClarifyTextLanguage)[keyof typeof Clar
  * @public
  * @enum
  */
+export const CleanupFailureErrorCode = {
+  CLIENT_ERROR: "ClientError",
+  INTERNAL_FAILURE: "InternalFailure",
+} as const;
+/**
+ * @public
+ */
+export type CleanupFailureErrorCode = (typeof CleanupFailureErrorCode)[keyof typeof CleanupFailureErrorCode];
+
+/**
+ * @public
+ * @enum
+ */
 export const ClusterPatchingStrategy = {
   WHEN_ALL_IDLE: "WhenAllIdle",
   WHEN_IDLE: "WhenIdle",
@@ -2631,6 +2646,60 @@ export const ClusterConfigMode = {
  * @public
  */
 export type ClusterConfigMode = (typeof ClusterConfigMode)[keyof typeof ClusterConfigMode];
+
+/**
+ * @public
+ * @enum
+ */
+export const DatabaseConfigurationRollbackStatus = {
+  NOT_APPLICABLE: "NotApplicable",
+  REVERTED: "Reverted",
+  REVERT_FAILED: "RevertFailed",
+} as const;
+/**
+ * @public
+ */
+export type DatabaseConfigurationRollbackStatus =
+  (typeof DatabaseConfigurationRollbackStatus)[keyof typeof DatabaseConfigurationRollbackStatus];
+
+/**
+ * @public
+ * @enum
+ */
+export const SlurmHealthComponent = {
+  SLURMDBD: "Slurmdbd",
+} as const;
+/**
+ * @public
+ */
+export type SlurmHealthComponent = (typeof SlurmHealthComponent)[keyof typeof SlurmHealthComponent];
+
+/**
+ * @public
+ * @enum
+ */
+export const SlurmHealthReason = {
+  DAEMON_DISABLED: "DaemonDisabled",
+  DAEMON_DOWN: "DaemonDown",
+  DB_UNREACHABLE: "DbUnreachable",
+} as const;
+/**
+ * @public
+ */
+export type SlurmHealthReason = (typeof SlurmHealthReason)[keyof typeof SlurmHealthReason];
+
+/**
+ * @public
+ * @enum
+ */
+export const SlurmHealthStatus = {
+  HEALTHY: "Healthy",
+  UNHEALTHY: "Unhealthy",
+} as const;
+/**
+ * @public
+ */
+export type SlurmHealthStatus = (typeof SlurmHealthStatus)[keyof typeof SlurmHealthStatus];
 
 /**
  * @public
@@ -2724,6 +2793,7 @@ export type ClusterInterfaceType = (typeof ClusterInterfaceType)[keyof typeof Cl
 export const DeepHealthCheckType = {
   INSTANCE_CONNECTIVITY: "InstanceConnectivity",
   INSTANCE_STRESS: "InstanceStress",
+  MULTI_NODE_TRAINING_VALIDATION: "MultiNodeTrainingValidation",
 } as const;
 /**
  * @public
@@ -5528,6 +5598,10 @@ export type PipelineStatus = (typeof PipelineStatus)[keyof typeof PipelineStatus
  * @enum
  */
 export const PipelineExecutionStatus = {
+  /**
+   * <p>The pipeline completed all reachable work after one or more steps failed. Every failed step was handled by a scheduled downstream step whose trigger is <code>Failed</code> or <code>Any</code>.</p>
+   */
+  COMPLETED_WITH_FAILURES: "CompletedWithFailures",
   EXECUTING: "Executing",
   FAILED: "Failed",
   STOPPED: "Stopped",
@@ -5737,6 +5811,27 @@ export type SageMakerResourceName = (typeof SageMakerResourceName)[keyof typeof 
  * @public
  * @enum
  */
+export const TrainingSessionStatus = {
+  BLOCKED: "Blocked",
+  CREATED: "Created",
+  DELETING: "Deleting",
+  DELETION_FAILED: "DeletionFailed",
+  EXPIRED: "Expired",
+  FAILED: "Failed",
+  RUNNING: "Running",
+  SCHEDULED: "Scheduled",
+  STOPPED: "Stopped",
+  STOPPING: "Stopping",
+} as const;
+/**
+ * @public
+ */
+export type TrainingSessionStatus = (typeof TrainingSessionStatus)[keyof typeof TrainingSessionStatus];
+
+/**
+ * @public
+ * @enum
+ */
 export const TransformJobStatus = {
   COMPLETED: "Completed",
   FAILED: "Failed",
@@ -5901,6 +5996,20 @@ export const Operator = {
  * @public
  */
 export type Operator = (typeof Operator)[keyof typeof Operator];
+
+/**
+ * @public
+ * @enum
+ */
+export const ForEachStatus = {
+  FAILED: "Failed",
+  STOPPED: "Stopped",
+  SUCCEEDED: "Succeeded",
+} as const;
+/**
+ * @public
+ */
+export type ForEachStatus = (typeof ForEachStatus)[keyof typeof ForEachStatus];
 
 /**
  * @public
