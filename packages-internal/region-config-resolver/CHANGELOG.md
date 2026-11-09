@@ -53,6 +53,41 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+
+
+
+
+
+# 3.972.55 (2026-10-26)
+### Chores
+* **region-config-resolver:** update dependencies.
+
+
+
+# 3.972.54 (2026-10-21)
+### Chores
+* **region-config-resolver:** update dependencies.
+
+
+
+# 3.972.53 (2026-10-19)
+### Chores
+* **region-config-resolver:** update dependencies.
+
+
+
+# 3.972.52 (2026-10-12)
+### Chores
+* **region-config-resolver:** update dependencies.
+
+
+
+# 3.972.51 (2026-10-09)
+### Chores
+* **region-config-resolver:** update dependencies.
+
+
+
 # 3.972.50 (2026-09-22)
 ### Chores
 * **region-config-resolver:** update dependencies.

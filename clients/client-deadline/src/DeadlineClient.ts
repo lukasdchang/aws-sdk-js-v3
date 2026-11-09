@@ -247,6 +247,7 @@ import type {
   ListLicenseEndpointsCommandOutput,
 } from "./commands/ListLicenseEndpointsCommand";
 import type { ListLimitsCommandInput, ListLimitsCommandOutput } from "./commands/ListLimitsCommand";
+import type { ListMembershipsCommandInput, ListMembershipsCommandOutput } from "./commands/ListMembershipsCommand";
 import type {
   ListMeteredProductsCommandInput,
   ListMeteredProductsCommandOutput,
@@ -445,6 +446,7 @@ export type ServiceInputTypes =
   | ListJobsCommandInput
   | ListLicenseEndpointsCommandInput
   | ListLimitsCommandInput
+  | ListMembershipsCommandInput
   | ListMeteredProductsCommandInput
   | ListMonitorsCommandInput
   | ListQueueEnvironmentsCommandInput
@@ -576,6 +578,7 @@ export type ServiceOutputTypes =
   | ListJobsCommandOutput
   | ListLicenseEndpointsCommandOutput
   | ListLimitsCommandOutput
+  | ListMembershipsCommandOutput
   | ListMeteredProductsCommandOutput
   | ListMonitorsCommandOutput
   | ListQueueEnvironmentsCommandOutput
@@ -751,7 +754,8 @@ export interface ClientDefaults extends Partial<__SmithyConfiguration<__HttpHand
 
   /**
    * Specifies which retry algorithm to use.
-   * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-smithy-util-retry/Enum/RETRY_MODES/
+   * Accepted values are "standard" and "adaptive".
+   * @see https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html
    *
    */
   retryMode?: string | __Provider<string>;
@@ -812,7 +816,10 @@ export type DeadlineClientResolvedConfigType = __SmithyResolvedConfiguration<__H
 export interface DeadlineClientResolvedConfig extends DeadlineClientResolvedConfigType {}
 
 /**
- * <p>The Amazon Web Services Deadline Cloud API provides infrastructure and centralized management for your projects. Use the Deadline Cloud API to onboard users, assign projects, and attach permissions specific to their job function.</p> <p>With Deadline Cloud, content production teams can deploy resources for their workforce securely in the cloud, reducing the costs of added physical infrastructure. Keep your content production operations secure, while allowing your contributors to access the tools they need, such as scalable high-speed storage, licenses, and cost management services.</p>
+ * The Amazon Web Services Deadline Cloud API provides infrastructure and centralized management for your projects. Use the Deadline Cloud API to onboard users, assign projects, and attach permissions specific to their job function.
+ *
+ * With Deadline Cloud, content production teams can deploy resources for their workforce securely in the cloud, reducing the costs of added physical infrastructure. Keep your content production operations secure, while allowing your contributors to access the tools they need, such as scalable high-speed storage, licenses, and cost management services.
+ *
  * @public
  */
 export class DeadlineClient extends __Client<

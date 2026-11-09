@@ -1,13 +1,17 @@
 import {
+  ActionConfiguration$,
   ActionsSuppressedBy,
   AlarmContributor$,
   AlarmHistoryItem$,
   AlarmMuteRuleStatus,
   AlarmMuteRuleSummary$,
   AlarmPromQLCriteria$,
+  AlarmTagsPropagation$,
   AlarmType,
   AnomalyDetector$,
+  AnomalyDetectorAdaptationSpeed,
   AnomalyDetectorConfiguration$,
+  AnomalyDetectorOutlierFilteringStrength,
   AnomalyDetectorStateValue,
   AnomalyDetectorType,
   AssociateDatasetKmsKey$,
@@ -455,10 +459,12 @@ assert(typeof UpdateOTelEnrichment$ === "object");
 assert(typeof UpdateResourceMetricsConfigurationCommand === "function");
 assert(typeof UpdateResourceMetricsConfiguration$ === "object");
 // structural schemas
+assert(typeof ActionConfiguration$ === "object");
 assert(typeof AlarmContributor$ === "object");
 assert(typeof AlarmHistoryItem$ === "object");
 assert(typeof AlarmMuteRuleSummary$ === "object");
 assert(typeof AlarmPromQLCriteria$ === "object");
+assert(typeof AlarmTagsPropagation$ === "object");
 assert(typeof AnomalyDetector$ === "object");
 assert(typeof AnomalyDetectorConfiguration$ === "object");
 assert(typeof AssociateDatasetKmsKeyInput$ === "object");
@@ -613,6 +619,8 @@ assert(typeof WarmUpConfiguration$ === "object");
 assert(typeof ActionsSuppressedBy === "object");
 assert(typeof AlarmMuteRuleStatus === "object");
 assert(typeof AlarmType === "object");
+assert(typeof AnomalyDetectorAdaptationSpeed === "object");
+assert(typeof AnomalyDetectorOutlierFilteringStrength === "object");
 assert(typeof AnomalyDetectorStateValue === "object");
 assert(typeof AnomalyDetectorType === "object");
 assert(typeof ComparisonOperator === "object");

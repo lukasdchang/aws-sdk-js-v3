@@ -58,6 +58,7 @@ export interface UpdateAssociationCommandOutput extends UpdateAssociationOutput,
  *       ownerType: "organization" || "user", // required
  *       instanceIdentifier: "STRING_VALUE",
  *       runtimeRoleArn: "STRING_VALUE",
+ *       releaseManagementAssociationId: "STRING_VALUE",
  *     },
  *     slack: { // SlackConfiguration
  *       workspaceId: "STRING_VALUE", // required
@@ -117,6 +118,7 @@ export interface UpdateAssociationCommandOutput extends UpdateAssociationOutput,
  *       projectPath: "STRING_VALUE", // required
  *       instanceIdentifier: "STRING_VALUE",
  *       runtimeRoleArn: "STRING_VALUE",
+ *       releaseManagementAssociationId: "STRING_VALUE",
  *     },
  *     mcpserversplunk: {},
  *     eventChannel: {},
@@ -160,6 +162,29 @@ export interface UpdateAssociationCommandOutput extends UpdateAssociationOutput,
  *     },
  *     remoteagent: {},
  *     remoteagentsigv4: {},
+ *     msteams: { // MSTeamsConfiguration
+ *       teamId: "STRING_VALUE", // required
+ *       teamName: "STRING_VALUE", // required
+ *       transmissionTarget: { // MSTeamsTransmissionTarget
+ *         opsOncallTarget: { // MSTeamsChannel
+ *           channelName: "STRING_VALUE", // required
+ *           channelId: "STRING_VALUE", // required
+ *         },
+ *         opsSRETarget: {
+ *           channelName: "STRING_VALUE", // required
+ *           channelId: "STRING_VALUE", // required
+ *         },
+ *       },
+ *     },
+ *     releaseManagement: { // ReleaseManagementConfiguration
+ *       name: "STRING_VALUE", // required
+ *       networkAccess: { // NetworkAccessConfiguration Union: only one key present
+ *         privateAccess: { // PrivateNetworkAccess
+ *           privateConnectionName: "STRING_VALUE", // required
+ *           runtimeRoleArn: "STRING_VALUE", // required
+ *         },
+ *       },
+ *     },
  *   },
  *   capabilities: { // AssociationCapabilities
  *     "<keys>": { // CapabilityConfiguration
@@ -212,6 +237,7 @@ export interface UpdateAssociationCommandOutput extends UpdateAssociationOutput,
  * //         ownerType: "organization" || "user", // required
  * //         instanceIdentifier: "STRING_VALUE",
  * //         runtimeRoleArn: "STRING_VALUE",
+ * //         releaseManagementAssociationId: "STRING_VALUE",
  * //       },
  * //       slack: { // SlackConfiguration
  * //         workspaceId: "STRING_VALUE", // required
@@ -271,6 +297,7 @@ export interface UpdateAssociationCommandOutput extends UpdateAssociationOutput,
  * //         projectPath: "STRING_VALUE", // required
  * //         instanceIdentifier: "STRING_VALUE",
  * //         runtimeRoleArn: "STRING_VALUE",
+ * //         releaseManagementAssociationId: "STRING_VALUE",
  * //       },
  * //       mcpserversplunk: {},
  * //       eventChannel: {},
@@ -314,6 +341,29 @@ export interface UpdateAssociationCommandOutput extends UpdateAssociationOutput,
  * //       },
  * //       remoteagent: {},
  * //       remoteagentsigv4: {},
+ * //       msteams: { // MSTeamsConfiguration
+ * //         teamId: "STRING_VALUE", // required
+ * //         teamName: "STRING_VALUE", // required
+ * //         transmissionTarget: { // MSTeamsTransmissionTarget
+ * //           opsOncallTarget: { // MSTeamsChannel
+ * //             channelName: "STRING_VALUE", // required
+ * //             channelId: "STRING_VALUE", // required
+ * //           },
+ * //           opsSRETarget: {
+ * //             channelName: "STRING_VALUE", // required
+ * //             channelId: "STRING_VALUE", // required
+ * //           },
+ * //         },
+ * //       },
+ * //       releaseManagement: { // ReleaseManagementConfiguration
+ * //         name: "STRING_VALUE", // required
+ * //         networkAccess: { // NetworkAccessConfiguration Union: only one key present
+ * //           privateAccess: { // PrivateNetworkAccess
+ * //             privateConnectionName: "STRING_VALUE", // required
+ * //             runtimeRoleArn: "STRING_VALUE", // required
+ * //           },
+ * //         },
+ * //       },
  * //     },
  * //     capabilities: { // AssociationCapabilities
  * //       "<keys>": { // CapabilityConfiguration
@@ -350,14 +400,17 @@ export interface UpdateAssociationCommandOutput extends UpdateAssociationOutput,
  * @see {@link UpdateAssociationCommandOutput} for command's `response` shape.
  * @see {@link DevOpsAgentClientResolvedConfig | config} for DevOpsAgentClient's `config` shape.
  *
+ * @throws {@link ConflictException} (client fault)
+ *  <p>The request conflicts with the current state of the resource.</p>
+ *
  * @throws {@link InternalServerException} (server fault)
  *  <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
  *
  * @throws {@link ResourceNotFoundException} (client fault)
  *  <p>The requested resource could not be found.</p>
  *
- * @throws {@link ThrottlingException} (client fault)
- *  <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+ * @throws {@link ServiceQuotaExceededException} (client fault)
+ *  <p>The request would exceed the service quota limit.</p>
  *
  * @throws {@link ValidationException} (client fault)
  *  <p>The input fails to satisfy the constraints specified by the service.</p>
@@ -365,17 +418,14 @@ export interface UpdateAssociationCommandOutput extends UpdateAssociationOutput,
  * @throws {@link AccessDeniedException} (client fault)
  *  <p>Access to the requested resource is denied due to insufficient permissions.</p>
  *
- * @throws {@link ConflictException} (client fault)
- *  <p>The request conflicts with the current state of the resource.</p>
- *
  * @throws {@link ContentSizeExceededException} (client fault)
  *  <p>This exception is thrown when the content size exceeds the allowed limit.</p>
  *
  * @throws {@link InvalidParameterException} (client fault)
  *  <p>One or more parameters provided in the request are invalid.</p>
  *
- * @throws {@link ServiceQuotaExceededException} (client fault)
- *  <p>The request would exceed the service quota limit.</p>
+ * @throws {@link ThrottlingException} (client fault)
+ *  <p>The request was throttled due to too many requests. Please slow down and try again.</p>
  *
  * @throws {@link DevOpsAgentServiceException}
  * <p>Base exception class for all service exceptions from DevOpsAgent service.</p>

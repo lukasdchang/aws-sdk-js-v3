@@ -8,6 +8,7 @@ import { HealthLakeServiceException as __BaseException } from "./HealthLakeServi
  * @public
  */
 export class AccessDeniedException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.healthlake#AccessDeniedException";
   readonly name = "AccessDeniedException" as const;
   readonly $fault = "client" as const;
   /**
@@ -34,6 +35,7 @@ export class AccessDeniedException extends __BaseException {
  * @public
  */
 export class InternalServerException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.healthlake#InternalServerException";
   readonly name = "InternalServerException" as const;
   readonly $fault = "server" as const;
   /**
@@ -60,6 +62,7 @@ export class InternalServerException extends __BaseException {
  * @public
  */
 export class ResourceNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.healthlake#ResourceNotFoundException";
   readonly name = "ResourceNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -86,6 +89,7 @@ export class ResourceNotFoundException extends __BaseException {
  * @public
  */
 export class ThrottlingException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.healthlake#ThrottlingException";
   readonly name = "ThrottlingException" as const;
   readonly $fault = "client" as const;
   /**
@@ -112,6 +116,7 @@ export class ThrottlingException extends __BaseException {
  * @public
  */
 export class ValidationException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.healthlake#ValidationException";
   readonly name = "ValidationException" as const;
   readonly $fault = "client" as const;
   /**
@@ -138,6 +143,7 @@ export class ValidationException extends __BaseException {
  * @public
  */
 export class ConflictException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.healthlake#ConflictException";
   readonly name = "ConflictException" as const;
   readonly $fault = "client" as const;
   /**
@@ -164,6 +170,7 @@ export class ConflictException extends __BaseException {
  * @public
  */
 export class ServiceQuotaExceededException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.healthlake#ServiceQuotaExceededException";
   readonly name = "ServiceQuotaExceededException" as const;
   readonly $fault = "client" as const;
   /**
@@ -186,120 +193,11 @@ export class ServiceQuotaExceededException extends __BaseException {
 }
 
 /**
- * <p>The agent message does not fit within the current conversation context. Start a new conversation or provide a message that relates to the current profile customization session.</p>
- * @public
- */
-export class AgentMessageOutOfContextException extends __BaseException {
-  readonly name = "AgentMessageOutOfContextException" as const;
-  readonly $fault = "client" as const;
-  Message: string | undefined;
-  /**
-   * @internal
-   */
-  constructor(opts: __ExceptionOptionType<AgentMessageOutOfContextException, __BaseException>) {
-    super({
-      name: "AgentMessageOutOfContextException",
-      $fault: "client",
-      ...opts,
-    });
-    Object.setPrototypeOf(this, AgentMessageOutOfContextException.prototype);
-    this.Message = opts.Message;
-  }
-}
-
-/**
- * <p>The specified conversation identifier does not exist. Verify the conversation ID or omit it to start a new conversation.</p>
- * @public
- */
-export class ConversationNotFoundException extends __BaseException {
-  readonly name = "ConversationNotFoundException" as const;
-  readonly $fault = "client" as const;
-  Message: string | undefined;
-  /**
-   * @internal
-   */
-  constructor(opts: __ExceptionOptionType<ConversationNotFoundException, __BaseException>) {
-    super({
-      name: "ConversationNotFoundException",
-      $fault: "client",
-      ...opts,
-    });
-    Object.setPrototypeOf(this, ConversationNotFoundException.prototype);
-    this.Message = opts.Message;
-  }
-}
-
-/**
- * <p>The requested operation is not yet available. Check the service documentation for a list of supported operations.</p>
- * @public
- */
-export class NotImplementedOperationException extends __BaseException {
-  readonly name = "NotImplementedOperationException" as const;
-  readonly $fault = "server" as const;
-  Message: string | undefined;
-  /**
-   * @internal
-   */
-  constructor(opts: __ExceptionOptionType<NotImplementedOperationException, __BaseException>) {
-    super({
-      name: "NotImplementedOperationException",
-      $fault: "server",
-      ...opts,
-    });
-    Object.setPrototypeOf(this, NotImplementedOperationException.prototype);
-    this.Message = opts.Message;
-  }
-}
-
-/**
- * <p>You are not authorized to make this request. Verify that your Amazon Web Services credentials are valid and that you have the required permissions.</p>
- * @public
- */
-export class UnauthorizedException extends __BaseException {
-  readonly name = "UnauthorizedException" as const;
-  readonly $fault = "client" as const;
-  Message: string | undefined;
-  /**
-   * @internal
-   */
-  constructor(opts: __ExceptionOptionType<UnauthorizedException, __BaseException>) {
-    super({
-      name: "UnauthorizedException",
-      $fault: "client",
-      ...opts,
-    });
-    Object.setPrototypeOf(this, UnauthorizedException.prototype);
-    this.Message = opts.Message;
-  }
-}
-
-/**
- * <p>The content type in your request is not supported. Use a supported content type for this operation.</p>
- * @public
- */
-export class UnsupportedMIMETypeException extends __BaseException {
-  readonly name = "UnsupportedMIMETypeException" as const;
-  readonly $fault = "client" as const;
-  Message: string | undefined;
-  /**
-   * @internal
-   */
-  constructor(opts: __ExceptionOptionType<UnsupportedMIMETypeException, __BaseException>) {
-    super({
-      name: "UnsupportedMIMETypeException",
-      $fault: "client",
-      ...opts,
-    });
-    Object.setPrototypeOf(this, UnsupportedMIMETypeException.prototype);
-    this.Message = opts.Message;
-  }
-}
-
-/**
  * <p>A dependent service failed to fulfill the request.</p>
  * @public
  */
 export class FailedDependencyException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.healthlake#FailedDependencyException";
   readonly name = "FailedDependencyException" as const;
   readonly $fault = "client" as const;
   /**

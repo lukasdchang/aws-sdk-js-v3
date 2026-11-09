@@ -6,6 +6,8 @@ import {
   AccessPolicy$,
   AccessScope$,
   AccessScopeType,
+  AckConfigRequest$,
+  AckConfigResponse$,
   ActivateCertificateAuthority$,
   ActivateCertificateAuthorityCommand,
   ActivateCertificateAuthorityRequest$,
@@ -101,6 +103,7 @@ import {
   ControlPlanePlacementResponse$,
   ControlPlaneScalingConfig$,
   ControlPlaneScalingTierInfo$,
+  CrdManagementConfiguration$,
   CreateAccessConfigRequest$,
   CreateAccessEntry$,
   CreateAccessEntryCommand,
@@ -273,6 +276,7 @@ import {
   FargateProfileIssueCode,
   FargateProfileSelector$,
   FargateProfileStatus,
+  GatewayApiConfiguration$,
   HorizontalPodAutoscalerControllerConfigRequest$,
   HorizontalPodAutoscalerControllerConfigResponse$,
   HorizontalPodAutoscalerControllerVersionConfig$,
@@ -480,6 +484,7 @@ import {
   UpdateAccessEntryCommand,
   UpdateAccessEntryRequest$,
   UpdateAccessEntryResponse$,
+  UpdateAckConfig$,
   UpdateAddon$,
   UpdateAddonCommand,
   UpdateAddonRequest$,
@@ -699,6 +704,8 @@ assert(typeof AccessConfigResponse$ === "object");
 assert(typeof AccessEntry$ === "object");
 assert(typeof AccessPolicy$ === "object");
 assert(typeof AccessScope$ === "object");
+assert(typeof AckConfigRequest$ === "object");
+assert(typeof AckConfigResponse$ === "object");
 assert(typeof ActivateCertificateAuthorityRequest$ === "object");
 assert(typeof ActivateCertificateAuthorityResponse$ === "object");
 assert(typeof ActiveCertificateAuthority$ === "object");
@@ -758,6 +765,7 @@ assert(typeof ControlPlanePlacementRequest$ === "object");
 assert(typeof ControlPlanePlacementResponse$ === "object");
 assert(typeof ControlPlaneScalingConfig$ === "object");
 assert(typeof ControlPlaneScalingTierInfo$ === "object");
+assert(typeof CrdManagementConfiguration$ === "object");
 assert(typeof CreateAccessConfigRequest$ === "object");
 assert(typeof CreateAccessEntryRequest$ === "object");
 assert(typeof CreateAccessEntryResponse$ === "object");
@@ -847,6 +855,7 @@ assert(typeof FargateProfile$ === "object");
 assert(typeof FargateProfileHealth$ === "object");
 assert(typeof FargateProfileIssue$ === "object");
 assert(typeof FargateProfileSelector$ === "object");
+assert(typeof GatewayApiConfiguration$ === "object");
 assert(typeof HorizontalPodAutoscalerControllerConfigRequest$ === "object");
 assert(typeof HorizontalPodAutoscalerControllerConfigResponse$ === "object");
 assert(typeof HorizontalPodAutoscalerControllerVersionConfig$ === "object");
@@ -959,6 +968,7 @@ assert(typeof Update$ === "object");
 assert(typeof UpdateAccessConfigRequest$ === "object");
 assert(typeof UpdateAccessEntryRequest$ === "object");
 assert(typeof UpdateAccessEntryResponse$ === "object");
+assert(typeof UpdateAckConfig$ === "object");
 assert(typeof UpdateAddonRequest$ === "object");
 assert(typeof UpdateAddonResponse$ === "object");
 assert(typeof UpdateArgoCdConfig$ === "object");

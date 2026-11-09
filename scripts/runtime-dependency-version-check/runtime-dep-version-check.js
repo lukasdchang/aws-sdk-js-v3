@@ -30,6 +30,7 @@ const clients = listFolders(path.join(root, "clients"), false);
 const lib = listFolders(path.join(root, "lib"), false);
 const packages = listFolders(path.join(root, "packages"), false);
 const packagesInternal = listFolders(path.join(root, "packages-internal"), false);
+const preview = listFolders(path.join(root, "preview"), false);
 const _private = listFolders(path.join(root, "private"), false);
 
 const setCanonicalVersion = process.argv.includes("--set-smithy-version");
@@ -38,7 +39,13 @@ const colocatedSmithy = fs.existsSync(path.join(root, "..", "smithy-typescript",
 const localCanonicalVersions = {};
 
 const clientPackages = [...clients, ..._private.filter((p) => !p.endsWith("-test"))];
-const nonClientPackages = [...lib, ...packages, ...packagesInternal, ..._private.filter((p) => p.endsWith("-test"))];
+const nonClientPackages = [
+  ...lib,
+  ...packages,
+  ...packagesInternal,
+  ...preview,
+  ..._private.filter((p) => p.endsWith("-test")),
+];
 
 for (const pkg of [...clientPackages, ...nonClientPackages]) {
   const pkgJsonPath = path.join(pkg, "package.json");
@@ -58,7 +65,10 @@ const deps = {
   } */
 };
 
-const ignored = ["vitest"];
+// @aws-sdk/middleware-sdk-eventbridge was removed from the monorepo, so it has no
+// canonical workspace version. It is declared at a literal registry version only to
+// complete the AWS SDK for JavaScript v3 provided by Lambda Node.js runtimes.
+const ignored = ["vitest", "@aws-sdk/middleware-sdk-eventbridge"];
 
 readPackages(clientPackages);
 checkVersions();

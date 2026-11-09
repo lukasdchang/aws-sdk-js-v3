@@ -10,6 +10,7 @@ import { WorkspacesInstancesServiceException as __BaseException } from "./Worksp
  * @public
  */
 export class AccessDeniedException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.workspacesinstances#AccessDeniedException";
   readonly name = "AccessDeniedException" as const;
   readonly $fault = "client" as const;
   /**
@@ -36,6 +37,7 @@ export class AccessDeniedException extends __BaseException {
  * @public
  */
 export class ConflictException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.workspacesinstances#ConflictException";
   readonly name = "ConflictException" as const;
   readonly $fault = "client" as const;
   /**
@@ -76,6 +78,7 @@ export class ConflictException extends __BaseException {
  * @public
  */
 export class InternalServerException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.workspacesinstances#InternalServerException";
   readonly name = "InternalServerException" as const;
   readonly $fault = "server" as const;
   $retryable = {};
@@ -110,6 +113,7 @@ export class InternalServerException extends __BaseException {
  * @public
  */
 export class ResourceNotFoundException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.workspacesinstances#ResourceNotFoundException";
   readonly name = "ResourceNotFoundException" as const;
   readonly $fault = "client" as const;
   /**
@@ -150,6 +154,7 @@ export class ResourceNotFoundException extends __BaseException {
  * @public
  */
 export class ThrottlingException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.workspacesinstances#ThrottlingException";
   readonly name = "ThrottlingException" as const;
   readonly $fault = "client" as const;
   $retryable = {
@@ -200,6 +205,7 @@ export class ThrottlingException extends __BaseException {
  * @public
  */
 export class ValidationException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.workspacesinstances#ValidationException";
   readonly name = "ValidationException" as const;
   readonly $fault = "client" as const;
   /**
@@ -240,6 +246,7 @@ export class ValidationException extends __BaseException {
  * @public
  */
 export class ServiceQuotaExceededException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.workspacesinstances#ServiceQuotaExceededException";
   readonly name = "ServiceQuotaExceededException" as const;
   readonly $fault = "client" as const;
   /**
@@ -286,5 +293,46 @@ export class ServiceQuotaExceededException extends __BaseException {
     this.ResourceType = opts.ResourceType;
     this.ServiceCode = opts.ServiceCode;
     this.QuotaCode = opts.QuotaCode;
+  }
+}
+
+/**
+ * <p>The volume has a previous modification that is still in progress, or has reached the limit of four modifications in a rolling 24-hour period. Wait for the current modification to finish, or wait until the time indicated in the error message, and then retry the request.</p>
+ * @public
+ */
+export class VolumeModificationRateExceededException extends __BaseException {
+  public static readonly shapeId: string = "com.amazonaws.workspacesinstances#VolumeModificationRateExceededException";
+  readonly name = "VolumeModificationRateExceededException" as const;
+  readonly $fault = "client" as const;
+  /**
+   * <p>Specifies the reason that the modification request was rejected.</p>
+   * @public
+   */
+  Message: string | undefined;
+
+  /**
+   * <p>Specifies the identifier of the volume for which the modification request was rejected.</p>
+   * @public
+   */
+  ResourceId: string | undefined;
+
+  /**
+   * <p>Specifies the type of the resource for which the modification request was rejected.</p>
+   * @public
+   */
+  ResourceType: string | undefined;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<VolumeModificationRateExceededException, __BaseException>) {
+    super({
+      name: "VolumeModificationRateExceededException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, VolumeModificationRateExceededException.prototype);
+    this.Message = opts.Message;
+    this.ResourceId = opts.ResourceId;
+    this.ResourceType = opts.ResourceType;
   }
 }

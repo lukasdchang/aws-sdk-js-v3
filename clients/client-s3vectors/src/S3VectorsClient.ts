@@ -87,6 +87,10 @@ import type {
 } from "./commands/ListVectorBucketsCommand";
 import type { ListVectorsCommandInput, ListVectorsCommandOutput } from "./commands/ListVectorsCommand";
 import type {
+  PutVectorBucketDefaultIndexModeCommandInput,
+  PutVectorBucketDefaultIndexModeCommandOutput,
+} from "./commands/PutVectorBucketDefaultIndexModeCommand";
+import type {
   PutVectorBucketPolicyCommandInput,
   PutVectorBucketPolicyCommandOutput,
 } from "./commands/PutVectorBucketPolicyCommand";
@@ -94,6 +98,7 @@ import type { PutVectorsCommandInput, PutVectorsCommandOutput } from "./commands
 import type { QueryVectorsCommandInput, QueryVectorsCommandOutput } from "./commands/QueryVectorsCommand";
 import type { TagResourceCommandInput, TagResourceCommandOutput } from "./commands/TagResourceCommand";
 import type { UntagResourceCommandInput, UntagResourceCommandOutput } from "./commands/UntagResourceCommand";
+import type { UpdateIndexModeCommandInput, UpdateIndexModeCommandOutput } from "./commands/UpdateIndexModeCommand";
 import {
   type ClientInputEndpointParameters,
   type ClientResolvedEndpointParameters,
@@ -123,11 +128,13 @@ export type ServiceInputTypes =
   | ListTagsForResourceCommandInput
   | ListVectorBucketsCommandInput
   | ListVectorsCommandInput
+  | PutVectorBucketDefaultIndexModeCommandInput
   | PutVectorBucketPolicyCommandInput
   | PutVectorsCommandInput
   | QueryVectorsCommandInput
   | TagResourceCommandInput
-  | UntagResourceCommandInput;
+  | UntagResourceCommandInput
+  | UpdateIndexModeCommandInput;
 
 /**
  * @public
@@ -147,11 +154,13 @@ export type ServiceOutputTypes =
   | ListTagsForResourceCommandOutput
   | ListVectorBucketsCommandOutput
   | ListVectorsCommandOutput
+  | PutVectorBucketDefaultIndexModeCommandOutput
   | PutVectorBucketPolicyCommandOutput
   | PutVectorsCommandOutput
   | QueryVectorsCommandOutput
   | TagResourceCommandOutput
-  | UntagResourceCommandOutput;
+  | UntagResourceCommandOutput
+  | UpdateIndexModeCommandOutput;
 
 /**
  * @public
@@ -283,7 +292,8 @@ export interface ClientDefaults extends Partial<__SmithyConfiguration<__HttpHand
 
   /**
    * Specifies which retry algorithm to use.
-   * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-smithy-util-retry/Enum/RETRY_MODES/
+   * Accepted values are "standard" and "adaptive".
+   * @see https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html
    *
    */
   retryMode?: string | __Provider<string>;

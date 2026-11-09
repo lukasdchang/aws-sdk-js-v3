@@ -2148,6 +2148,7 @@ export const _InstanceType = {
   i8g_8xlarge: "i8g.8xlarge",
   i8g_large: "i8g.large",
   i8g_metal_24xl: "i8g.metal-24xl",
+  i8g_metal_48xl: "i8g.metal-48xl",
   i8g_xlarge: "i8g.xlarge",
   i8ge_12xlarge: "i8ge.12xlarge",
   i8ge_18xlarge: "i8ge.18xlarge",
@@ -2553,6 +2554,7 @@ export const _InstanceType = {
   m9gd_4xlarge: "m9gd.4xlarge",
   m9gd_8xlarge: "m9gd.8xlarge",
   m9gd_large: "m9gd.large",
+  m9gd_medium: "m9gd.medium",
   m9gd_metal_24xl: "m9gd.metal-24xl",
   m9gd_metal_48xl: "m9gd.metal-48xl",
   m9gd_xlarge: "m9gd.xlarge",
@@ -2801,11 +2803,13 @@ export const _InstanceType = {
   r8gb_16xlarge: "r8gb.16xlarge",
   r8gb_24xlarge: "r8gb.24xlarge",
   r8gb_2xlarge: "r8gb.2xlarge",
+  r8gb_48xlarge: "r8gb.48xlarge",
   r8gb_4xlarge: "r8gb.4xlarge",
   r8gb_8xlarge: "r8gb.8xlarge",
   r8gb_large: "r8gb.large",
   r8gb_medium: "r8gb.medium",
   r8gb_metal_24xl: "r8gb.metal-24xl",
+  r8gb_metal_48xl: "r8gb.metal-48xl",
   r8gb_xlarge: "r8gb.xlarge",
   r8gd_12xlarge: "r8gd.12xlarge",
   r8gd_16xlarge: "r8gd.16xlarge",
@@ -2967,11 +2971,16 @@ export const _InstanceType = {
   t4g_nano: "t4g.nano",
   t4g_small: "t4g.small",
   t4g_xlarge: "t4g.xlarge",
+  t8i_medium: "t8i.medium",
+  t8i_micro: "t8i.micro",
+  t8i_nano: "t8i.nano",
+  t8i_small: "t8i.small",
   trn1_2xlarge: "trn1.2xlarge",
   trn1_32xlarge: "trn1.32xlarge",
   trn1n_32xlarge: "trn1n.32xlarge",
   trn2_3xlarge: "trn2.3xlarge",
   trn2_48xlarge: "trn2.48xlarge",
+  trn2u_48xlarge: "trn2u.48xlarge",
   u7i_12tb_224xlarge: "u7i-12tb.224xlarge",
   u7i_6tb_112xlarge: "u7i-6tb.112xlarge",
   u7i_8tb_112xlarge: "u7i-8tb.112xlarge",
@@ -5547,6 +5556,7 @@ export type TransitGatewayRouteState = (typeof TransitGatewayRouteState)[keyof t
 export const TransitGatewayRouteType = {
   propagated: "propagated",
   static: "static",
+  system: "system",
 } as const;
 /**
  * @public
@@ -7674,6 +7684,22 @@ export type SpotInstanceState = (typeof SpotInstanceState)[keyof typeof SpotInst
  * @public
  * @enum
  */
+export const TransitGatewayAttachmentNatGatewaySupportState = {
+  disabled: "disabled",
+  disabling: "disabling",
+  enabled: "enabled",
+  enabling: "enabling",
+} as const;
+/**
+ * @public
+ */
+export type TransitGatewayAttachmentNatGatewaySupportState =
+  (typeof TransitGatewayAttachmentNatGatewaySupportState)[keyof typeof TransitGatewayAttachmentNatGatewaySupportState];
+
+/**
+ * @public
+ * @enum
+ */
 export const VerifiedAccessLogDeliveryStatusCode = {
   FAILED: "failed",
   SUCCESS: "success",
@@ -8518,6 +8544,35 @@ export type RouteServerRouteStatus = (typeof RouteServerRouteStatus)[keyof typeo
  * @public
  * @enum
  */
+export const TransitGatewayNatRuleState = {
+  activated: "activated",
+  deactivated: "deactivated",
+  deleting: "deleting",
+  pending: "pending",
+} as const;
+/**
+ * @public
+ */
+export type TransitGatewayNatRuleState = (typeof TransitGatewayNatRuleState)[keyof typeof TransitGatewayNatRuleState];
+
+/**
+ * @public
+ * @enum
+ */
+export const TransitGatewayAttachmentNatSystemRouteSupportValue = {
+  disable: "disable",
+  enable: "enable",
+} as const;
+/**
+ * @public
+ */
+export type TransitGatewayAttachmentNatSystemRouteSupportValue =
+  (typeof TransitGatewayAttachmentNatSystemRouteSupportValue)[keyof typeof TransitGatewayAttachmentNatSystemRouteSupportValue];
+
+/**
+ * @public
+ * @enum
+ */
 export const LockMode = {
   compliance: "compliance",
   governance: "governance",
@@ -8713,6 +8768,20 @@ export const EncryptionSupportOptionValue = {
  */
 export type EncryptionSupportOptionValue =
   (typeof EncryptionSupportOptionValue)[keyof typeof EncryptionSupportOptionValue];
+
+/**
+ * @public
+ * @enum
+ */
+export const TransitGatewayAttachmentNatGatewaySupportValue = {
+  disable: "disable",
+  enable: "enable",
+} as const;
+/**
+ * @public
+ */
+export type TransitGatewayAttachmentNatGatewaySupportValue =
+  (typeof TransitGatewayAttachmentNatGatewaySupportValue)[keyof typeof TransitGatewayAttachmentNatGatewaySupportValue];
 
 /**
  * @public

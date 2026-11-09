@@ -178,6 +178,10 @@ import type {
 import type { CreateAuthCodeCommandInput, CreateAuthCodeCommandOutput } from "./commands/CreateAuthCodeCommand";
 import type { CreateContactCommandInput, CreateContactCommandOutput } from "./commands/CreateContactCommand";
 import type {
+  CreateContactFlowAliasCommandInput,
+  CreateContactFlowAliasCommandOutput,
+} from "./commands/CreateContactFlowAliasCommand";
+import type {
   CreateContactFlowCommandInput,
   CreateContactFlowCommandOutput,
 } from "./commands/CreateContactFlowCommand";
@@ -306,6 +310,10 @@ import type {
   DeleteContactEvaluationCommandOutput,
 } from "./commands/DeleteContactEvaluationCommand";
 import type {
+  DeleteContactFlowAliasCommandInput,
+  DeleteContactFlowAliasCommandOutput,
+} from "./commands/DeleteContactFlowAliasCommand";
+import type {
   DeleteContactFlowCommandInput,
   DeleteContactFlowCommandOutput,
 } from "./commands/DeleteContactFlowCommand";
@@ -431,6 +439,10 @@ import type {
   DescribeContactEvaluationCommandInput,
   DescribeContactEvaluationCommandOutput,
 } from "./commands/DescribeContactEvaluationCommand";
+import type {
+  DescribeContactFlowAliasCommandInput,
+  DescribeContactFlowAliasCommandOutput,
+} from "./commands/DescribeContactFlowAliasCommand";
 import type {
   DescribeContactFlowCommandInput,
   DescribeContactFlowCommandOutput,
@@ -700,6 +712,10 @@ import type {
   ListContactEvaluationsCommandOutput,
 } from "./commands/ListContactEvaluationsCommand";
 import type {
+  ListContactFlowAliasesCommandInput,
+  ListContactFlowAliasesCommandOutput,
+} from "./commands/ListContactFlowAliasesCommand";
+import type {
   ListContactFlowModuleAliasesCommandInput,
   ListContactFlowModuleAliasesCommandOutput,
 } from "./commands/ListContactFlowModuleAliasesCommand";
@@ -819,6 +835,10 @@ import type {
   ListRealtimeContactAnalysisSegmentsV2CommandInput,
   ListRealtimeContactAnalysisSegmentsV2CommandOutput,
 } from "./commands/ListRealtimeContactAnalysisSegmentsV2Command";
+import type {
+  ListReplicationFindingsCommandInput,
+  ListReplicationFindingsCommandOutput,
+} from "./commands/ListReplicationFindingsCommand";
 import type {
   ListRoutingProfileManualAssignmentQueuesCommandInput,
   ListRoutingProfileManualAssignmentQueuesCommandOutput,
@@ -1127,6 +1147,10 @@ import type {
   UpdateContactEvaluationCommandOutput,
 } from "./commands/UpdateContactEvaluationCommand";
 import type {
+  UpdateContactFlowAliasCommandInput,
+  UpdateContactFlowAliasCommandOutput,
+} from "./commands/UpdateContactFlowAliasCommand";
+import type {
   UpdateContactFlowContentCommandInput,
   UpdateContactFlowContentCommandOutput,
 } from "./commands/UpdateContactFlowContentCommand";
@@ -1218,6 +1242,10 @@ import type {
   UpdateNotificationContentCommandInput,
   UpdateNotificationContentCommandOutput,
 } from "./commands/UpdateNotificationContentCommand";
+import type {
+  UpdateOutboundEmailContactMessageCommandInput,
+  UpdateOutboundEmailContactMessageCommandOutput,
+} from "./commands/UpdateOutboundEmailContactMessageCommand";
 import type {
   UpdateParticipantAuthenticationCommandInput,
   UpdateParticipantAuthenticationCommandOutput,
@@ -1414,6 +1442,7 @@ export type ServiceInputTypes =
   | CreateAttachedFileCommandInput
   | CreateAuthCodeCommandInput
   | CreateContactCommandInput
+  | CreateContactFlowAliasCommandInput
   | CreateContactFlowCommandInput
   | CreateContactFlowModuleAliasCommandInput
   | CreateContactFlowModuleCommandInput
@@ -1455,6 +1484,7 @@ export type ServiceInputTypes =
   | DeleteAttachedFileCommandInput
   | DeleteContactDataCommandInput
   | DeleteContactEvaluationCommandInput
+  | DeleteContactFlowAliasCommandInput
   | DeleteContactFlowCommandInput
   | DeleteContactFlowModuleAliasCommandInput
   | DeleteContactFlowModuleCommandInput
@@ -1497,6 +1527,7 @@ export type ServiceInputTypes =
   | DescribeAuthenticationProfileCommandInput
   | DescribeContactCommandInput
   | DescribeContactEvaluationCommandInput
+  | DescribeContactFlowAliasCommandInput
   | DescribeContactFlowCommandInput
   | DescribeContactFlowModuleAliasCommandInput
   | DescribeContactFlowModuleCommandInput
@@ -1576,6 +1607,7 @@ export type ServiceInputTypes =
   | ListBotsCommandInput
   | ListChildHoursOfOperationsCommandInput
   | ListContactEvaluationsCommandInput
+  | ListContactFlowAliasesCommandInput
   | ListContactFlowModuleAliasesCommandInput
   | ListContactFlowModuleVersionsCommandInput
   | ListContactFlowModulesCommandInput
@@ -1612,6 +1644,7 @@ export type ServiceInputTypes =
   | ListQueuesCommandInput
   | ListQuickConnectsCommandInput
   | ListRealtimeContactAnalysisSegmentsV2CommandInput
+  | ListReplicationFindingsCommandInput
   | ListRoutingProfileManualAssignmentQueuesCommandInput
   | ListRoutingProfileQueuesCommandInput
   | ListRoutingProfilesCommandInput
@@ -1712,6 +1745,7 @@ export type ServiceInputTypes =
   | UpdateContactAttributesCommandInput
   | UpdateContactCommandInput
   | UpdateContactEvaluationCommandInput
+  | UpdateContactFlowAliasCommandInput
   | UpdateContactFlowContentCommandInput
   | UpdateContactFlowMetadataCommandInput
   | UpdateContactFlowModuleAliasCommandInput
@@ -1735,6 +1769,7 @@ export type ServiceInputTypes =
   | UpdateMetricContentCommandInput
   | UpdateMetricMetadataCommandInput
   | UpdateNotificationContentCommandInput
+  | UpdateOutboundEmailContactMessageCommandInput
   | UpdateParticipantAuthenticationCommandInput
   | UpdateParticipantRoleConfigCommandInput
   | UpdatePhoneNumberCommandInput
@@ -1816,6 +1851,7 @@ export type ServiceOutputTypes =
   | CreateAttachedFileCommandOutput
   | CreateAuthCodeCommandOutput
   | CreateContactCommandOutput
+  | CreateContactFlowAliasCommandOutput
   | CreateContactFlowCommandOutput
   | CreateContactFlowModuleAliasCommandOutput
   | CreateContactFlowModuleCommandOutput
@@ -1857,6 +1893,7 @@ export type ServiceOutputTypes =
   | DeleteAttachedFileCommandOutput
   | DeleteContactDataCommandOutput
   | DeleteContactEvaluationCommandOutput
+  | DeleteContactFlowAliasCommandOutput
   | DeleteContactFlowCommandOutput
   | DeleteContactFlowModuleAliasCommandOutput
   | DeleteContactFlowModuleCommandOutput
@@ -1899,6 +1936,7 @@ export type ServiceOutputTypes =
   | DescribeAuthenticationProfileCommandOutput
   | DescribeContactCommandOutput
   | DescribeContactEvaluationCommandOutput
+  | DescribeContactFlowAliasCommandOutput
   | DescribeContactFlowCommandOutput
   | DescribeContactFlowModuleAliasCommandOutput
   | DescribeContactFlowModuleCommandOutput
@@ -1978,6 +2016,7 @@ export type ServiceOutputTypes =
   | ListBotsCommandOutput
   | ListChildHoursOfOperationsCommandOutput
   | ListContactEvaluationsCommandOutput
+  | ListContactFlowAliasesCommandOutput
   | ListContactFlowModuleAliasesCommandOutput
   | ListContactFlowModuleVersionsCommandOutput
   | ListContactFlowModulesCommandOutput
@@ -2014,6 +2053,7 @@ export type ServiceOutputTypes =
   | ListQueuesCommandOutput
   | ListQuickConnectsCommandOutput
   | ListRealtimeContactAnalysisSegmentsV2CommandOutput
+  | ListReplicationFindingsCommandOutput
   | ListRoutingProfileManualAssignmentQueuesCommandOutput
   | ListRoutingProfileQueuesCommandOutput
   | ListRoutingProfilesCommandOutput
@@ -2114,6 +2154,7 @@ export type ServiceOutputTypes =
   | UpdateContactAttributesCommandOutput
   | UpdateContactCommandOutput
   | UpdateContactEvaluationCommandOutput
+  | UpdateContactFlowAliasCommandOutput
   | UpdateContactFlowContentCommandOutput
   | UpdateContactFlowMetadataCommandOutput
   | UpdateContactFlowModuleAliasCommandOutput
@@ -2137,6 +2178,7 @@ export type ServiceOutputTypes =
   | UpdateMetricContentCommandOutput
   | UpdateMetricMetadataCommandOutput
   | UpdateNotificationContentCommandOutput
+  | UpdateOutboundEmailContactMessageCommandOutput
   | UpdateParticipantAuthenticationCommandOutput
   | UpdateParticipantRoleConfigCommandOutput
   | UpdatePhoneNumberCommandOutput
@@ -2308,7 +2350,8 @@ export interface ClientDefaults extends Partial<__SmithyConfiguration<__HttpHand
 
   /**
    * Specifies which retry algorithm to use.
-   * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-smithy-util-retry/Enum/RETRY_MODES/
+   * Accepted values are "standard" and "adaptive".
+   * @see https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html
    *
    */
   retryMode?: string | __Provider<string>;

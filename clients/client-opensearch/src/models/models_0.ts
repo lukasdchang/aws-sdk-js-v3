@@ -25,6 +25,7 @@ import type {
   DomainProcessingStatusType,
   DomainState,
   DomainUseCase,
+  EncryptionMode,
   EngineMode,
   EngineType,
   InboundConnectionStatusCode,
@@ -2336,6 +2337,11 @@ export interface DomainEndpointOptions {
    *                   <b>Policy-Min-TLS-1-2-RFC9151-FIPS-2024-08:</b> TLS
    *                 security policy that supports TLS version 1.3 with FIPS</p>
    *             </li>
+   *             <li>
+   *                <p>
+   *                   <b>Policy-Min-TLS-1-2-FIPS-PQ-2026-10:</b> TLS
+   *                 security policy that supports TLS version 1.2 to TLS version 1.3 with FIPS and post-quantum cipher suites</p>
+   *             </li>
    *          </ul>
    * @public
    */
@@ -2422,6 +2428,17 @@ export interface EncryptionAtRestOptions {
    * @public
    */
   KmsKeyId?: string | undefined;
+
+  /**
+   * <p>The type of encryption at rest applied to the domain's data. Valid values are
+   *             <code>DISK</code> and <code>NATIVE</code>. <code>DISK</code> is the default and uses
+   *             volume-level encryption. <code>NATIVE</code> uses engine-native, index-level encryption
+   *             and requires encryption at rest to be enabled and OpenSearch version 3.3 or later. After
+   *             the mode is set to <code>NATIVE</code>, it can't be changed back to
+   *             <code>DISK</code>.</p>
+   * @public
+   */
+  EncryptionMode?: EncryptionMode | undefined;
 }
 
 /**

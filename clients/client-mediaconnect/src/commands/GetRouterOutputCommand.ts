@@ -2,7 +2,7 @@
 import type { MetadataBearer as __MetadataBearer } from "@smithy/types";
 
 import { _ep0, _mw0, command } from "../commandBuilder";
-import type { GetRouterOutputRequest, GetRouterOutputResponse } from "../models/models_0";
+import type { GetRouterOutputRequest, GetRouterOutputResponse } from "../models/models_1";
 import { GetRouterOutput$ } from "../schemas/schemas_0";
 
 /**
@@ -43,7 +43,7 @@ export interface GetRouterOutputCommandOutput extends GetRouterOutputResponse, _
  * //     Arn: "STRING_VALUE", // required
  * //     Id: "STRING_VALUE", // required
  * //     State: "CREATING" || "STANDBY" || "STARTING" || "ACTIVE" || "STOPPING" || "DELETING" || "UPDATING" || "ERROR" || "RECOVERING" || "MIGRATING", // required
- * //     OutputType: "STANDARD" || "MEDIACONNECT_FLOW" || "MEDIALIVE_INPUT", // required
+ * //     OutputType: "STANDARD" || "MEDIACONNECT_FLOW" || "MEDIALIVE_INPUT" || "SOURCE_ENDPOINT", // required
  * //     Configuration: { // RouterOutputConfiguration Union: only one key present
  * //       Standard: { // StandardRouterOutputConfiguration
  * //         NetworkInterfaceArn: "STRING_VALUE", // required
@@ -122,13 +122,26 @@ export interface GetRouterOutputCommandOutput extends GetRouterOutputResponse, _
  * //           },
  * //         },
  * //       },
+ * //       SourceEndpoint: { // SourceEndpointRouterOutputConfiguration
+ * //         EndpointLifecycleManagement: "MANAGED" || "UNMANAGED", // required
+ * //         DestinationTransitEncryptionType: "SECRETS_MANAGER" || "AUTOMATIC",
+ * //         DestinationTransitEncryption: { // EndpointEncryptionConfiguration Union: only one key present
+ * //           SecretsManager: { // SecretsManagerEndpointEncryptionConfiguration
+ * //             EncryptionSecretType: "AES_128_KEY" || "AES_192_KEY" || "AES_256_KEY" || "SRT_PASSPHRASE",
+ * //             EncryptionSecret: { // EndpointEncryptionSecretConfiguration
+ * //               SecretArn: "STRING_VALUE", // required
+ * //             },
+ * //           },
+ * //           Automatic: {},
+ * //         },
+ * //       },
  * //     },
  * //     RoutedState: "ROUTED" || "ROUTING" || "UNROUTED", // required
  * //     RegionName: "STRING_VALUE", // required
  * //     AvailabilityZone: "STRING_VALUE", // required
  * //     MaximumBitrate: Number("long"), // required
  * //     RoutingScope: "REGIONAL" || "GLOBAL", // required
- * //     Tier: "OUTPUT_100" || "OUTPUT_50" || "OUTPUT_20", // required
+ * //     Tier: "OUTPUT_100" || "OUTPUT_50" || "OUTPUT_20" || "OUTPUT_500" || "OUTPUT_250", // required
  * //     CreatedAt: new Date("TIMESTAMP"), // required
  * //     UpdatedAt: new Date("TIMESTAMP"), // required
  * //     Messages: [ // RouterOutputMessages // required
@@ -146,6 +159,7 @@ export interface GetRouterOutputCommandOutput extends GetRouterOutputResponse, _
  * //       },
  * //       MediaConnectFlow: {},
  * //       MediaLiveInput: {},
+ * //       SourceEndpoint: {},
  * //     },
  * //     IpAddress: "STRING_VALUE",
  * //     RoutedInputArn: "STRING_VALUE",
@@ -168,6 +182,9 @@ export interface GetRouterOutputCommandOutput extends GetRouterOutputResponse, _
  * //     FabricConfiguration: { // FabricConfiguration
  * //       RecoveryLatencyMode: "BALANCED" || "LOW_LATENCY", // required
  * //     },
+ * //     AssociatedSourceEndpointArns: [ // SourceEndpointArnList
+ * //       "STRING_VALUE",
+ * //     ],
  * //   },
  * // };
  *

@@ -20,6 +20,7 @@ import type {
   ExecutionErrorType,
   ExecutionStatus,
   HomeDirectoryType,
+  HostKeyStorageType,
   IdentityProviderType,
   IpAddressType,
   MapType,
@@ -1972,7 +1973,7 @@ export interface CreateServerRequest {
   WorkflowDetails?: WorkflowDetails | undefined;
 
   /**
-   * <p>Specifies the log groups to which your server logs are sent.</p> <p>To specify a log group, you must provide the ARN for an existing log group. In this case, the format of the log group is as follows:</p> <p> <code>arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*</code> </p> <p>For example, <code>arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*</code> </p> <p>If you have previously specified a log group for a server, you can clear it, and in effect turn off structured logging, by providing an empty value for this parameter in an <code>update-server</code> call. For example:</p> <p> <code>update-server --server-id s-1234567890abcdef0 --structured-log-destinations</code> </p>
+   * <p>Specifies the log groups to which your server logs are sent.</p> <p>To specify a log group, you must provide the ARN for an existing log group. In this case, the format of the log group is as follows:</p> <p> <code>arn:partition:logs:region-name:amazon-account-id:log-group:log-group-name:*</code> </p> <p>For example, <code>arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*</code> </p> <p>If you have previously specified a log group for a server, you can clear it, and in effect turn off structured logging, by providing an empty value for this parameter in an <code>update-server</code> call. For example:</p> <p> <code>update-server --server-id s-1234567890abcdef0 --structured-log-destinations</code> </p>
    * @public
    */
   StructuredLogDestinations?: string[] | undefined;
@@ -1988,6 +1989,12 @@ export interface CreateServerRequest {
    * @public
    */
   IpAddressType?: IpAddressType | undefined;
+
+  /**
+   * <p>Specifies whether the host key is stored by Transfer Family (<code>SERVICE_MANAGED</code>) or in Secrets Manager (<code>SECRETS_MANAGER</code>). When you specify <code>SECRETS_MANAGER</code>, Transfer Family stores the private host key material in an Secrets Manager secret.</p>
+   * @public
+   */
+  HostKeyStorageType?: HostKeyStorageType | undefined;
 }
 
 /**
@@ -2495,6 +2502,12 @@ export interface CreateWorkflowRequest {
    * @public
    */
   Tags?: Tag[] | undefined;
+
+  /**
+   * <p>Specifies the log groups to which your workflow logs are sent.</p> <p>To specify a log group, you must provide the ARN for an existing log group. In this case, the format of the log group is as follows:</p> <p> <code>arn:partition:logs:region-name:amazon-account-id:log-group:log-group-name:*</code> </p> <p>For example, <code>arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*</code> </p>
+   * @public
+   */
+  StructuredLogDestinations?: string[] | undefined;
 }
 
 /**
@@ -2999,6 +3012,18 @@ export interface DescribedHostKey {
    * @public
    */
   Tags?: Tag[] | undefined;
+
+  /**
+   * <p>Specifies whether the host key is stored by Transfer Family (<code>SERVICE_MANAGED</code>) or in Secrets Manager (<code>SECRETS_MANAGER</code>).</p>
+   * @public
+   */
+  StorageType?: HostKeyStorageType | undefined;
+
+  /**
+   * <p>The ARN of the Secrets Manager secret that stores the host key material, when <code>StorageType</code> is <code>SECRETS_MANAGER</code>.</p>
+   * @public
+   */
+  SecretId?: string | undefined;
 }
 
 /**
@@ -3247,7 +3272,7 @@ export interface DescribedServer {
   WorkflowDetails?: WorkflowDetails | undefined;
 
   /**
-   * <p>Specifies the log groups to which your server logs are sent.</p> <p>To specify a log group, you must provide the ARN for an existing log group. In this case, the format of the log group is as follows:</p> <p> <code>arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*</code> </p> <p>For example, <code>arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*</code> </p> <p>If you have previously specified a log group for a server, you can clear it, and in effect turn off structured logging, by providing an empty value for this parameter in an <code>update-server</code> call. For example:</p> <p> <code>update-server --server-id s-1234567890abcdef0 --structured-log-destinations</code> </p>
+   * <p>Specifies the log groups to which your server logs are sent.</p> <p>To specify a log group, you must provide the ARN for an existing log group. In this case, the format of the log group is as follows:</p> <p> <code>arn:partition:logs:region-name:amazon-account-id:log-group:log-group-name:*</code> </p> <p>For example, <code>arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*</code> </p> <p>If you have previously specified a log group for a server, you can clear it, and in effect turn off structured logging, by providing an empty value for this parameter in an <code>update-server</code> call. For example:</p> <p> <code>update-server --server-id s-1234567890abcdef0 --structured-log-destinations</code> </p>
    * @public
    */
   StructuredLogDestinations?: string[] | undefined;
@@ -3605,6 +3630,12 @@ export interface DescribedWorkflow {
    * @public
    */
   Tags?: Tag[] | undefined;
+
+  /**
+   * <p>Specifies the log groups to which your workflow logs are sent.</p> <p>To specify a log group, you must provide the ARN for an existing log group. In this case, the format of the log group is as follows:</p> <p> <code>arn:partition:logs:region-name:amazon-account-id:log-group:log-group-name:*</code> </p> <p>For example, <code>arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*</code> </p>
+   * @public
+   */
+  StructuredLogDestinations?: string[] | undefined;
 }
 
 /**
@@ -3862,6 +3893,18 @@ export interface ImportHostKeyRequest {
    * @public
    */
   Tags?: Tag[] | undefined;
+
+  /**
+   * <p>Specifies whether the host key is stored by Transfer Family (<code>SERVICE_MANAGED</code>) or in Secrets Manager (<code>SECRETS_MANAGER</code>). When you specify <code>SECRETS_MANAGER</code>, Transfer Family stores the private host key material in an Secrets Manager secret.</p>
+   * @public
+   */
+  StorageType?: HostKeyStorageType | undefined;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) of the KMS key used to encrypt the Secrets Manager secret that stores the host key. If you specify a customer managed key, its key policy must allow the <code>AWSServiceRoleForTransfer</code> service-linked role to decrypt the secret. If you don't specify a value, Transfer Family uses the Amazon Web Services managed key for Secrets Manager.</p>
+   * @public
+   */
+  KmsKey?: string | undefined;
 }
 
 /**
@@ -4074,6 +4117,18 @@ export interface ListedHostKey {
    * @public
    */
   DateImported?: Date | undefined;
+
+  /**
+   * <p>Specifies whether the host key is stored by Transfer Family (<code>SERVICE_MANAGED</code>) or in Secrets Manager (<code>SECRETS_MANAGER</code>).</p>
+   * @public
+   */
+  StorageType?: HostKeyStorageType | undefined;
+
+  /**
+   * <p>The ARN of the Secrets Manager secret that stores the host key material, when <code>StorageType</code> is <code>SECRETS_MANAGER</code>.</p>
+   * @public
+   */
+  SecretId?: string | undefined;
 }
 
 /**
@@ -4813,7 +4868,7 @@ export interface UpdateServerRequest {
   WorkflowDetails?: WorkflowDetails | undefined;
 
   /**
-   * <p>Specifies the log groups to which your server logs are sent.</p> <p>To specify a log group, you must provide the ARN for an existing log group. In this case, the format of the log group is as follows:</p> <p> <code>arn:aws:logs:region-name:amazon-account-id:log-group:log-group-name:*</code> </p> <p>For example, <code>arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*</code> </p> <p>If you have previously specified a log group for a server, you can clear it, and in effect turn off structured logging, by providing an empty value for this parameter in an <code>update-server</code> call. For example:</p> <p> <code>update-server --server-id s-1234567890abcdef0 --structured-log-destinations</code> </p>
+   * <p>Specifies the log groups to which your server logs are sent.</p> <p>To specify a log group, you must provide the ARN for an existing log group. In this case, the format of the log group is as follows:</p> <p> <code>arn:partition:logs:region-name:amazon-account-id:log-group:log-group-name:*</code> </p> <p>For example, <code>arn:aws:logs:us-east-1:111122223333:log-group:mytestgroup:*</code> </p> <p>If you have previously specified a log group for a server, you can clear it, and in effect turn off structured logging, by providing an empty value for this parameter in an <code>update-server</code> call. For example:</p> <p> <code>update-server --server-id s-1234567890abcdef0 --structured-log-destinations</code> </p>
    * @public
    */
   StructuredLogDestinations?: string[] | undefined;
@@ -5270,7 +5325,19 @@ export interface UpdateHostKeyRequest {
    * <p>An updated description for the host key.</p>
    * @public
    */
-  Description: string | undefined;
+  Description?: string | undefined;
+
+  /**
+   * <p>Specifies whether the host key is stored by Transfer Family (<code>SERVICE_MANAGED</code>) or in Secrets Manager (<code>SECRETS_MANAGER</code>). When you specify <code>SECRETS_MANAGER</code>, Transfer Family stores the private host key material in an Secrets Manager secret.</p>
+   * @public
+   */
+  StorageType?: HostKeyStorageType | undefined;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) of the KMS key used to encrypt the Secrets Manager secret that stores the host key. If you specify a customer managed key, its key policy must allow the <code>AWSServiceRoleForTransfer</code> service-linked role to decrypt the secret. If you don't specify a value, Transfer Family uses the Amazon Web Services managed key for Secrets Manager.</p>
+   * @public
+   */
+  KmsKey?: string | undefined;
 }
 
 /**

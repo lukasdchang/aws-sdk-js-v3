@@ -2,7 +2,7 @@
 import type { MetadataBearer as __MetadataBearer } from "@smithy/types";
 
 import { _ep0, _mw0, command } from "../commandBuilder";
-import type { UpdateFlowOutputRequest, UpdateFlowOutputResponse } from "../models/models_0";
+import type { UpdateFlowOutputRequest, UpdateFlowOutputResponse } from "../models/models_1";
 import { UpdateFlowOutput$ } from "../schemas/schemas_0";
 
 /**
@@ -97,6 +97,7 @@ export interface UpdateFlowOutputCommandOutput extends UpdateFlowOutputResponse,
  *     },
  *   },
  *   NdiOutputTimecodeSource: "EMBEDDED_TIMECODE" || "UTC_SYSTEM_TIME",
+ *   NdiAudioReferenceLevel: Number("int"),
  * };
  * const command = new UpdateFlowOutputCommand(input);
  * const response = await client.send(command);
@@ -163,8 +164,10 @@ export interface UpdateFlowOutputCommandOutput extends UpdateFlowOutputResponse,
  * //       NdiProgramName: "STRING_VALUE",
  * //       NdiSourceSettings: { // NdiSourceSettings
  * //         SourceName: "STRING_VALUE",
+ * //         AudioReferenceLevel: Number("int"),
  * //       },
  * //       NdiOutputTimecodeSource: "EMBEDDED_TIMECODE" || "UTC_SYSTEM_TIME",
+ * //       NdiAudioReferenceLevel: Number("int"),
  * //     },
  * //     VpcInterfaceAttachment: { // VpcInterfaceAttachment
  * //       VpcInterfaceName: "STRING_VALUE",

@@ -46,6 +46,41 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+
+
+
+
+
+# 3.972.48 (2026-10-26)
+### Chores
+* **middleware-location-constraint:** update dependencies.
+
+
+
+# 3.972.47 (2026-10-21)
+### Chores
+* **middleware-location-constraint:** update dependencies.
+
+
+
+# 3.972.46 (2026-10-19)
+### Chores
+* **middleware-location-constraint:** update dependencies.
+
+
+
+# 3.972.45 (2026-10-12)
+### Chores
+* **middleware-location-constraint:** update dependencies.
+
+
+
+# 3.972.44 (2026-10-09)
+### Chores
+* **middleware-location-constraint:** update dependencies.
+
+
+
 # 3.972.43 (2026-09-22)
 ### Chores
 * **middleware-location-constraint:** update dependencies.

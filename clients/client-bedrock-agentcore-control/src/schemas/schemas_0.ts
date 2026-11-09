@@ -59,6 +59,7 @@ const _CARR = "CreateAgentRuntimeRequest";
 const _CARRr = "CreateAgentRuntimeResponse";
 const _CB = "CreateBrowser";
 const _CBA = "ConfigurationBundleAction";
+const _CBC = "CircuitBreakerConfiguration";
 const _CBD = "ConfigurationBundleDescription";
 const _CBEC = "CodeBasedEvaluatorConfig";
 const _CBP = "CreateBrowserProfile";
@@ -83,7 +84,8 @@ const _CCI = "CustomConfigurationInput";
 const _CCIR = "CreateCodeInterpreterRequest";
 const _CCIRr = "CreateCodeInterpreterResponse";
 const _CCIr = "CreateCodeInterpreter";
-const _CCL = "ContentConfigurationList";
+const _CCL = "CertificateConfigurationList";
+const _CCLo = "ContentConfigurationList";
 const _CCM = "ComponentConfigurationMap";
 const _CCP = "CreateCapacityProvider";
 const _CCPI = "CreateCapacityProviderInput";
@@ -94,6 +96,7 @@ const _CCPr = "CreateConsentPortal";
 const _CCRT = "CoinbaseCdpRotationTargets";
 const _CCVT = "CustomClaimValidationType";
 const _CCVTu = "CustomClaimValidationsType";
+const _CCe = "CertificateConfiguration";
 const _CCo = "CodeConfiguration";
 const _CCom = "ComponentConfiguration";
 const _CComp = "ComputeConfiguration";
@@ -307,6 +310,7 @@ const _DRRR = "DeleteRegistryRecordRequest";
 const _DRRRe = "DeleteRegistryRecordResponse";
 const _DRRe = "DeleteRegistryResponse";
 const _DRRel = "DeleteRegistryRecord";
+const _DRS = "DimensionRatingScale";
 const _DS = "DatasetSummary";
 const _DSC = "DataSourceConfig";
 const _DSL = "DatasetSummaryList";
@@ -332,6 +336,9 @@ const _ECv = "EvaluatorConfig";
 const _ECx = "ExtractionConfig";
 const _ECxt = "ExtractionConfiguration";
 const _ED = "EvaluatorDescription";
+const _EDI = "EvaluationDimensionInstruction";
+const _EDv = "EvaluationDimension";
+const _EDva = "EvaluationDimensions";
 const _EEBSVC = "EphemeralEBSVolumeConfiguration";
 const _EEO = "EpisodicExtractionOverride";
 const _EF = "EncryptionFailure";
@@ -352,14 +359,17 @@ const _ES = "EvaluatorSummary";
 const _ESL = "EvaluatorSummaryList";
 const _EVC = "EbsVolumeConfiguration";
 const _EVM = "EnvironmentVariablesMap";
-const _F = "Filter";
+const _F = "Fallback";
 const _FC = "FilesystemConfigurations";
 const _FCi = "FilesystemConfiguration";
 const _FL = "FilterList";
+const _FT = "FallbackTarget";
+const _FTa = "FallbackTriggers";
 const _FUSC = "FromUrlSynchronizationConfiguration";
 const _FV = "FilterValue";
-const _Fi = "Finding";
-const _Fin = "Findings";
+const _Fi = "Filter";
+const _Fin = "Finding";
+const _Find = "Findings";
 const _GAKCP = "GatewayApiKeyCredentialProvider";
 const _GAKCPR = "GetApiKeyCredentialProviderRequest";
 const _GAKCPRe = "GetApiKeyCredentialProviderResponse";
@@ -726,10 +736,13 @@ const _MEo = "ModelEntries";
 const _MI = "McpInstructions";
 const _MICI = "ModifyInvocationConfigurationInput";
 const _MLTC = "McpLambdaTargetConfiguration";
-const _MM = "ModelMapping";
+const _MM = "MatchModels";
+const _MME = "MatchModelEntry";
+const _MMEa = "MatchModelEntries";
 const _MMS = "ModifyMemoryStrategies";
 const _MMSI = "ModifyMemoryStrategyInput";
 const _MMSL = "ModifyMemoryStrategiesList";
+const _MMo = "ModelMapping";
 const _MOPCI = "MicrosoftOauth2ProviderConfigInput";
 const _MOPCO = "MicrosoftOauth2ProviderConfigOutput";
 const _MP = "MatchPaths";
@@ -822,6 +835,7 @@ const _RCa = "RateConfigs";
 const _RCe = "ReasoningConfiguration";
 const _RCec = "RecordingConfig";
 const _RCef = "ReflectionConfiguration";
+const _RES = "RecordExpirySpecification";
 const _RHC = "RequestHeaderConfiguration";
 const _RL = "ResourceLocation";
 const _RLEE = "ResourceLimitExceededException";
@@ -846,6 +860,7 @@ const _RVC = "RootVolumeConfiguration";
 const _Re = "Resource";
 const _S = "Secret";
 const _SC = "S3Configuration";
+const _SCC = "S3CertificateConfiguration";
 const _SCO = "SemanticConsolidationOverride";
 const _SCOu = "SummaryConsolidationOverride";
 const _SCa = "SamplingConfig";
@@ -873,6 +888,7 @@ const _SL = "S3Location";
 const _SLV = "StringListValidation";
 const _SMB = "SystemManagedBlock";
 const _SMC = "SelfManagedConfiguration";
+const _SMCC = "SecretsManagerCertificateConfiguration";
 const _SMCI = "SelfManagedConfigurationInput";
 const _SMD = "SkillMdDefinition";
 const _SML = "SecretsManagerLocation";
@@ -927,6 +943,7 @@ const _TDool = "ToolDefinitions";
 const _TE = "ThrottledException";
 const _TEGTCT = "TokenExchangeGrantTypeConfigType";
 const _TEh = "ThrottlingException";
+const _TF = "TargetFallbacks";
 const _TFSC = "ToolsFileSystemConfigurations";
 const _TFSCo = "ToolsFileSystemConfiguration";
 const _TN = "TargetName";
@@ -1149,6 +1166,7 @@ const _aV = "allowedValues";
 const _aWC = "allowedWorkloadConfiguration";
 const _aa = "a2a";
 const _ac = "actions";
+const _act = "action";
 const _ar = "arn";
 const _au = "auth";
 const _b = "bundles";
@@ -1175,12 +1193,14 @@ const _cAM = "clientAuthenticationMethod";
 const _cAr = "credentialArn";
 const _cB = "createdBy";
 const _cBN = "createdByName";
+const _cBi = "circuitBreaker";
 const _cBo = "configurationBundle";
 const _cBod = "codeBased";
 const _cC = "computeConfiguration";
 const _cCC = "customConsolidationConfiguration";
 const _cCCo = "coinbaseCdpConfiguration";
 const _cCDP = "coinbaseCDP";
+const _cCe = "certificateConfigurations";
 const _cCl = "clusteringConfig";
 const _cCo = "contentConfigurations";
 const _cCod = "codeConfiguration";
@@ -1257,12 +1277,15 @@ const _d = "description";
 const _dA = "datasetArn";
 const _dC = "deletedCount";
 const _dI = "datasetId";
+const _dIi = "dimensionInstruction";
 const _dK = "dimensionKeys";
 const _dMLTP = "disableMcpListToolsPagination";
 const _dMM = "deleteManagedMemory";
 const _dMS = "deleteMemoryStrategies";
 const _dN = "datasetName";
 const _dNe = "deviceName";
+const _dNi = "dimensionName";
+const _dRS = "dimensionRatingScale";
 const _dRU = "defaultReturnUrl";
 const _dS = "draftStatus";
 const _dSA = "dataStreamArn";
@@ -1326,11 +1349,13 @@ const _enc = "encrypted";
 const _end = "endpoint";
 const _endp = "endpoints";
 const _env = "environment";
+const _er = "errors";
 const _ev = "evaluators";
 const _ex = "extraction";
 const _exa = "examples";
 const _exc = "exclude";
 const _f = "frequencies";
+const _fBTM = "firstByteTimeoutMilliseconds";
 const _fC = "filesystemConfigurations";
 const _fL = "fieldList";
 const _fM = "failureMode";
@@ -1339,6 +1364,7 @@ const _fR = "failureReason";
 const _fSA = "fileSystemArn";
 const _fSGB = "freeSpaceGiB";
 const _fU = "fromUrl";
+const _fa = "fallback";
 const _fi = "findings";
 const _fie = "field";
 const _fil = "filter";
@@ -1448,6 +1474,7 @@ const _mC = "metadataConfiguration";
 const _mCe = "messagesCount";
 const _mCes = "messageCount";
 const _mCo = "modelConfig";
+const _mD = "multiDimensional";
 const _mERA = "memoryExecutionRoleArn";
 const _mI = "modelId";
 const _mIa = "maxIterations";
@@ -1457,6 +1484,7 @@ const _mL = "maxLifetime";
 const _mM = "modelMapping";
 const _mMC = "managedMemoryConfiguration";
 const _mMS = "modifyMemoryStrategies";
+const _mMa = "matchModels";
 const _mN = "metricsNamespace";
 const _mOPC = "microsoftOauth2ProviderConfig";
 const _mOT = "maxOutputTokens";
@@ -1482,8 +1510,8 @@ const _mem = "memory";
 const _memo = "memories";
 const _met = "method";
 const _meta = "metadata";
-const _mo = "model";
-const _mod = "mode";
+const _mo = "mode";
+const _mod = "model";
 const _mode = "models";
 const _mon = "monitoring";
 const _n = "name";
@@ -1588,7 +1616,9 @@ const _rCe = "retrievalConfig";
 const _rD = "resultDestination";
 const _rDo = "routingDomain";
 const _rE = "runtimeEndpoints";
+const _rEDD = "recordExpiryDurationDays";
 const _rEMC = "responsesEvaluatorModelConfig";
+const _rES = "recordExpirySpecification";
 const _rGA = "resourceGatewayArn";
 const _rHA = "requestHeaderAllowlist";
 const _rHC = "requestHeaderConfiguration";
@@ -1632,7 +1662,8 @@ const _sCOu = "summaryConsolidationOverride";
 const _sCa = "samplingConfig";
 const _sCe = "sessionConfiguration";
 const _sCes = "sessionConfig";
-const _sCt = "statusCode";
+const _sCt = "statusCodes";
+const _sCta = "statusCode";
 const _sCti = "stickinessConfiguration";
 const _sCtr = "streamingConfiguration";
 const _sD = "skillDefinition";
@@ -1721,6 +1752,7 @@ const _tE = "tokenEndpoint";
 const _tEAM = "tokenEndpointAuthMethods";
 const _tEGTC = "tokenExchangeGrantTypeConfig";
 const _tF = "toolFilters";
+const _tFa = "targetFallback";
 const _tI = "targetId";
 const _tIL = "targetIdList";
 const _tIe = "tenantId";
@@ -1728,6 +1760,7 @@ const _tK = "topK";
 const _tKa = "tagKeys";
 const _tN = "targetName";
 const _tO = "toolOverrides";
+const _tOr = "triggerOn";
 const _tP = "topP";
 const _tRS = "targetResourceScope";
 const _tS = "timeoutSeconds";
@@ -1945,6 +1978,7 @@ var Description: StaticSimpleSchema = [0, n0, _De, 8, 0];
 var DownloadUrl: StaticSimpleSchema = [0, n0, _DU, 8, 0];
 var EndpointName: StaticSimpleSchema = [0, n0, _EN, 8, 0];
 var EvaluationConfigDescription: StaticSimpleSchema = [0, n0, _ECD, 8, 0];
+var EvaluationDimensionInstruction: StaticSimpleSchema = [0, n0, _EDI, 8, 0];
 var EvaluatorDescription: StaticSimpleSchema = [0, n0, _ED, 8, 0];
 var EvaluatorInstructions: StaticSimpleSchema = [0, n0, _EI, 8, 0];
 var GatewayDescription: StaticSimpleSchema = [0, n0, _GD, 8, 0];
@@ -2141,6 +2175,11 @@ export var Certificate$: StaticStructureSchema = [3, n0, _C,
   0,
   [_l],
   [() => CertificateLocation$], 1
+];
+export var CircuitBreakerConfiguration$: StaticStructureSchema = [3, n0, _CBC,
+  0,
+  [_mo],
+  [0]
 ];
 export var CloudWatchLogsInputConfig$: StaticStructureSchema = [3, n0, _CWLIC,
   0,
@@ -2404,13 +2443,13 @@ export var CreateGatewayRuleResponse$: StaticStructureSchema = [3, n0, _CGRRr,
 ];
 export var CreateGatewayTargetRequest$: StaticStructureSchema = [3, n0, _CGTR,
   0,
-  [_gI, _tC, _n, _d, _cT, _cPCr, _mC, _pE],
-  [[0, 1], [() => TargetConfiguration$, 0], [() => TargetName, 0], [() => TargetDescription, 0], [0, 4], [() => CredentialProviderConfigurations, 0], () => MetadataConfiguration$, () => PrivateEndpoint$], 2
+  [_gI, _tC, _n, _d, _cT, _cPCr, _mC, _pE, _cCe],
+  [[0, 1], [() => TargetConfiguration$, 0], [() => TargetName, 0], [() => TargetDescription, 0], [0, 4], [() => CredentialProviderConfigurations, 0], () => MetadataConfiguration$, () => PrivateEndpoint$, () => CertificateConfigurationList], 2
 ];
 export var CreateGatewayTargetResponse$: StaticStructureSchema = [3, n0, _CGTRr,
   0,
-  [_gA, _tI, _cA, _uA, _st, _n, _tC, _cPCr, _sRt, _d, _lSAa, _mC, _pE, _pEMR, _aD, _pT],
-  [0, 0, 5, 5, 0, [() => TargetName, 0], [() => TargetConfiguration$, 0], [() => CredentialProviderConfigurations, 0], 64 | 0, [() => TargetDescription, 0], 5, () => MetadataConfiguration$, () => PrivateEndpoint$, () => PrivateEndpointManagedResources, () => AuthorizationData$, 0], 8
+  [_gA, _tI, _cA, _uA, _st, _n, _tC, _cPCr, _sRt, _d, _lSAa, _mC, _pE, _pEMR, _aD, _pT, _cCe],
+  [0, 0, 5, 5, 0, [() => TargetName, 0], [() => TargetConfiguration$, 0], [() => CredentialProviderConfigurations, 0], 64 | 0, [() => TargetDescription, 0], 5, () => MetadataConfiguration$, () => PrivateEndpoint$, () => PrivateEndpointManagedResources, () => AuthorizationData$, 0, () => CertificateConfigurationList], 8
 ];
 export var CreateHarnessEndpointRequest$: StaticStructureSchema = [3, n0, _CHER,
   0,
@@ -2424,7 +2463,7 @@ export var CreateHarnessEndpointResponse$: StaticStructureSchema = [3, n0, _CHER
 ];
 export var CreateHarnessRequest$: StaticStructureSchema = [3, n0, _CHR,
   0,
-  [_hN, _eRA, _cT, _env, _eAn, _eV, _aCu, _mo, _sP, _to, _sk, _aTl, _mem, _tr, _h, _mIa, _mT, _tS, _ta],
+  [_hN, _eRA, _cT, _env, _eAn, _eV, _aCu, _mod, _sP, _to, _sk, _aTl, _mem, _tr, _h, _mIa, _mT, _tS, _ta],
   [0, 0, [0, 4], () => HarnessEnvironmentProviderRequest$, () => HarnessEnvironmentArtifact$, [() => EnvironmentVariablesMap, 0], () => AuthorizerConfiguration$, [() => HarnessModelConfiguration$, 0], [() => HarnessSystemPrompt, 0], [() => HarnessTools, 0], () => HarnessSkills, 64 | 0, () => HarnessMemoryConfiguration$, () => HarnessTruncationConfiguration$, () => HarnessHooks, 1, 1, 1, 128 | 0], 2
 ];
 export var CreateHarnessResponse$: StaticStructureSchema = [3, n0, _CHRr,
@@ -2564,8 +2603,8 @@ export var CustomJWTAuthorizerConfiguration$: StaticStructureSchema = [3, n0, _C
 ];
 export var CustomMemoryStrategyInput$: StaticStructureSchema = [3, n0, _CMSI,
   0,
-  [_n, _d, _na, _nT, _con, _mRS],
-  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => CustomConfigurationInput$, 0], [() => MemoryRecordSchema$, 0]], 1
+  [_n, _d, _na, _nT, _con, _mRS, _rES],
+  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => CustomConfigurationInput$, 0], [() => MemoryRecordSchema$, 0], () => RecordExpirySpecification$], 1
 ];
 export var CustomOauth2ProviderConfigInput$: StaticStructureSchema = [3, n0, _COPCI,
   0,
@@ -2669,8 +2708,8 @@ export var DeleteConfigurationBundleRequest$: StaticStructureSchema = [3, n0, _D
 ];
 export var DeleteConfigurationBundleResponse$: StaticStructureSchema = [3, n0, _DCBRe,
   0,
-  [_bIu, _st],
-  [0, 0], 2
+  [_bAu, _bIu, _st],
+  [0, 0, 0], 3
 ];
 export var DeleteConsentPortalRequest$: StaticStructureSchema = [3, n0, _DCPR,
   0,
@@ -2949,8 +2988,8 @@ export var EpisodicExtractionOverride$: StaticStructureSchema = [3, n0, _EEO,
 ];
 export var EpisodicMemoryStrategyInput$: StaticStructureSchema = [3, n0, _EMSI,
   0,
-  [_n, _d, _na, _nT, _rC, _mRS],
-  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => EpisodicReflectionConfigurationInput$, 0], [() => MemoryRecordSchema$, 0]], 1
+  [_n, _d, _na, _nT, _rC, _mRS, _rES],
+  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => EpisodicReflectionConfigurationInput$, 0], [() => MemoryRecordSchema$, 0], () => RecordExpirySpecification$], 1
 ];
 export var EpisodicOverrideConfigurationInput$: StaticStructureSchema = [3, n0, _EOCI,
   0,
@@ -2987,17 +3026,37 @@ export var EpisodicReflectionOverride$: StaticStructureSchema = [3, n0, _ERO,
   [_aTP, _mI, _na, _nT, _mRS],
   [[() => Prompt, 0], 0, 64 | 0, 64 | 0, [() => MemoryRecordSchema$, 0]], 2
 ];
+export var EvaluationDimension$: StaticStructureSchema = [3, n0, _EDv,
+  0,
+  [_dNi, _dIi, _dRS],
+  [0, [() => EvaluationDimensionInstruction, 0], [() => DimensionRatingScale$, 0]], 3
+];
 export var EvaluatorSummary$: StaticStructureSchema = [3, n0, _ES,
   0,
   [_eA, _eIv, _eNv, _eT, _st, _cA, _uA, _d, _pro, _le, _lFM, _kKA],
   [0, 0, 0, 0, 0, 4, 4, [() => EvaluatorDescription, 0], 0, 0, 2, 0], 7
 ];
-export var Filter$: StaticStructureSchema = [3, n0, _F,
+export var Fallback$: StaticStructureSchema = [3, n0, _F,
+  0,
+  [_tFa, _tOr, _fBTM, _cBi],
+  [[() => TargetFallbacks, 0], () => FallbackTriggers$, 1, () => CircuitBreakerConfiguration$], 1
+];
+export var FallbackTarget$: StaticStructureSchema = [3, n0, _FT,
+  0,
+  [_tN, _mod, _tOr, _fBTM],
+  [[() => TargetName, 0], 0, () => FallbackTriggers$, 1], 1
+];
+export var FallbackTriggers$: StaticStructureSchema = [3, n0, _FTa,
+  0,
+  [_sCt, _er],
+  [64 | 0, 64 | 0]
+];
+export var Filter$: StaticStructureSchema = [3, n0, _Fi,
   0,
   [_k, _o, _va],
   [0, 0, () => FilterValue$], 3
 ];
-export var Finding$: StaticStructureSchema = [3, n0, _Fi,
+export var Finding$: StaticStructureSchema = [3, n0, _Fin,
   0,
   [_t, _d],
   [0, 0]
@@ -3019,7 +3078,7 @@ export var GatewayInterceptorConfiguration$: StaticStructureSchema = [3, n0, _GI
 ];
 export var GatewayPolicyEngineConfiguration$: StaticStructureSchema = [3, n0, _GPEC,
   0,
-  [_ar, _mod],
+  [_ar, _mo],
   [0, 0], 2
 ];
 export var GatewayRateLimitDetail$: StaticStructureSchema = [3, n0, _GRLD,
@@ -3039,8 +3098,8 @@ export var GatewaySummary$: StaticStructureSchema = [3, n0, _GS,
 ];
 export var GatewayTarget$: StaticStructureSchema = [3, n0, _GT,
   0,
-  [_gA, _tI, _cA, _uA, _st, _n, _tC, _cPCr, _sRt, _d, _lSAa, _mC, _pE, _pEMR, _aD, _pT],
-  [0, 0, 5, 5, 0, [() => TargetName, 0], [() => TargetConfiguration$, 0], [() => CredentialProviderConfigurations, 0], 64 | 0, [() => TargetDescription, 0], 5, () => MetadataConfiguration$, () => PrivateEndpoint$, () => PrivateEndpointManagedResources, () => AuthorizationData$, 0], 8
+  [_gA, _tI, _cA, _uA, _st, _n, _tC, _cPCr, _sRt, _d, _lSAa, _mC, _pE, _pEMR, _aD, _pT, _cCe],
+  [0, 0, 5, 5, 0, [() => TargetName, 0], [() => TargetConfiguration$, 0], [() => CredentialProviderConfigurations, 0], 64 | 0, [() => TargetDescription, 0], 5, () => MetadataConfiguration$, () => PrivateEndpoint$, () => PrivateEndpointManagedResources, () => AuthorizationData$, 0, () => CertificateConfigurationList], 8
 ];
 export var GetAgentRuntimeEndpointRequest$: StaticStructureSchema = [3, n0, _GARER,
   0,
@@ -3099,7 +3158,7 @@ export var GetCapacityProviderInput$: StaticStructureSchema = [3, n0, _GCPI,
 ];
 export var GetCapacityProviderOutput$: StaticStructureSchema = [3, n0, _GCPO,
   0,
-  [_cPI, _cPAa, _n, _st, _pCe, _cC, _cA, _lUA, _d, _sCt, _sR],
+  [_cPI, _cPAa, _n, _st, _pCe, _cC, _cA, _lUA, _d, _sCta, _sR],
   [0, 0, 0, 0, () => PermissionsConfiguration$, () => ComputeConfiguration$, 5, 5, [() => Description, 0], 0, 0], 8
 ];
 export var GetCodeInterpreterRequest$: StaticStructureSchema = [3, n0, _GCIR,
@@ -3199,8 +3258,8 @@ export var GetGatewayTargetRequest$: StaticStructureSchema = [3, n0, _GGTR,
 ];
 export var GetGatewayTargetResponse$: StaticStructureSchema = [3, n0, _GGTRe,
   0,
-  [_gA, _tI, _cA, _uA, _st, _n, _tC, _cPCr, _sRt, _d, _lSAa, _mC, _pE, _pEMR, _aD, _pT],
-  [0, 0, 5, 5, 0, [() => TargetName, 0], [() => TargetConfiguration$, 0], [() => CredentialProviderConfigurations, 0], 64 | 0, [() => TargetDescription, 0], 5, () => MetadataConfiguration$, () => PrivateEndpoint$, () => PrivateEndpointManagedResources, () => AuthorizationData$, 0], 8
+  [_gA, _tI, _cA, _uA, _st, _n, _tC, _cPCr, _sRt, _d, _lSAa, _mC, _pE, _pEMR, _aD, _pT, _cCe],
+  [0, 0, 5, 5, 0, [() => TargetName, 0], [() => TargetConfiguration$, 0], [() => CredentialProviderConfigurations, 0], 64 | 0, [() => TargetDescription, 0], 5, () => MetadataConfiguration$, () => PrivateEndpoint$, () => PrivateEndpointManagedResources, () => AuthorizationData$, 0, () => CertificateConfigurationList], 8
 ];
 export var GetHarnessEndpointRequest$: StaticStructureSchema = [3, n0, _GHER,
   0,
@@ -3414,7 +3473,7 @@ export var GoogleOauth2ProviderConfigOutput$: StaticStructureSchema = [3, n0, _G
 ];
 export var Harness$: StaticStructureSchema = [3, n0, _H,
   0,
-  [_hI, _hN, _ar, _st, _eRA, _cA, _uA, _mo, _sP, _to, _sk, _aTl, _tr, _env, _hV, _eAn, _eV, _aCu, _mem, _h, _mIa, _mT, _tS, _fR],
+  [_hI, _hN, _ar, _st, _eRA, _cA, _uA, _mod, _sP, _to, _sk, _aTl, _tr, _env, _hV, _eAn, _eV, _aCu, _mem, _h, _mIa, _mT, _tS, _fR],
   [0, 0, 0, 0, 0, 5, 5, [() => HarnessModelConfiguration$, 0], [() => HarnessSystemPrompt, 0], [() => HarnessTools, 0], () => HarnessSkills, 64 | 0, () => HarnessTruncationConfiguration$, () => HarnessEnvironmentProvider$, 0, () => HarnessEnvironmentArtifact$, [() => EnvironmentVariablesMap, 0], () => AuthorizerConfiguration$, () => HarnessMemoryConfiguration$, () => HarnessHooks, 1, 1, 1, 0], 14
 ];
 export var HarnessAfterInvocationHook$: StaticStructureSchema = [3, n0, _HAIH,
@@ -4172,6 +4231,16 @@ export var ManagedVpcResource$: StaticStructureSchema = [3, n0, _MVR,
   [_vIp, _sIu, _eIAT, _sGI, _ta, _rDo],
   [0, 64 | 0, 0, 64 | 0, 128 | 0, 0], 3
 ];
+export var MatchModelEntry$: StaticStructureSchema = [3, n0, _MME,
+  0,
+  [_va, _o],
+  [0, 0], 1
+];
+export var MatchModels$: StaticStructureSchema = [3, n0, _MM,
+  0,
+  [_aO],
+  [() => MatchModelEntries], 1
+];
 export var MatchPaths$: StaticStructureSchema = [3, n0, _MP,
   0,
   [_aO],
@@ -4214,8 +4283,8 @@ export var MemoryRecordSchema$: StaticStructureSchema = [3, n0, _MRS,
 ];
 export var MemoryStrategy$: StaticStructureSchema = [3, n0, _MS,
   0,
-  [_sIt, _n, _t, _na, _nT, _d, _con, _cA, _uA, _st, _mRS],
-  [0, 0, 0, 64 | 0, 64 | 0, [() => Description, 0], [() => StrategyConfiguration$, 0], 4, 4, 0, [() => MemoryRecordSchema$, 0]], 5
+  [_sIt, _n, _t, _na, _nT, _d, _con, _cA, _uA, _st, _mRS, _rEDD],
+  [0, 0, 0, 64 | 0, 64 | 0, [() => Description, 0], [() => StrategyConfiguration$, 0], 4, 4, 0, [() => MemoryRecordSchema$, 0], 1], 5
 ];
 export var MemorySummary$: StaticStructureSchema = [3, n0, _MSe,
   0,
@@ -4254,10 +4323,10 @@ export var MicrosoftOauth2ProviderConfigOutput$: StaticStructureSchema = [3, n0,
 ];
 export var ModelEntry$: StaticStructureSchema = [3, n0, _ME,
   0,
-  [_mo],
+  [_mod],
   [0], 1
 ];
-export var ModelMapping$: StaticStructureSchema = [3, n0, _MM,
+export var ModelMapping$: StaticStructureSchema = [3, n0, _MMo,
   0,
   [_pPr],
   [() => ProviderPrefix$]
@@ -4274,8 +4343,8 @@ export var ModifyMemoryStrategies$: StaticStructureSchema = [3, n0, _MMS,
 ];
 export var ModifyMemoryStrategyInput$: StaticStructureSchema = [3, n0, _MMSI,
   0,
-  [_mSI, _d, _na, _nT, _con, _mRS],
-  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => ModifyStrategyConfiguration$, 0], [() => MemoryRecordSchema$, 0]], 1
+  [_mSI, _d, _na, _nT, _con, _mRS, _rES],
+  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => ModifyStrategyConfiguration$, 0], [() => MemoryRecordSchema$, 0], () => RecordExpirySpecification$], 1
 ];
 export var ModifySelfManagedConfiguration$: StaticStructureSchema = [3, n0, _MSMC,
   0,
@@ -4527,6 +4596,11 @@ export var RuntimeTargetConfiguration$: StaticStructureSchema = [3, n0, _RTC,
   [_ar, _q, _sch],
   [0, 0, [() => HttpApiSchemaConfiguration$, 0]], 1
 ];
+export var S3CertificateConfiguration$: StaticStructureSchema = [3, n0, _SCC,
+  0,
+  [_ur, _bOAI],
+  [0, 0], 1
+];
 export var S3Configuration$: StaticStructureSchema = [3, n0, _SC,
   0,
   [_ur, _bOAI],
@@ -4582,6 +4656,11 @@ export var SecretReference$: StaticStructureSchema = [3, n0, _SR,
   [_sIe, _jK],
   [0, 0], 2
 ];
+export var SecretsManagerCertificateConfiguration$: StaticStructureSchema = [3, n0, _SMCC,
+  0,
+  [_sAe],
+  [0], 1
+];
 export var SecretsManagerLocation$: StaticStructureSchema = [3, n0, _SML,
   0,
   [_sAe],
@@ -4609,8 +4688,8 @@ export var SemanticExtractionOverride$: StaticStructureSchema = [3, n0, _SEO,
 ];
 export var SemanticMemoryStrategyInput$: StaticStructureSchema = [3, n0, _SMSI,
   0,
-  [_n, _d, _na, _nT, _mRS],
-  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => MemoryRecordSchema$, 0]], 1
+  [_n, _d, _na, _nT, _mRS, _rES],
+  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => MemoryRecordSchema$, 0], () => RecordExpirySpecification$], 1
 ];
 export var SemanticOverrideConfigurationInput$: StaticStructureSchema = [3, n0, _SOCI,
   0,
@@ -4694,8 +4773,8 @@ export var StaticOverride$: StaticStructureSchema = [3, n0, _SO,
 ];
 export var StaticRoute$: StaticStructureSchema = [3, n0, _SRt,
   0,
-  [_tN],
-  [[() => TargetName, 0]], 1
+  [_tN, _mod, _fa],
+  [[() => TargetName, 0], 0, [() => Fallback$, 0]], 1
 ];
 export var StickinessConfiguration$: StaticStructureSchema = [3, n0, _SCt,
   0,
@@ -4754,8 +4833,8 @@ export var SummaryConsolidationOverride$: StaticStructureSchema = [3, n0, _SCOu,
 ];
 export var SummaryMemoryStrategyInput$: StaticStructureSchema = [3, n0, _SMSIu,
   0,
-  [_n, _d, _na, _nT, _mRS],
-  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => MemoryRecordSchema$, 0]], 1
+  [_n, _d, _na, _nT, _mRS, _rES],
+  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => MemoryRecordSchema$, 0], () => RecordExpirySpecification$], 1
 ];
 export var SummaryOverrideConfigurationInput$: StaticStructureSchema = [3, n0, _SOCIu,
   0,
@@ -4804,8 +4883,8 @@ export var TargetSummary$: StaticStructureSchema = [3, n0, _TS,
 ];
 export var TargetTrafficSplitEntry$: StaticStructureSchema = [3, n0, _TTSE,
   0,
-  [_n, _w, _tN, _d, _meta],
-  [0, 1, [() => TargetName, 0], 0, 128 | 0], 3
+  [_tN, _n, _w, _mod, _fa, _d, _meta],
+  [[() => TargetName, 0], 0, 1, 0, [() => Fallback$, 0], 0, 128 | 0], 3
 ];
 export var TimeBasedTrigger$: StaticStructureSchema = [3, n0, _TBT,
   0,
@@ -4899,8 +4978,8 @@ export var UpdateCapacityProviderOutput$: StaticStructureSchema = [3, n0, _UCPO,
 ];
 export var UpdateConfigurationBundleRequest$: StaticStructureSchema = [3, n0, _UCBR,
   0,
-  [_bIu, _pVI, _cT, _bN, _d, _com, _bNr, _cM, _cB, _kKA],
-  [[0, 1], 64 | 0, [0, 4], 0, [() => ConfigurationBundleDescription, 0], [() => ComponentConfigurationMap, 0], 0, 0, () => VersionCreatedBySource$, 0], 2
+  [_bIu, _pVI, _cM, _cT, _bN, _d, _com, _bNr, _cB, _kKA],
+  [[0, 1], 64 | 0, 0, [0, 4], 0, [() => ConfigurationBundleDescription, 0], [() => ComponentConfigurationMap, 0], 0, () => VersionCreatedBySource$, 0], 3
 ];
 export var UpdateConfigurationBundleResponse$: StaticStructureSchema = [3, n0, _UCBRp,
   0,
@@ -5074,13 +5153,13 @@ export var UpdateGatewayRuleResponse$: StaticStructureSchema = [3, n0, _UGRRp,
 ];
 export var UpdateGatewayTargetRequest$: StaticStructureSchema = [3, n0, _UGTR,
   0,
-  [_gI, _tI, _tC, _n, _d, _cPCr, _mC, _pE],
-  [[0, 1], [0, 1], [() => TargetConfiguration$, 0], [() => TargetName, 0], [() => TargetDescription, 0], [() => CredentialProviderConfigurations, 0], () => MetadataConfiguration$, () => PrivateEndpoint$], 3
+  [_gI, _tI, _tC, _n, _d, _cPCr, _mC, _pE, _cCe],
+  [[0, 1], [0, 1], [() => TargetConfiguration$, 0], [() => TargetName, 0], [() => TargetDescription, 0], [() => CredentialProviderConfigurations, 0], () => MetadataConfiguration$, () => PrivateEndpoint$, () => CertificateConfigurationList], 3
 ];
 export var UpdateGatewayTargetResponse$: StaticStructureSchema = [3, n0, _UGTRp,
   0,
-  [_gA, _tI, _cA, _uA, _st, _n, _tC, _cPCr, _sRt, _d, _lSAa, _mC, _pE, _pEMR, _aD, _pT],
-  [0, 0, 5, 5, 0, [() => TargetName, 0], [() => TargetConfiguration$, 0], [() => CredentialProviderConfigurations, 0], 64 | 0, [() => TargetDescription, 0], 5, () => MetadataConfiguration$, () => PrivateEndpoint$, () => PrivateEndpointManagedResources, () => AuthorizationData$, 0], 8
+  [_gA, _tI, _cA, _uA, _st, _n, _tC, _cPCr, _sRt, _d, _lSAa, _mC, _pE, _pEMR, _aD, _pT, _cCe],
+  [0, 0, 5, 5, 0, [() => TargetName, 0], [() => TargetConfiguration$, 0], [() => CredentialProviderConfigurations, 0], 64 | 0, [() => TargetDescription, 0], 5, () => MetadataConfiguration$, () => PrivateEndpoint$, () => PrivateEndpointManagedResources, () => AuthorizationData$, 0, () => CertificateConfigurationList], 8
 ];
 export var UpdateHarnessEndpointRequest$: StaticStructureSchema = [3, n0, _UHER,
   0,
@@ -5094,7 +5173,7 @@ export var UpdateHarnessEndpointResponse$: StaticStructureSchema = [3, n0, _UHER
 ];
 export var UpdateHarnessRequest$: StaticStructureSchema = [3, n0, _UHR,
   0,
-  [_hI, _cT, _eRA, _env, _eAn, _eV, _aCu, _mo, _sP, _to, _sk, _aTl, _mem, _tr, _h, _mIa, _mT, _tS],
+  [_hI, _cT, _eRA, _env, _eAn, _eV, _aCu, _mod, _sP, _to, _sk, _aTl, _mem, _tr, _h, _mIa, _mT, _tS],
   [[0, 1], [0, 4], 0, () => HarnessEnvironmentProviderRequest$, () => UpdatedHarnessEnvironmentArtifact$, [() => EnvironmentVariablesMap, 0], () => UpdatedAuthorizerConfiguration$, [() => HarnessModelConfiguration$, 0], [() => HarnessSystemPrompt, 0], [() => HarnessTools, 0], () => HarnessSkills, 64 | 0, () => UpdatedHarnessMemoryConfiguration$, () => HarnessTruncationConfiguration$, () => HarnessHooks, 1, 1, 1], 1
 ];
 export var UpdateHarnessResponse$: StaticStructureSchema = [3, n0, _UHRp,
@@ -5234,8 +5313,8 @@ export var UserPreferenceExtractionOverride$: StaticStructureSchema = [3, n0, _U
 ];
 export var UserPreferenceMemoryStrategyInput$: StaticStructureSchema = [3, n0, _UPMSI,
   0,
-  [_n, _d, _na, _nT, _mRS],
-  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => MemoryRecordSchema$, 0]], 1
+  [_n, _d, _na, _nT, _mRS, _rES],
+  [0, [() => Description, 0], 64 | 0, 64 | 0, [() => MemoryRecordSchema$, 0], () => RecordExpirySpecification$], 1
 ];
 export var UserPreferenceOverrideConfigurationInput$: StaticStructureSchema = [3, n0, _UPOCI,
   0,
@@ -5360,6 +5439,9 @@ var CapacityProviderList: StaticListSchema = [1, n0, _CPL,
 var CategoricalScaleDefinitions: StaticListSchema = [1, n0, _CSDa,
   0, () => CategoricalScaleDefinition$
 ];
+var CertificateConfigurationList: StaticListSchema = [1, n0, _CCL,
+  0, () => CertificateConfiguration$
+];
 var Certificates: StaticListSchema = [1, n0, _Ce,
   0, () => Certificate$
 ];
@@ -5393,7 +5475,7 @@ var ConsentPortalSources: StaticListSchema = [1, n0, _CPSons,
 var ConsentPortalSummaries: StaticListSchema = [1, n0, _CPSonse,
   0, () => ConsentPortalSummary$
 ];
-var ContentConfigurationList: StaticListSchema = [1, n0, _CCL,
+var ContentConfigurationList: StaticListSchema = [1, n0, _CCLo,
   0, () => ContentConfiguration$
 ];
 var CredentialProviderConfigurations: StaticListSchema = [1, n0, _CPCre,
@@ -5425,6 +5507,11 @@ var EntryPoints = 64 | 0;
 var EphemeralBlockDeviceMappingList: StaticListSchema = [1, n0, _EBDML,
   0, () => EphemeralBlockDeviceMapping$
 ];
+var ErrorStatusCodePatterns = 64 | 0;
+var EvaluationDimensions: StaticListSchema = [1, n0, _EDva,
+  0, [() => EvaluationDimension$,
+    0]
+];
 var EvaluatorList: StaticListSchema = [1, n0, _EL,
   0, () => EvaluatorReference$
 ];
@@ -5433,13 +5520,14 @@ var EvaluatorSummaryList: StaticListSchema = [1, n0, _ESL,
     0]
 ];
 var ExampleIdList = 64 | 0;
+var FallbackErrors = 64 | 0;
 var FilesystemConfigurations: StaticListSchema = [1, n0, _FC,
   0, () => FilesystemConfiguration$
 ];
 var FilterList: StaticListSchema = [1, n0, _FL,
   0, () => Filter$
 ];
-var Findings: StaticListSchema = [1, n0, _Fin,
+var Findings: StaticListSchema = [1, n0, _Find,
   0, () => Finding$
 ];
 var GatewayInterceptionPoints = 64 | 0;
@@ -5511,6 +5599,9 @@ var LimitEntries: StaticListSchema = [1, n0, _LEi,
 ];
 var LogGroupNamePrefixList = 64 | 0;
 var LogGroupNamesList = 64 | 0;
+var MatchModelEntries: StaticListSchema = [1, n0, _MMEa,
+  0, () => MatchModelEntry$
+];
 var MatchPathPatterns = 64 | 0;
 var MatchPrincipalEntries: StaticListSchema = [1, n0, _MPE,
   0, () => MatchPrincipalEntry$
@@ -5628,6 +5719,10 @@ var SubnetIdList = 64 | 0;
 var SubnetIds = 64 | 0;
 var Subnets = 64 | 0;
 var TagKeyList = 64 | 0;
+var TargetFallbacks: StaticListSchema = [1, n0, _TF,
+  0, [() => FallbackTarget$,
+    0]
+];
 var TargetIdList = 64 | 0;
 var TargetSummaries: StaticListSchema = [1, n0, _TSa,
   0, [() => TargetSummary$,
@@ -5731,6 +5826,11 @@ export var AuthorizerConfiguration$: StaticUnionSchema = [4, n0, _ACu,
   [_cJWTA],
   [() => CustomJWTAuthorizerConfiguration$]
 ];
+export var CertificateConfiguration$: StaticUnionSchema = [4, n0, _CCe,
+  0,
+  [_s_, _sMe],
+  [() => S3CertificateConfiguration$, () => SecretsManagerCertificateConfiguration$]
+];
 export var CertificateLocation$: StaticUnionSchema = [4, n0, _CL,
   0,
   [_sMe],
@@ -5758,8 +5858,8 @@ export var ComputeConfiguration$: StaticUnionSchema = [4, n0, _CComp,
 ];
 export var Condition$: StaticUnionSchema = [4, n0, _Con,
   0,
-  [_mPa, _mPat],
-  [() => MatchPrincipals$, () => MatchPaths$]
+  [_mPa, _mPat, _mMa],
+  [() => MatchPrincipals$, () => MatchPaths$, () => MatchModels$]
 ];
 export var ConfigurationBundleAction$: StaticUnionSchema = [4, n0, _CBA,
   0,
@@ -5835,6 +5935,11 @@ export var DataSourceType$: StaticUnionSchema = [4, n0, _DST,
   0,
   [_iE, _sSo],
   [[() => InlineExamplesSource$, 0], () => S3Source$]
+];
+export var DimensionRatingScale$: StaticUnionSchema = [4, n0, _DRS,
+  8,
+  [_nu, _ca],
+  [() => NumericalScaleDefinitions, () => CategoricalScaleDefinitions]
 ];
 export var EvaluatorConfig$: StaticUnionSchema = [4, n0, _ECv,
   0,
@@ -6038,8 +6143,13 @@ export var PrivateKeySource$: StaticUnionSchema = [4, n0, _PKS,
 ];
 export var RatingScale$: StaticUnionSchema = [4, n0, _RSa,
   8,
-  [_nu, _ca],
-  [() => NumericalScaleDefinitions, () => CategoricalScaleDefinitions]
+  [_nu, _ca, _mD],
+  [() => NumericalScaleDefinitions, () => CategoricalScaleDefinitions, [() => EvaluationDimensions, 0]]
+];
+export var RecordExpirySpecification$: StaticUnionSchema = [4, n0, _RES,
+  0,
+  [_rEDD, _act],
+  [1, 0]
 ];
 export var ReflectionConfiguration$: StaticUnionSchema = [4, n0, _RCef,
   0,

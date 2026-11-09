@@ -69,6 +69,67 @@ export type ArtifactType = (typeof ArtifactType)[keyof typeof ArtifactType];
  * @public
  * @enum
  */
+export const TriggerEvent = {
+  /**
+   * <p>A draft pull request is opened or updated.</p>
+   */
+  PULL_REQUEST_DRAFT: "PULL_REQUEST_DRAFT",
+  /**
+   * <p>A label is added to a pull request. A filter group that selects this event must include a <code>LABEL</code> filter with the <code>INCLUDE</code> match mode, and a review starts only when the added label matches it.</p>
+   */
+  PULL_REQUEST_LABEL_ADDED: "PULL_REQUEST_LABEL_ADDED",
+  /**
+   * <p>A pull request that isn't a draft is opened, updated, or marked ready for review.</p>
+   */
+  PULL_REQUEST_READY_FOR_REVIEW: "PULL_REQUEST_READY_FOR_REVIEW",
+} as const;
+/**
+ * @public
+ */
+export type TriggerEvent = (typeof TriggerEvent)[keyof typeof TriggerEvent];
+
+/**
+ * @public
+ * @enum
+ */
+export const TriggerFilterMatchMode = {
+  /**
+   * <p>The filter passes when no value fully matches any pattern.</p>
+   */
+  EXCLUDE: "EXCLUDE",
+  /**
+   * <p>The filter passes when a value fully matches at least one pattern.</p>
+   */
+  INCLUDE: "INCLUDE",
+} as const;
+/**
+ * @public
+ */
+export type TriggerFilterMatchMode = (typeof TriggerFilterMatchMode)[keyof typeof TriggerFilterMatchMode];
+
+/**
+ * @public
+ * @enum
+ */
+export const TriggerFilterType = {
+  /**
+   * <p>The labels on the pull request.</p>
+   */
+  LABEL: "LABEL",
+  /**
+   * <p>The name of the pull request's target branch, for example <code>main</code>.</p>
+   */
+  TARGET_BRANCH: "TARGET_BRANCH",
+} as const;
+/**
+ * @public
+ */
+export type TriggerFilterType = (typeof TriggerFilterType)[keyof typeof TriggerFilterType];
+
+/**
+ * @public
+ * @enum
+ */
 export const CleanUpStrategy = {
   /**
    * <p>Attempt to delete resources created during the pentest on a best-effort basis.</p>
@@ -362,6 +423,25 @@ export type TaskExecutionStatus = (typeof TaskExecutionStatus)[keyof typeof Task
  * @public
  * @enum
  */
+export const TestScopeType = {
+  /**
+   * <p>A generative AI application.</p>
+   */
+  GENERATIVE_AI_APP: "GENERATIVE_AI_APP",
+  /**
+   * <p>A traditional web application.</p>
+   */
+  WEB_APP: "WEB_APP",
+} as const;
+/**
+ * @public
+ */
+export type TestScopeType = (typeof TestScopeType)[keyof typeof TestScopeType];
+
+/**
+ * @public
+ * @enum
+ */
 export const ErrorCode = {
   /**
    * <p>Failure caused by a client-side error.</p>
@@ -380,6 +460,23 @@ export const ErrorCode = {
  * @public
  */
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];
+
+/**
+ * @public
+ * @enum
+ */
+export const Provider = {
+  AZURE_DEVOPS: "AZURE_DEVOPS",
+  BITBUCKET: "BITBUCKET",
+  CONFLUENCE: "CONFLUENCE",
+  GITHUB: "GITHUB",
+  GITLAB: "GITLAB",
+  JIRA: "JIRA",
+} as const;
+/**
+ * @public
+ */
+export type Provider = (typeof Provider)[keyof typeof Provider];
 
 /**
  * @public
@@ -753,22 +850,6 @@ export type GitLabTokenType = (typeof GitLabTokenType)[keyof typeof GitLabTokenT
  * @public
  * @enum
  */
-export const Provider = {
-  AZURE_DEVOPS: "AZURE_DEVOPS",
-  BITBUCKET: "BITBUCKET",
-  CONFLUENCE: "CONFLUENCE",
-  GITHUB: "GITHUB",
-  GITLAB: "GITLAB",
-} as const;
-/**
- * @public
- */
-export type Provider = (typeof Provider)[keyof typeof Provider];
-
-/**
- * @public
- * @enum
- */
 export const UserRole = {
   /**
    * <p>Default member role with standard permissions.</p>
@@ -872,6 +953,7 @@ export type SecurityRequirementPackStatus =
  */
 export const ProviderType = {
   DOCUMENTATION: "DOCUMENTATION",
+  ISSUE_TRACKING: "ISSUE_TRACKING",
   SOURCE_CODE: "SOURCE_CODE",
 } as const;
 /**
@@ -951,6 +1033,7 @@ export type WebhookAction = (typeof WebhookAction)[keyof typeof WebhookAction];
 export const ResourceType = {
   CODE_REPOSITORY: "CODE_REPOSITORY",
   DOCUMENT: "DOCUMENT",
+  PROJECT: "PROJECT",
 } as const;
 /**
  * @public

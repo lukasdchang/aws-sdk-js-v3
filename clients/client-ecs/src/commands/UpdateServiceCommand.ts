@@ -2,7 +2,7 @@
 import type { MetadataBearer as __MetadataBearer } from "@smithy/types";
 
 import { _ep0, _mw0, command } from "../commandBuilder";
-import type { UpdateServiceRequest, UpdateServiceResponse } from "../models/models_0";
+import type { UpdateServiceRequest, UpdateServiceResponse } from "../models/models_1";
 import { UpdateService$ } from "../schemas/schemas_0";
 
 /**
@@ -200,6 +200,11 @@ export interface UpdateServiceCommandOutput extends UpdateServiceResponse, __Met
  *       format: "TEXT" || "JSON", // required
  *       includeQueryParameters: "DISABLED" || "ENABLED",
  *     },
+ *     containerConfigurations: [ // ServiceConnectContainerConfigurations
+ *       { // ServiceConnectContainerConfiguration Union: only one key present
+ *         logLevel: "debug" || "info",
+ *       },
+ *     ],
  *   },
  *   volumeConfigurations: [ // ServiceVolumeConfigurations
  *     { // ServiceVolumeConfiguration
@@ -235,6 +240,34 @@ export interface UpdateServiceCommandOutput extends UpdateServiceResponse, __Met
  *       roleArn: "STRING_VALUE", // required
  *       targetGroupArn: "STRING_VALUE", // required
  *       portName: "STRING_VALUE", // required
+ *       advancedConfiguration: { // VpcLatticeAdvancedConfiguration
+ *         alternateTargetGroupArn: "STRING_VALUE",
+ *         productionListenerRule: "STRING_VALUE",
+ *         testListenerRule: "STRING_VALUE",
+ *       },
+ *     },
+ *   ],
+ *   gatewayConnectors: [ // GatewayConnectorList
+ *     { // GatewayConnector
+ *       portName: "STRING_VALUE", // required
+ *       healthCheck: { // GatewayConnectorHealthCheck
+ *         healthCheckProtocol: "HTTP" || "HTTPS",
+ *         healthCheckPort: Number("int"),
+ *         healthCheckPath: "STRING_VALUE",
+ *         healthCheckTimeoutSeconds: Number("int"),
+ *         healthCheckIntervalSeconds: Number("int"),
+ *         healthyThresholdCount: Number("int"),
+ *         unhealthyThresholdCount: Number("int"),
+ *         matcher: { // GatewayConnectorHealthCheckMatcher
+ *           httpCode: "STRING_VALUE",
+ *           grpcCode: "STRING_VALUE",
+ *         },
+ *       },
+ *       filters: { // GatewayConnectorFilters
+ *         accessTypes: [ // AccessTypeList
+ *           "PUBLIC" || "PRIVATE",
+ *         ],
+ *       },
  *     },
  *   ],
  *   monitoring: { // MonitoringConfiguration
@@ -502,6 +535,11 @@ export interface UpdateServiceCommandOutput extends UpdateServiceResponse, __Met
  * //             format: "TEXT" || "JSON", // required
  * //             includeQueryParameters: "DISABLED" || "ENABLED",
  * //           },
+ * //           containerConfigurations: [ // ServiceConnectContainerConfigurations
+ * //             { // ServiceConnectContainerConfiguration Union: only one key present
+ * //               logLevel: "debug" || "info",
+ * //             },
+ * //           ],
  * //         },
  * //         serviceConnectResources: [ // ServiceConnectServiceResourceList
  * //           { // ServiceConnectServiceResource
@@ -546,6 +584,11 @@ export interface UpdateServiceCommandOutput extends UpdateServiceResponse, __Met
  * //             roleArn: "STRING_VALUE", // required
  * //             targetGroupArn: "STRING_VALUE", // required
  * //             portName: "STRING_VALUE", // required
+ * //             advancedConfiguration: { // VpcLatticeAdvancedConfiguration
+ * //               alternateTargetGroupArn: "STRING_VALUE",
+ * //               productionListenerRule: "STRING_VALUE",
+ * //               testListenerRule: "STRING_VALUE",
+ * //             },
  * //           },
  * //         ],
  * //       },

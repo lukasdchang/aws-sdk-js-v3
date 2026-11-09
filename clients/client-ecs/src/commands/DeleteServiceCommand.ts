@@ -2,7 +2,7 @@
 import type { MetadataBearer as __MetadataBearer } from "@smithy/types";
 
 import { _ep0, _mw0, command } from "../commandBuilder";
-import type { DeleteServiceRequest, DeleteServiceResponse } from "../models/models_0";
+import type { DeleteServiceRequest, DeleteServiceResponse } from "../models/models_1";
 import { DeleteService$ } from "../schemas/schemas_0";
 
 /**
@@ -291,6 +291,11 @@ export interface DeleteServiceCommandOutput extends DeleteServiceResponse, __Met
  * //             format: "TEXT" || "JSON", // required
  * //             includeQueryParameters: "DISABLED" || "ENABLED",
  * //           },
+ * //           containerConfigurations: [ // ServiceConnectContainerConfigurations
+ * //             { // ServiceConnectContainerConfiguration Union: only one key present
+ * //               logLevel: "debug" || "info",
+ * //             },
+ * //           ],
  * //         },
  * //         serviceConnectResources: [ // ServiceConnectServiceResourceList
  * //           { // ServiceConnectServiceResource
@@ -335,6 +340,11 @@ export interface DeleteServiceCommandOutput extends DeleteServiceResponse, __Met
  * //             roleArn: "STRING_VALUE", // required
  * //             targetGroupArn: "STRING_VALUE", // required
  * //             portName: "STRING_VALUE", // required
+ * //             advancedConfiguration: { // VpcLatticeAdvancedConfiguration
+ * //               alternateTargetGroupArn: "STRING_VALUE",
+ * //               productionListenerRule: "STRING_VALUE",
+ * //               testListenerRule: "STRING_VALUE",
+ * //             },
  * //           },
  * //         ],
  * //       },

@@ -152,6 +152,8 @@ import {
   DestinationStatus,
   DisableKinesisStreamingDestination$,
   DisableKinesisStreamingDestinationCommand,
+  DisassociateReplicationGroupMemberAction$,
+  DisassociationMode,
   DuplicateItemException,
   DuplicateItemException$,
   DynamoDB,
@@ -185,6 +187,7 @@ import {
   ExportType,
   ExportViewType,
   FailureException$,
+  FilterSpecification$,
   Get$,
   GetItem$,
   GetItemCommand,
@@ -693,6 +696,7 @@ assert(typeof DescribeTableReplicaAutoScalingInput$ === "object");
 assert(typeof DescribeTableReplicaAutoScalingOutput$ === "object");
 assert(typeof DescribeTimeToLiveInput$ === "object");
 assert(typeof DescribeTimeToLiveOutput$ === "object");
+assert(typeof DisassociateReplicationGroupMemberAction$ === "object");
 assert(typeof EnableKinesisStreamingConfiguration$ === "object");
 assert(typeof Endpoint$ === "object");
 assert(typeof ExecuteStatementInput$ === "object");
@@ -705,6 +709,7 @@ assert(typeof ExportSummary$ === "object");
 assert(typeof ExportTableToPointInTimeInput$ === "object");
 assert(typeof ExportTableToPointInTimeOutput$ === "object");
 assert(typeof FailureException$ === "object");
+assert(typeof FilterSpecification$ === "object");
 assert(typeof Get$ === "object");
 assert(typeof GetItemInput$ === "object");
 assert(typeof GetItemOutput$ === "object");
@@ -861,6 +866,7 @@ assert(typeof ContributorInsightsAction === "object");
 assert(typeof ContributorInsightsMode === "object");
 assert(typeof ContributorInsightsStatus === "object");
 assert(typeof DestinationStatus === "object");
+assert(typeof DisassociationMode === "object");
 assert(typeof ExportFormat === "object");
 assert(typeof ExportStatus === "object");
 assert(typeof ExportType === "object");

@@ -63,6 +63,10 @@ import type {
   CreateOAuth2TokenWithIAMCommandOutput,
 } from "./commands/CreateOAuth2TokenWithIAMCommand";
 import type {
+  CreateOAuth2TokenWithTokenExchangeCommandInput,
+  CreateOAuth2TokenWithTokenExchangeCommandOutput,
+} from "./commands/CreateOAuth2TokenWithTokenExchangeCommand";
+import type {
   DeleteConsoleAuthorizationConfigurationCommandInput,
   DeleteConsoleAuthorizationConfigurationCommandOutput,
 } from "./commands/DeleteConsoleAuthorizationConfigurationCommand";
@@ -115,6 +119,7 @@ export { __Client };
 export type ServiceInputTypes =
   | CreateOAuth2TokenCommandInput
   | CreateOAuth2TokenWithIAMCommandInput
+  | CreateOAuth2TokenWithTokenExchangeCommandInput
   | DeleteConsoleAuthorizationConfigurationCommandInput
   | DeleteResourcePermissionStatementCommandInput
   | GetConsoleAuthorizationConfigurationCommandInput
@@ -131,6 +136,7 @@ export type ServiceInputTypes =
 export type ServiceOutputTypes =
   | CreateOAuth2TokenCommandOutput
   | CreateOAuth2TokenWithIAMCommandOutput
+  | CreateOAuth2TokenWithTokenExchangeCommandOutput
   | DeleteConsoleAuthorizationConfigurationCommandOutput
   | DeleteResourcePermissionStatementCommandOutput
   | GetConsoleAuthorizationConfigurationCommandOutput
@@ -271,7 +277,8 @@ export interface ClientDefaults extends Partial<__SmithyConfiguration<__HttpHand
 
   /**
    * Specifies which retry algorithm to use.
-   * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-smithy-util-retry/Enum/RETRY_MODES/
+   * Accepted values are "standard" and "adaptive".
+   * @see https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html
    *
    */
   retryMode?: string | __Provider<string>;
@@ -332,8 +339,7 @@ export type SigninClientResolvedConfigType = __SmithyResolvedConfiguration<__Htt
 export interface SigninClientResolvedConfig extends SigninClientResolvedConfigType {}
 
 /**
- * AWS Sign-In manages authentication for AWS services. This service provides
- * secure authentication flows for accessing AWS resources from the console and developer tools.
+ * AWS Sign-In manages authentication for AWS services. It implements OAuth 2.0, providing secure token exchange and refresh capabilities.
  * @public
  */
 export class SigninClient extends __Client<

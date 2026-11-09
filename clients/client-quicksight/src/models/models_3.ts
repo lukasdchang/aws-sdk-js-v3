@@ -78,17 +78,10 @@ import type {
 import type {
   AccessControlConfiguration,
   AggregateOperation,
-  AnalysisDefaults,
-  AssetOptions,
-  CalculatedField,
-  ColumnConfiguration,
   DataPrepAggregationFunction,
   DataSetColumnIdMapping,
   Entity,
-  FilterGroup,
   FontConfiguration,
-  ParameterDeclaration,
-  QueryExecutionOptions,
   Sheet,
   TransformOperationSource,
 } from "./models_0";
@@ -113,19 +106,44 @@ import type {
   CreateColumnsOperation,
   DataSetReference,
   DataSourceParameters,
-  DestinationTable,
   DisplayFormatOptions,
   Governance,
   ResourcePermission,
-  SheetDefinition,
   SslProperties,
-  StaticFile,
   Tag,
-  TooltipSheetDefinition,
   TopicReference,
-  ValidationStrategy,
   VpcConnectionProperties,
 } from "./models_2";
+
+/**
+ * <p>Specifies the source of data for a destination table, including the transform operation and column mappings.</p>
+ * @public
+ */
+export interface DestinationTableSource {
+  /**
+   * <p>The identifier of the transform operation that provides data to the destination table.</p>
+   * @public
+   */
+  TransformOperationId: string | undefined;
+}
+
+/**
+ * <p>Defines a destination table in data preparation that receives the final transformed data.</p>
+ * @public
+ */
+export interface DestinationTable {
+  /**
+   * <p>Alias for the destination table.</p>
+   * @public
+   */
+  Alias: string | undefined;
+
+  /**
+   * <p>The source configuration that specifies which transform operation provides data to this destination table.</p>
+   * @public
+   */
+  Source: DestinationTableSource | undefined;
+}
 
 /**
  * <p>Metadata for a column that is used as the input of a transform operation.</p>
@@ -2441,6 +2459,66 @@ export interface OAuthClientCredentials {
 }
 
 /**
+ * <p>The client credentials for connecting to a Microsoft OneDrive data source using two-legged OAuth (2LO) certificate-based authentication. OneDrive connections access files stored in your OneDrive storage. The tenant ID and client ID are supplied through <code>OneDriveParameters</code>.</p>
+ * @public
+ */
+export interface OneDriveClientCredentials {
+  /**
+   * <p>The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) key used to encrypt the OneDrive certificate credentials. This field is required.</p>
+   * @public
+   */
+  KmsKeyArn: string | undefined;
+
+  /**
+   * <p>The thumbprint of the certificate used for two-legged OAuth (2LO) authentication to OneDrive. This field is required.</p>
+   * @public
+   */
+  CertThumbprint: string | undefined;
+}
+
+/**
+ * <p>The service account credentials used for Google Workspace domain-wide delegation. Use this structure when you authenticate a data source connection using domain-wide delegation across your Google Workspace domain.</p>
+ * @public
+ */
+export interface ServiceAccountCredentials {
+  /**
+   * <p>The email address of the Google Workspace administrator account that the service account impersonates through domain-wide delegation. This field is required.</p>
+   * @public
+   */
+  AdminAccountEmail: string | undefined;
+
+  /**
+   * <p>The private key of the Google service account used for domain-wide delegation. This field is required.</p>
+   * @public
+   */
+  ServiceAccountPrivateKey: string | undefined;
+
+  /**
+   * <p>The client email address of the Google service account used for domain-wide delegation. This field is required.</p>
+   * @public
+   */
+  ClientEmail: string | undefined;
+}
+
+/**
+ * <p>The client credentials for connecting to a Microsoft SharePoint data source using two-legged OAuth (2LO) certificate-based authentication. SharePoint connections access documents stored in SharePoint sites and libraries. The tenant ID and client ID are supplied through <code>SharePointParameters</code>.</p>
+ * @public
+ */
+export interface SharePointClientCredentials {
+  /**
+   * <p>The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) key used to encrypt the SharePoint certificate credentials. This field is required.</p>
+   * @public
+   */
+  KmsKeyArn: string | undefined;
+
+  /**
+   * <p>The thumbprint of the certificate used for two-legged OAuth (2LO) authentication to SharePoint. This field is required.</p>
+   * @public
+   */
+  CertThumbprint: string | undefined;
+}
+
+/**
  * <p>The credentials for authenticating with a web proxy server.</p>
  * @public
  */
@@ -2509,6 +2587,24 @@ export interface DataSourceCredentials {
    * @public
    */
   OAuthClientCredentials?: OAuthClientCredentials | undefined;
+
+  /**
+   * <p>The service account credentials for connecting to a data source that uses Google Workspace domain-wide delegation.</p>
+   * @public
+   */
+  ServiceAccountCredentials?: ServiceAccountCredentials | undefined;
+
+  /**
+   * <p>The client credentials for connecting to a Microsoft SharePoint data source using two-legged OAuth (2LO) certificate-based authentication.</p>
+   * @public
+   */
+  SharePointClientCredentials?: SharePointClientCredentials | undefined;
+
+  /**
+   * <p>The client credentials for connecting to a Microsoft OneDrive data source using two-legged OAuth (2LO) certificate-based authentication.</p>
+   * @public
+   */
+  OneDriveClientCredentials?: OneDriveClientCredentials | undefined;
 }
 
 /**
@@ -4353,92 +4449,6 @@ export interface TopicConfiguration {
 }
 
 /**
- * <p>The detailed definition of a template.</p>
- * @public
- */
-export interface TemplateVersionDefinition {
-  /**
-   * <p>An array of dataset configurations. These configurations define the required columns for each dataset used within a template.</p>
-   * @public
-   */
-  DataSetConfigurations: DataSetConfiguration[] | undefined;
-
-  /**
-   * <p>An array of topic configurations. These configurations define the required columns for each topic used within a template.</p>
-   * @public
-   */
-  TopicConfigurations?: TopicConfiguration[] | undefined;
-
-  /**
-   * <p>An array of sheet definitions for a template.</p>
-   * @public
-   */
-  Sheets?: SheetDefinition[] | undefined;
-
-  /**
-   * <p>An array of tooltip sheet definitions for a template.</p>
-   * @public
-   */
-  TooltipSheets?: TooltipSheetDefinition[] | undefined;
-
-  /**
-   * <p>An array of calculated field definitions for the template.</p>
-   * @public
-   */
-  CalculatedFields?: CalculatedField[] | undefined;
-
-  /**
-   * <p>An array of parameter declarations for a template.</p>
-   *          <p>
-   *             <i>Parameters</i> are named variables that can transfer a value for use by an action or an object.</p>
-   *          <p>For more information, see <a href="https://docs.aws.amazon.com/quicksight/latest/user/parameters-in-quicksight.html">Parameters in Amazon Quick Sight</a> in the
-   *             <i>Amazon Quick Suite User Guide</i>.
-   *         </p>
-   * @public
-   */
-  ParameterDeclarations?: ParameterDeclaration[] | undefined;
-
-  /**
-   * <p>Filter definitions for a template.</p>
-   *          <p>For more information, see <a href="https://docs.aws.amazon.com/quicksight/latest/user/filtering-visual-data.html">Filtering Data</a> in the <i>Amazon Quick Suite User Guide</i>.
-   *         </p>
-   * @public
-   */
-  FilterGroups?: FilterGroup[] | undefined;
-
-  /**
-   * <p> An array of template-level column
-   *             configurations. Column configurations are used to set default formatting for a column that's used throughout a template. </p>
-   * @public
-   */
-  ColumnConfigurations?: ColumnConfiguration[] | undefined;
-
-  /**
-   * <p>The configuration for default analysis settings.</p>
-   * @public
-   */
-  AnalysisDefaults?: AnalysisDefaults | undefined;
-
-  /**
-   * <p>An array of option definitions for a template.</p>
-   * @public
-   */
-  Options?: AssetOptions | undefined;
-
-  /**
-   * <p>A structure that describes the query execution options.</p>
-   * @public
-   */
-  QueryExecutionOptions?: QueryExecutionOptions | undefined;
-
-  /**
-   * <p>The static files for the definition.</p>
-   * @public
-   */
-  StaticFiles?: StaticFile[] | undefined;
-}
-
-/**
  * <p>The source analysis of the template.</p>
  * @public
  */
@@ -4492,85 +4502,6 @@ export interface TemplateSourceEntity {
    * @public
    */
   SourceTemplate?: TemplateSourceTemplate | undefined;
-}
-
-/**
- * @public
- */
-export interface CreateTemplateRequest {
-  /**
-   * <p>The ID for the Amazon Web Services account that the group is in. You use the ID for the Amazon Web Services account that contains your Amazon Quick Sight account.</p>
-   * @public
-   */
-  AwsAccountId: string | undefined;
-
-  /**
-   * <p>An ID for the template that you want to create. This template is unique per Amazon Web Services Region; in
-   * 			each Amazon Web Services account.</p>
-   * @public
-   */
-  TemplateId: string | undefined;
-
-  /**
-   * <p>A display name for the template.</p>
-   * @public
-   */
-  Name?: string | undefined;
-
-  /**
-   * <p>A list of resource permissions to be set on the template. </p>
-   * @public
-   */
-  Permissions?: ResourcePermission[] | undefined;
-
-  /**
-   * <p>The entity that you are using as a source when you create the template. In
-   * 			<code>SourceEntity</code>, you specify the type of object you're using as source:
-   * 			<code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an
-   * 			analysis. Both of these require an Amazon Resource Name (ARN). For
-   * 			<code>SourceTemplate</code>, specify the ARN of the source template. For
-   * 			<code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code>
-   * 			ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region. </p>
-   *          <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or
-   * 			<code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed
-   * 			in the original. The schema in each dataset must match its placeholder. Use the <code>TopicReferences</code>
-   * 			entity to list the replacement topics for the topic placeholders listed in the original.
-   * 			The schema in each topic must match its placeholder.</p>
-   *          <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in
-   * 			order for the request to be valid.</p>
-   * @public
-   */
-  SourceEntity?: TemplateSourceEntity | undefined;
-
-  /**
-   * <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>
-   * @public
-   */
-  Tags?: Tag[] | undefined;
-
-  /**
-   * <p>A description of the current template version being created. This API operation creates the
-   * 			first version of the template. Every time <code>UpdateTemplate</code> is called, a new
-   * 			version is created. Each version of the template maintains a description of the version
-   * 			in the <code>VersionDescription</code> field.</p>
-   * @public
-   */
-  VersionDescription?: string | undefined;
-
-  /**
-   * <p>The definition of a template.</p>
-   *          <p>A definition is the data model of all features in a Dashboard, Template, or Analysis.</p>
-   *          <p>Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in
-   * 			order for the request to be valid.</p>
-   * @public
-   */
-  Definition?: TemplateVersionDefinition | undefined;
-
-  /**
-   * <p>TThe option to relax the validation needed to create a template with definition objects. This skips the validation step for specific errors.</p>
-   * @public
-   */
-  ValidationStrategy?: ValidationStrategy | undefined;
 }
 
 /**
@@ -9313,69 +9244,4 @@ export interface DeleteUserResponse {
    * @public
    */
   Status?: number | undefined;
-}
-
-/**
- * <p></p>
- * @public
- */
-export interface DeleteUserByPrincipalIdRequest {
-  /**
-   * <p>The principal ID of the user.</p>
-   * @public
-   */
-  PrincipalId: string | undefined;
-
-  /**
-   * <p>The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the
-   * 			Amazon Web Services account that contains your Amazon Quick Sight account.</p>
-   * @public
-   */
-  AwsAccountId: string | undefined;
-
-  /**
-   * <p>The namespace. Currently, you should set this to <code>default</code>.</p>
-   * @public
-   */
-  Namespace: string | undefined;
-}
-
-/**
- * @public
- */
-export interface DeleteUserByPrincipalIdResponse {
-  /**
-   * <p>The Amazon Web Services request ID for this operation.</p>
-   * @public
-   */
-  RequestId?: string | undefined;
-
-  /**
-   * <p>The HTTP status of the request.</p>
-   * @public
-   */
-  Status?: number | undefined;
-}
-
-/**
- * @public
- */
-export interface DeleteUserCustomPermissionRequest {
-  /**
-   * <p>The username of the user that you want to remove custom permissions from.</p>
-   * @public
-   */
-  UserName: string | undefined;
-
-  /**
-   * <p>The ID of the Amazon Web Services account that contains the custom permission configuration that you want to delete.</p>
-   * @public
-   */
-  AwsAccountId: string | undefined;
-
-  /**
-   * <p>The namespace that the user belongs to.</p>
-   * @public
-   */
-  Namespace: string | undefined;
 }

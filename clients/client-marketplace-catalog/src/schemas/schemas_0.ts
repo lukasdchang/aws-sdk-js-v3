@@ -100,6 +100,12 @@ const _EI = "EntityId";
 const _EIL = "EntityIdList";
 const _EIn = "EntityIdentifier";
 const _EM = "ErrorMessage";
+const _EPOCEIF = "ExpressPrivateOfferConfigurationEntityIdFilter";
+const _EPOCF = "ExpressPrivateOfferConfigurationFilters";
+const _EPOCPIF = "ExpressPrivateOfferConfigurationProductIdFilter";
+const _EPOCS = "ExpressPrivateOfferConfigurationSummary";
+const _EPOCSF = "ExpressPrivateOfferConfigurationStateFilter";
+const _EPOCSx = "ExpressPrivateOfferConfigurationSort";
 const _ER = "EntityRequest";
 const _ERL = "EntityRequestList";
 const _ES = "EntitySummary";
@@ -225,13 +231,29 @@ const _RASF = "ResaleAuthorizationStatusFilter";
 const _RASe = "ResaleAuthorizationSort";
 const _RCL = "RequestedChangeList";
 const _RD = "ReleaseDate";
+const _RI = "ResourceId";
 const _RIUE = "ResourceInUseException";
 const _RLN = "ResellerLegalName";
+const _RN = "ResourceName";
 const _RNFE = "ResourceNotFoundException";
 const _RNSE = "ResourceNotSupportedException";
 const _RR = "ResellerRole";
 const _S = "Status";
 const _SA = "SourceAuthorization";
+const _SACDF = "SubsidiaryAuthorizationCreatedDateFilter";
+const _SACDFDR = "SubsidiaryAuthorizationCreatedDateFilterDateRange";
+const _SAEIF = "SubsidiaryAuthorizationEntityIdFilter";
+const _SAF = "SubsidiaryAuthorizationFilters";
+const _SAI = "SubsidiaryAccountId";
+const _SALMDF = "SubsidiaryAuthorizationLastModifiedDateFilter";
+const _SALMDFDR = "SubsidiaryAuthorizationLastModifiedDateFilterDateRange";
+const _SANF = "SubsidiaryAuthorizationNameFilter";
+const _SARIF = "SubsidiaryAuthorizationResourceIdFilter";
+const _SARNF = "SubsidiaryAuthorizationResourceNameFilter";
+const _SAS = "SubsidiaryAuthorizationSummary";
+const _SASAIF = "SubsidiaryAuthorizationSubsidiaryAccountIdFilter";
+const _SASF = "SubsidiaryAuthorizationStatusFilter";
+const _SASu = "SubsidiaryAuthorizationSort";
 const _SB = "SortBy";
 const _SCS = "StartChangeSet";
 const _SCSR = "StartChangeSetRequest";
@@ -633,8 +655,8 @@ export var EntityRequest$: StaticStructureSchema = [3, n0, _ER,
 ];
 export var EntitySummary$: StaticStructureSchema = [3, n0, _ES,
   0,
-  [_N, _ETnt, _EI, _EAn, _LMD, _V, _APSm, _CPSo, _DPSa, _SSPS, _OS, _RAS, _MLPS, _OSS],
-  [0, 0, 0, 0, 0, 0, () => AmiProductSummary$, () => ContainerProductSummary$, () => DataProductSummary$, () => SaaSProductSummary$, () => OfferSummary$, () => ResaleAuthorizationSummary$, () => MachineLearningProductSummary$, () => OfferSetSummary$]
+  [_N, _ETnt, _EI, _EAn, _LMD, _V, _APSm, _CPSo, _DPSa, _SSPS, _OS, _RAS, _MLPS, _OSS, _EPOCS, _SAS],
+  [0, 0, 0, 0, 0, 0, () => AmiProductSummary$, () => ContainerProductSummary$, () => DataProductSummary$, () => SaaSProductSummary$, () => OfferSummary$, () => ResaleAuthorizationSummary$, () => MachineLearningProductSummary$, () => OfferSetSummary$, () => ExpressPrivateOfferConfigurationSummary$, () => SubsidiaryAuthorizationSummary$]
 ];
 export var ErrorDetail$: StaticStructureSchema = [3, n0, _EDr,
   0,
@@ -644,6 +666,36 @@ export var ErrorDetail$: StaticStructureSchema = [3, n0, _EDr,
 export var ErrorScope$: StaticStructureSchema = [3, n0, _ESr,
   0,
   [_N, _Va],
+  [0, 0]
+];
+export var ExpressPrivateOfferConfigurationEntityIdFilter$: StaticStructureSchema = [3, n0, _EPOCEIF,
+  0,
+  [_VL],
+  [64 | 0]
+];
+export var ExpressPrivateOfferConfigurationFilters$: StaticStructureSchema = [3, n0, _EPOCF,
+  0,
+  [_EI, _PI, _St],
+  [() => ExpressPrivateOfferConfigurationEntityIdFilter$, () => ExpressPrivateOfferConfigurationProductIdFilter$, () => ExpressPrivateOfferConfigurationStateFilter$]
+];
+export var ExpressPrivateOfferConfigurationProductIdFilter$: StaticStructureSchema = [3, n0, _EPOCPIF,
+  0,
+  [_VL],
+  [64 | 0]
+];
+export var ExpressPrivateOfferConfigurationSort$: StaticStructureSchema = [3, n0, _EPOCSx,
+  0,
+  [_SB, _SO],
+  [0, 0]
+];
+export var ExpressPrivateOfferConfigurationStateFilter$: StaticStructureSchema = [3, n0, _EPOCSF,
+  0,
+  [_VL],
+  [64 | 0]
+];
+export var ExpressPrivateOfferConfigurationSummary$: StaticStructureSchema = [3, n0, _EPOCS,
+  0,
+  [_PI, _St],
   [0, 0]
 ];
 export var Filter$: StaticStructureSchema = [3, n0, _F,
@@ -1076,6 +1128,71 @@ export var StartChangeSetResponse$: StaticStructureSchema = [3, n0, _SCSRt,
   [_CSI, _CSA],
   [0, 0]
 ];
+export var SubsidiaryAuthorizationCreatedDateFilter$: StaticStructureSchema = [3, n0, _SACDF,
+  0,
+  [_DR],
+  [() => SubsidiaryAuthorizationCreatedDateFilterDateRange$]
+];
+export var SubsidiaryAuthorizationCreatedDateFilterDateRange$: StaticStructureSchema = [3, n0, _SACDFDR,
+  0,
+  [_AV, _BV],
+  [0, 0]
+];
+export var SubsidiaryAuthorizationEntityIdFilter$: StaticStructureSchema = [3, n0, _SAEIF,
+  0,
+  [_VL],
+  [64 | 0]
+];
+export var SubsidiaryAuthorizationFilters$: StaticStructureSchema = [3, n0, _SAF,
+  0,
+  [_EI, _S, _RI, _RN, _N, _SAI, _CD, _LMD],
+  [() => SubsidiaryAuthorizationEntityIdFilter$, () => SubsidiaryAuthorizationStatusFilter$, () => SubsidiaryAuthorizationResourceIdFilter$, () => SubsidiaryAuthorizationResourceNameFilter$, () => SubsidiaryAuthorizationNameFilter$, () => SubsidiaryAuthorizationSubsidiaryAccountIdFilter$, () => SubsidiaryAuthorizationCreatedDateFilter$, () => SubsidiaryAuthorizationLastModifiedDateFilter$]
+];
+export var SubsidiaryAuthorizationLastModifiedDateFilter$: StaticStructureSchema = [3, n0, _SALMDF,
+  0,
+  [_DR],
+  [() => SubsidiaryAuthorizationLastModifiedDateFilterDateRange$]
+];
+export var SubsidiaryAuthorizationLastModifiedDateFilterDateRange$: StaticStructureSchema = [3, n0, _SALMDFDR,
+  0,
+  [_AV, _BV],
+  [0, 0]
+];
+export var SubsidiaryAuthorizationNameFilter$: StaticStructureSchema = [3, n0, _SANF,
+  0,
+  [_VL, _WCV],
+  [64 | 0, 0]
+];
+export var SubsidiaryAuthorizationResourceIdFilter$: StaticStructureSchema = [3, n0, _SARIF,
+  0,
+  [_VL],
+  [64 | 0]
+];
+export var SubsidiaryAuthorizationResourceNameFilter$: StaticStructureSchema = [3, n0, _SARNF,
+  0,
+  [_VL, _WCV],
+  [64 | 0, 0]
+];
+export var SubsidiaryAuthorizationSort$: StaticStructureSchema = [3, n0, _SASu,
+  0,
+  [_SB, _SO],
+  [0, 0]
+];
+export var SubsidiaryAuthorizationStatusFilter$: StaticStructureSchema = [3, n0, _SASF,
+  0,
+  [_VL],
+  [64 | 0]
+];
+export var SubsidiaryAuthorizationSubsidiaryAccountIdFilter$: StaticStructureSchema = [3, n0, _SASAIF,
+  0,
+  [_VL],
+  [64 | 0]
+];
+export var SubsidiaryAuthorizationSummary$: StaticStructureSchema = [3, n0, _SAS,
+  0,
+  [_N, _S, _RI, _RN, _SAI, _CD],
+  [0, 0, 0, 0, 0, 0]
+];
 export var Tag$: StaticStructureSchema = [3, n0, _Tag,
   0,
   [_K, _Va],
@@ -1142,6 +1259,9 @@ var ErrorDetailList: StaticListSchema = [1, n0, _EDL,
 var ErrorScopeList: StaticListSchema = [1, n0, _ESLr,
   0, () => ErrorScope$
 ];
+var ExpressPrivateOfferConfigurationEntityIdFilterValueList = 64 | 0;
+var ExpressPrivateOfferConfigurationProductIdFilterValueList = 64 | 0;
+var ExpressPrivateOfferConfigurationStateFilterValueList = 64 | 0;
 var FilterList: StaticListSchema = [1, n0, _FL,
   0, () => Filter$
 ];
@@ -1188,6 +1308,12 @@ var ResourceIdList = 64 | 0;
 var SaaSProductEntityIdFilterValueList = 64 | 0;
 var SaaSProductTitleFilterValueList = 64 | 0;
 var SaaSProductVisibilityFilterValueList = 64 | 0;
+var SubsidiaryAuthorizationEntityIdFilterValueList = 64 | 0;
+var SubsidiaryAuthorizationNameFilterValueList = 64 | 0;
+var SubsidiaryAuthorizationResourceIdFilterValueList = 64 | 0;
+var SubsidiaryAuthorizationResourceNameFilterValueList = 64 | 0;
+var SubsidiaryAuthorizationStatusFilterValueList = 64 | 0;
+var SubsidiaryAuthorizationSubsidiaryAccountIdFilterValueList = 64 | 0;
 var TagKeyList = 64 | 0;
 var TagList: StaticListSchema = [1, n0, _TL,
   0, () => Tag$
@@ -1204,13 +1330,13 @@ var Errors: StaticMapSchema = [2, n0, _E,
 ];
 export var EntityTypeFilters$: StaticUnionSchema = [4, n0, _ETF,
   0,
-  [_DPF, _SSPF, _APF, _OF, _CPF, _RAF, _MLPF, _OSF],
-  [() => DataProductFilters$, () => SaaSProductFilters$, () => AmiProductFilters$, () => OfferFilters$, () => ContainerProductFilters$, () => ResaleAuthorizationFilters$, () => MachineLearningProductFilters$, () => OfferSetFilters$]
+  [_DPF, _SSPF, _APF, _OF, _CPF, _RAF, _MLPF, _OSF, _EPOCF, _SAF],
+  [() => DataProductFilters$, () => SaaSProductFilters$, () => AmiProductFilters$, () => OfferFilters$, () => ContainerProductFilters$, () => ResaleAuthorizationFilters$, () => MachineLearningProductFilters$, () => OfferSetFilters$, () => ExpressPrivateOfferConfigurationFilters$, () => SubsidiaryAuthorizationFilters$]
 ];
 export var EntityTypeSort$: StaticUnionSchema = [4, n0, _ETS,
   0,
-  [_DPS, _SSPSa, _APS, _OSf, _CPS, _RASe, _MLPSa, _OSSf],
-  [() => DataProductSort$, () => SaaSProductSort$, () => AmiProductSort$, () => OfferSort$, () => ContainerProductSort$, () => ResaleAuthorizationSort$, () => MachineLearningProductSort$, () => OfferSetSort$]
+  [_DPS, _SSPSa, _APS, _OSf, _CPS, _RASe, _MLPSa, _OSSf, _EPOCSx, _SASu],
+  [() => DataProductSort$, () => SaaSProductSort$, () => AmiProductSort$, () => OfferSort$, () => ContainerProductSort$, () => ResaleAuthorizationSort$, () => MachineLearningProductSort$, () => OfferSetSort$, () => ExpressPrivateOfferConfigurationSort$, () => SubsidiaryAuthorizationSort$]
 ];
 export var FrameworkFilters$: StaticUnionSchema = [4, n0, _FF,
   0,

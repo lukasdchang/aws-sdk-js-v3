@@ -3,6 +3,46 @@
  * @public
  * @enum
  */
+export const CircuitBreakerMode = {
+  DISABLED: "DISABLED",
+  ENABLED: "ENABLED",
+} as const;
+/**
+ * @public
+ */
+export type CircuitBreakerMode = (typeof CircuitBreakerMode)[keyof typeof CircuitBreakerMode];
+
+/**
+ * @public
+ * @enum
+ */
+export const FallbackError = {
+  /**
+   * The gateway could not establish a connection to the destination (connection refused/reset,
+   * or connection timeout) — the attempt never reached the provider. Feeds the circuit breaker.
+   */
+  CONNECTION_ERROR: "CONNECTION_ERROR",
+  /**
+   * The destination accepted the connection but did not return the first response byte within
+   * firstByteTimeoutMilliseconds; the attempt is abandoned before any byte reaches the client.
+   * Feeds the circuit breaker.
+   */
+  FIRST_BYTE_TIMEOUT: "FIRST_BYTE_TIMEOUT",
+  /**
+   * Gateway-side: the target could not be routed to (target missing, or it does not support the
+   * request's API path). Deterministic — advances the chain but does NOT feed the breaker.
+   */
+  UNROUTABLE: "UNROUTABLE",
+} as const;
+/**
+ * @public
+ */
+export type FallbackError = (typeof FallbackError)[keyof typeof FallbackError];
+
+/**
+ * @public
+ * @enum
+ */
 export const ActorTokenContentType = {
   AWS_IAM_ID_TOKEN_JWT: "AWS_IAM_ID_TOKEN_JWT",
   M2M: "M2M",
@@ -713,6 +753,19 @@ export type WafFailureMode = (typeof WafFailureMode)[keyof typeof WafFailureMode
  * @public
  * @enum
  */
+export const MatchOperator = {
+  StringEquals: "StringEquals",
+  StringLike: "StringLike",
+} as const;
+/**
+ * @public
+ */
+export type MatchOperator = (typeof MatchOperator)[keyof typeof MatchOperator];
+
+/**
+ * @public
+ * @enum
+ */
 export const PrincipalMatchOperator = {
   StringEquals: "StringEquals",
   StringLike: "StringLike",
@@ -1095,6 +1148,18 @@ export const ExtractionType = {
  * @public
  */
 export type ExtractionType = (typeof ExtractionType)[keyof typeof ExtractionType];
+
+/**
+ * @public
+ * @enum
+ */
+export const RecordExpiryAction = {
+  REMOVE: "REMOVE",
+} as const;
+/**
+ * @public
+ */
+export type RecordExpiryAction = (typeof RecordExpiryAction)[keyof typeof RecordExpiryAction];
 
 /**
  * @public

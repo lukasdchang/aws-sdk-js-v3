@@ -47,6 +47,7 @@ import {
   AnswerMachineDetectionConfig$,
   Application$,
   ApplicationType,
+  ApproximateDriftedResourceCount$,
   ArtifactStatus,
   AssignContactCategoryActionDefinition$,
   AssignSlaActionDefinition$,
@@ -246,6 +247,8 @@ import {
   ContactField,
   ContactFilter$,
   ContactFlow$,
+  ContactFlowAliasInfo$,
+  ContactFlowAliasSummary$,
   ContactFlowAttributeAndCondition$,
   ContactFlowAttributeFilter$,
   ContactFlowModule$,
@@ -287,6 +290,7 @@ import {
   ContactSearchSummarySegmentAttributeValue$,
   ContactState,
   ContentAttributes$,
+  ContentDisposition,
   ControlPlaneAttributeFilter$,
   ControlPlaneTagFilter$,
   ControlPlaneUserAttributeFilter$,
@@ -306,6 +310,10 @@ import {
   CreateContact$,
   CreateContactCommand,
   CreateContactFlow$,
+  CreateContactFlowAlias$,
+  CreateContactFlowAliasCommand,
+  CreateContactFlowAliasRequest$,
+  CreateContactFlowAliasResponse$,
   CreateContactFlowCommand,
   CreateContactFlowModule$,
   CreateContactFlowModuleAlias$,
@@ -506,6 +514,10 @@ import {
   DeleteContactEvaluationCommand,
   DeleteContactEvaluationRequest$,
   DeleteContactFlow$,
+  DeleteContactFlowAlias$,
+  DeleteContactFlowAliasCommand,
+  DeleteContactFlowAliasRequest$,
+  DeleteContactFlowAliasResponse$,
   DeleteContactFlowCommand,
   DeleteContactFlowModule$,
   DeleteContactFlowModuleAlias$,
@@ -657,6 +669,10 @@ import {
   DescribeContactEvaluationRequest$,
   DescribeContactEvaluationResponse$,
   DescribeContactFlow$,
+  DescribeContactFlowAlias$,
+  DescribeContactFlowAliasCommand,
+  DescribeContactFlowAliasRequest$,
+  DescribeContactFlowAliasResponse$,
   DescribeContactFlowCommand,
   DescribeContactFlowModule$,
   DescribeContactFlowModuleAlias$,
@@ -1199,6 +1215,10 @@ import {
   ListContactEvaluationsCommand,
   ListContactEvaluationsRequest$,
   ListContactEvaluationsResponse$,
+  ListContactFlowAliases$,
+  ListContactFlowAliasesCommand,
+  ListContactFlowAliasesRequest$,
+  ListContactFlowAliasesResponse$,
   ListContactFlowModuleAliases$,
   ListContactFlowModuleAliasesCommand,
   ListContactFlowModuleAliasesRequest$,
@@ -1345,6 +1365,10 @@ import {
   ListRealtimeContactAnalysisSegmentsV2Command,
   ListRealtimeContactAnalysisSegmentsV2Request$,
   ListRealtimeContactAnalysisSegmentsV2Response$,
+  ListReplicationFindings$,
+  ListReplicationFindingsCommand,
+  ListReplicationFindingsRequest$,
+  ListReplicationFindingsResponse$,
   ListRoutingProfileManualAssignmentQueues$,
   ListRoutingProfileManualAssignmentQueuesCommand,
   ListRoutingProfileManualAssignmentQueuesRequest$,
@@ -1511,6 +1535,7 @@ import {
   NotificationSource,
   NotificationStatus,
   NotificationType,
+  NullableAdditionalRecipients$,
   NumberComparisonType,
   NumberCondition$,
   NumberReference$,
@@ -1548,6 +1573,7 @@ import {
   paginateListBots,
   paginateListChildHoursOfOperations,
   paginateListContactEvaluations,
+  paginateListContactFlowAliases,
   paginateListContactFlowModuleAliases,
   paginateListContactFlowModules,
   paginateListContactFlowModuleVersions,
@@ -1582,6 +1608,7 @@ import {
   paginateListQueues,
   paginateListQuickConnects,
   paginateListRealtimeContactAnalysisSegmentsV2,
+  paginateListReplicationFindings,
   paginateListRoutingProfileManualAssignmentQueues,
   paginateListRoutingProfileQueues,
   paginateListRoutingProfiles,
@@ -1762,6 +1789,7 @@ import {
   ReplicateInstanceRequest$,
   ReplicateInstanceResponse$,
   ReplicationConfiguration$,
+  ReplicationFinding$,
   ReplicationStatusSummary$,
   RequiredFieldInfo$,
   ResourceConflictException,
@@ -1772,6 +1800,7 @@ import {
   ResourceNotFoundException$,
   ResourceNotReadyException,
   ResourceNotReadyException$,
+  ResourceReplicationStatus$,
   ResourceTagsSearchCriteria$,
   ResourceType,
   ResponseMode,
@@ -1948,11 +1977,13 @@ import {
   SecurityProfileSearchSummary$,
   SecurityProfilesSearchFilter$,
   SecurityProfileSummary$,
+  SecurityProfileType,
   SegmentAttributeValue$,
   SendChatIntegrationEvent$,
   SendChatIntegrationEventCommand,
   SendChatIntegrationEventRequest$,
   SendChatIntegrationEventResponse$,
+  SendInAppNotificationActionDefinition$,
   SendNotificationActionDefinition$,
   SendOutboundEmail$,
   SendOutboundEmailCommand,
@@ -2168,6 +2199,10 @@ import {
   UpdateContactEvaluationCommand,
   UpdateContactEvaluationRequest$,
   UpdateContactEvaluationResponse$,
+  UpdateContactFlowAlias$,
+  UpdateContactFlowAliasCommand,
+  UpdateContactFlowAliasRequest$,
+  UpdateContactFlowAliasResponse$,
   UpdateContactFlowContent$,
   UpdateContactFlowContentCommand,
   UpdateContactFlowContentRequest$,
@@ -2258,6 +2293,13 @@ import {
   UpdateNotificationContentCommand,
   UpdateNotificationContentRequest$,
   UpdateNotificationContentResponse$,
+  UpdateOutboundEmailContactMessage$,
+  UpdateOutboundEmailContactMessageCommand,
+  UpdateOutboundEmailContactMessageRequest$,
+  UpdateOutboundEmailContactMessageResponse$,
+  UpdateOutboundEmailContent$,
+  UpdateOutboundEmailMessageSourceType,
+  UpdateOutboundRawMessage$,
   UpdateParticipantAuthentication$,
   UpdateParticipantAuthenticationCommand,
   UpdateParticipantAuthenticationRequest$,
@@ -2540,6 +2582,8 @@ assert(typeof CreateContactCommand === "function");
 assert(typeof CreateContact$ === "object");
 assert(typeof CreateContactFlowCommand === "function");
 assert(typeof CreateContactFlow$ === "object");
+assert(typeof CreateContactFlowAliasCommand === "function");
+assert(typeof CreateContactFlowAlias$ === "object");
 assert(typeof CreateContactFlowModuleCommand === "function");
 assert(typeof CreateContactFlowModule$ === "object");
 assert(typeof CreateContactFlowModuleAliasCommand === "function");
@@ -2622,6 +2666,8 @@ assert(typeof DeleteContactEvaluationCommand === "function");
 assert(typeof DeleteContactEvaluation$ === "object");
 assert(typeof DeleteContactFlowCommand === "function");
 assert(typeof DeleteContactFlow$ === "object");
+assert(typeof DeleteContactFlowAliasCommand === "function");
+assert(typeof DeleteContactFlowAlias$ === "object");
 assert(typeof DeleteContactFlowModuleCommand === "function");
 assert(typeof DeleteContactFlowModule$ === "object");
 assert(typeof DeleteContactFlowModuleAliasCommand === "function");
@@ -2706,6 +2752,8 @@ assert(typeof DescribeContactEvaluationCommand === "function");
 assert(typeof DescribeContactEvaluation$ === "object");
 assert(typeof DescribeContactFlowCommand === "function");
 assert(typeof DescribeContactFlow$ === "object");
+assert(typeof DescribeContactFlowAliasCommand === "function");
+assert(typeof DescribeContactFlowAlias$ === "object");
 assert(typeof DescribeContactFlowModuleCommand === "function");
 assert(typeof DescribeContactFlowModule$ === "object");
 assert(typeof DescribeContactFlowModuleAliasCommand === "function");
@@ -2862,6 +2910,8 @@ assert(typeof ListChildHoursOfOperationsCommand === "function");
 assert(typeof ListChildHoursOfOperations$ === "object");
 assert(typeof ListContactEvaluationsCommand === "function");
 assert(typeof ListContactEvaluations$ === "object");
+assert(typeof ListContactFlowAliasesCommand === "function");
+assert(typeof ListContactFlowAliases$ === "object");
 assert(typeof ListContactFlowModuleAliasesCommand === "function");
 assert(typeof ListContactFlowModuleAliases$ === "object");
 assert(typeof ListContactFlowModulesCommand === "function");
@@ -2934,6 +2984,8 @@ assert(typeof ListQuickConnectsCommand === "function");
 assert(typeof ListQuickConnects$ === "object");
 assert(typeof ListRealtimeContactAnalysisSegmentsV2Command === "function");
 assert(typeof ListRealtimeContactAnalysisSegmentsV2$ === "object");
+assert(typeof ListReplicationFindingsCommand === "function");
+assert(typeof ListReplicationFindings$ === "object");
 assert(typeof ListRoutingProfileManualAssignmentQueuesCommand === "function");
 assert(typeof ListRoutingProfileManualAssignmentQueues$ === "object");
 assert(typeof ListRoutingProfileQueuesCommand === "function");
@@ -3134,6 +3186,8 @@ assert(typeof UpdateContactAttributesCommand === "function");
 assert(typeof UpdateContactAttributes$ === "object");
 assert(typeof UpdateContactEvaluationCommand === "function");
 assert(typeof UpdateContactEvaluation$ === "object");
+assert(typeof UpdateContactFlowAliasCommand === "function");
+assert(typeof UpdateContactFlowAlias$ === "object");
 assert(typeof UpdateContactFlowContentCommand === "function");
 assert(typeof UpdateContactFlowContent$ === "object");
 assert(typeof UpdateContactFlowMetadataCommand === "function");
@@ -3180,6 +3234,8 @@ assert(typeof UpdateMetricMetadataCommand === "function");
 assert(typeof UpdateMetricMetadata$ === "object");
 assert(typeof UpdateNotificationContentCommand === "function");
 assert(typeof UpdateNotificationContent$ === "object");
+assert(typeof UpdateOutboundEmailContactMessageCommand === "function");
+assert(typeof UpdateOutboundEmailContactMessage$ === "object");
 assert(typeof UpdateParticipantAuthenticationCommand === "function");
 assert(typeof UpdateParticipantAuthentication$ === "object");
 assert(typeof UpdateParticipantRoleConfigCommand === "function");
@@ -3294,6 +3350,7 @@ assert(typeof AnalyticsDataAssociationResult$ === "object");
 assert(typeof AnalyticsDataSetsResult$ === "object");
 assert(typeof AnswerMachineDetectionConfig$ === "object");
 assert(typeof Application$ === "object");
+assert(typeof ApproximateDriftedResourceCount$ === "object");
 assert(typeof AssignContactCategoryActionDefinition$ === "object");
 assert(typeof AssignSlaActionDefinition$ === "object");
 assert(typeof AssociateAnalyticsDataSetRequest$ === "object");
@@ -3405,6 +3462,8 @@ assert(typeof ContactEvaluationAttributeFilter$ === "object");
 assert(typeof ContactEvaluationAttributeValue$ === "object");
 assert(typeof ContactFilter$ === "object");
 assert(typeof ContactFlow$ === "object");
+assert(typeof ContactFlowAliasInfo$ === "object");
+assert(typeof ContactFlowAliasSummary$ === "object");
 assert(typeof ContactFlowAttributeAndCondition$ === "object");
 assert(typeof ContactFlowAttributeFilter$ === "object");
 assert(typeof ContactFlowModule$ === "object");
@@ -3438,6 +3497,8 @@ assert(typeof CreateAttachedFileResponse$ === "object");
 assert(typeof CreateAuthCodeRequest$ === "object");
 assert(typeof CreateAuthCodeResponse$ === "object");
 assert(typeof CreateCaseActionDefinition$ === "object");
+assert(typeof CreateContactFlowAliasRequest$ === "object");
+assert(typeof CreateContactFlowAliasResponse$ === "object");
 assert(typeof CreateContactFlowModuleAliasRequest$ === "object");
 assert(typeof CreateContactFlowModuleAliasResponse$ === "object");
 assert(typeof CreateContactFlowModuleRequest$ === "object");
@@ -3549,6 +3610,8 @@ assert(typeof DeleteAttachedFileResponse$ === "object");
 assert(typeof DeleteContactDataRequest$ === "object");
 assert(typeof DeleteContactDataResponse$ === "object");
 assert(typeof DeleteContactEvaluationRequest$ === "object");
+assert(typeof DeleteContactFlowAliasRequest$ === "object");
+assert(typeof DeleteContactFlowAliasResponse$ === "object");
 assert(typeof DeleteContactFlowModuleAliasRequest$ === "object");
 assert(typeof DeleteContactFlowModuleAliasResponse$ === "object");
 assert(typeof DeleteContactFlowModuleRequest$ === "object");
@@ -3616,6 +3679,8 @@ assert(typeof DescribeAuthenticationProfileRequest$ === "object");
 assert(typeof DescribeAuthenticationProfileResponse$ === "object");
 assert(typeof DescribeContactEvaluationRequest$ === "object");
 assert(typeof DescribeContactEvaluationResponse$ === "object");
+assert(typeof DescribeContactFlowAliasRequest$ === "object");
+assert(typeof DescribeContactFlowAliasResponse$ === "object");
 assert(typeof DescribeContactFlowModuleAliasRequest$ === "object");
 assert(typeof DescribeContactFlowModuleAliasResponse$ === "object");
 assert(typeof DescribeContactFlowModuleRequest$ === "object");
@@ -3927,6 +3992,8 @@ assert(typeof ListChildHoursOfOperationsResponse$ === "object");
 assert(typeof ListCondition$ === "object");
 assert(typeof ListContactEvaluationsRequest$ === "object");
 assert(typeof ListContactEvaluationsResponse$ === "object");
+assert(typeof ListContactFlowAliasesRequest$ === "object");
+assert(typeof ListContactFlowAliasesResponse$ === "object");
 assert(typeof ListContactFlowModuleAliasesRequest$ === "object");
 assert(typeof ListContactFlowModuleAliasesResponse$ === "object");
 assert(typeof ListContactFlowModulesRequest$ === "object");
@@ -4000,6 +4067,8 @@ assert(typeof ListQuickConnectsRequest$ === "object");
 assert(typeof ListQuickConnectsResponse$ === "object");
 assert(typeof ListRealtimeContactAnalysisSegmentsV2Request$ === "object");
 assert(typeof ListRealtimeContactAnalysisSegmentsV2Response$ === "object");
+assert(typeof ListReplicationFindingsRequest$ === "object");
+assert(typeof ListReplicationFindingsResponse$ === "object");
 assert(typeof ListRoutingProfileManualAssignmentQueuesRequest$ === "object");
 assert(typeof ListRoutingProfileManualAssignmentQueuesResponse$ === "object");
 assert(typeof ListRoutingProfileQueuesRequest$ === "object");
@@ -4086,6 +4155,7 @@ assert(typeof NotificationRecipientType$ === "object");
 assert(typeof NotificationSearchCriteria$ === "object");
 assert(typeof NotificationSearchFilter$ === "object");
 assert(typeof NotificationSearchSummary$ === "object");
+assert(typeof NullableAdditionalRecipients$ === "object");
 assert(typeof NumberCondition$ === "object");
 assert(typeof NumberReference$ === "object");
 assert(typeof NumericQuestionPropertyValueAutomation$ === "object");
@@ -4192,8 +4262,10 @@ assert(typeof ReleasePhoneNumberRequest$ === "object");
 assert(typeof ReplicateInstanceRequest$ === "object");
 assert(typeof ReplicateInstanceResponse$ === "object");
 assert(typeof ReplicationConfiguration$ === "object");
+assert(typeof ReplicationFinding$ === "object");
 assert(typeof ReplicationStatusSummary$ === "object");
 assert(typeof RequiredFieldInfo$ === "object");
+assert(typeof ResourceReplicationStatus$ === "object");
 assert(typeof ResourceTagsSearchCriteria$ === "object");
 assert(typeof ResumeContactRecordingRequest$ === "object");
 assert(typeof ResumeContactRecordingResponse$ === "object");
@@ -4303,6 +4375,7 @@ assert(typeof SecurityProfileSummary$ === "object");
 assert(typeof SegmentAttributeValue$ === "object");
 assert(typeof SendChatIntegrationEventRequest$ === "object");
 assert(typeof SendChatIntegrationEventResponse$ === "object");
+assert(typeof SendInAppNotificationActionDefinition$ === "object");
 assert(typeof SendNotificationActionDefinition$ === "object");
 assert(typeof SendOutboundEmailRequest$ === "object");
 assert(typeof SendOutboundEmailResponse$ === "object");
@@ -4416,6 +4489,8 @@ assert(typeof UpdateContactAttributesRequest$ === "object");
 assert(typeof UpdateContactAttributesResponse$ === "object");
 assert(typeof UpdateContactEvaluationRequest$ === "object");
 assert(typeof UpdateContactEvaluationResponse$ === "object");
+assert(typeof UpdateContactFlowAliasRequest$ === "object");
+assert(typeof UpdateContactFlowAliasResponse$ === "object");
 assert(typeof UpdateContactFlowContentRequest$ === "object");
 assert(typeof UpdateContactFlowContentResponse$ === "object");
 assert(typeof UpdateContactFlowMetadataRequest$ === "object");
@@ -4460,6 +4535,10 @@ assert(typeof UpdateMetricMetadataRequest$ === "object");
 assert(typeof UpdateMetricMetadataResponse$ === "object");
 assert(typeof UpdateNotificationContentRequest$ === "object");
 assert(typeof UpdateNotificationContentResponse$ === "object");
+assert(typeof UpdateOutboundEmailContactMessageRequest$ === "object");
+assert(typeof UpdateOutboundEmailContactMessageResponse$ === "object");
+assert(typeof UpdateOutboundEmailContent$ === "object");
+assert(typeof UpdateOutboundRawMessage$ === "object");
 assert(typeof UpdateParticipantAuthenticationRequest$ === "object");
 assert(typeof UpdateParticipantAuthenticationResponse$ === "object");
 assert(typeof UpdateParticipantRoleConfigChannelInfo$ === "object");
@@ -4613,6 +4692,7 @@ assert(typeof ContactMetricName === "object");
 assert(typeof ContactParticipantRole === "object");
 assert(typeof ContactRecordingType === "object");
 assert(typeof ContactState === "object");
+assert(typeof ContentDisposition === "object");
 assert(typeof CurrentMetricName === "object");
 assert(typeof DataTableAttributeValueType === "object");
 assert(typeof DataTableLockLevel === "object");
@@ -4744,6 +4824,7 @@ assert(typeof SearchableQueueType === "object");
 assert(typeof SearchContactsMatchType === "object");
 assert(typeof SearchContactsTimeRangeConditionType === "object");
 assert(typeof SearchContactsTimeRangeType === "object");
+assert(typeof SecurityProfileType === "object");
 assert(typeof SingleSelectQuestionRuleCategoryAutomationCondition === "object");
 assert(typeof SlaAssignmentType === "object");
 assert(typeof SlaType === "object");
@@ -4766,6 +4847,7 @@ assert(typeof TrafficDistributionGroupStatus === "object");
 assert(typeof TrafficType === "object");
 assert(typeof TrendIndicator === "object");
 assert(typeof Unit === "object");
+assert(typeof UpdateOutboundEmailMessageSourceType === "object");
 assert(typeof UseCaseType === "object");
 assert(typeof VideoCapability === "object");
 assert(typeof ViewStatus === "object");
@@ -4849,6 +4931,7 @@ assert(typeof paginateListAuthenticationProfiles === "function");
 assert(typeof paginateListBots === "function");
 assert(typeof paginateListChildHoursOfOperations === "function");
 assert(typeof paginateListContactEvaluations === "function");
+assert(typeof paginateListContactFlowAliases === "function");
 assert(typeof paginateListContactFlowModuleAliases === "function");
 assert(typeof paginateListContactFlowModuleVersions === "function");
 assert(typeof paginateListContactFlowModules === "function");
@@ -4883,6 +4966,7 @@ assert(typeof paginateListQueueQuickConnects === "function");
 assert(typeof paginateListQueues === "function");
 assert(typeof paginateListQuickConnects === "function");
 assert(typeof paginateListRealtimeContactAnalysisSegmentsV2 === "function");
+assert(typeof paginateListReplicationFindings === "function");
 assert(typeof paginateListRoutingProfileManualAssignmentQueues === "function");
 assert(typeof paginateListRoutingProfileQueues === "function");
 assert(typeof paginateListRoutingProfiles === "function");
